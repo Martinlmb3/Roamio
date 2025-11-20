@@ -1,0 +1,223 @@
+<app-header />
+<main class="container mx-auto px-4 py-8">
+<div class="flex flex-col gap-8 lg:flex-row">
+<!-- Left Sidebar: Filters -->
+<aside class="w-full lg:w-1/4 lg:max-w-xs shrink-0">
+<div class="sticky top-24 space-y-6">
+<div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-6">
+<div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-700">
+<h2 class="text-slate-800 dark:text-slate-200 text-lg font-bold leading-tight tracking-[-0.015em]">Filter by:</h2>
+<button class="text-primary text-sm font-medium">Reset</button>
+</div>
+<div class="space-y-6 pt-6">
+<!-- Price Range Slider -->
+<div class="relative flex w-full flex-col items-start justify-between gap-3">
+<p class="text-slate-800 dark:text-slate-200 text-base font-medium leading-normal w-full">Price Range</p>
+<div class="flex h-[38px] w-full pt-1.5">
+<div class="flex h-1 w-full rounded-sm bg-slate-200 dark:bg-slate-600 pl-[10%] pr-[20%]">
+<div class="relative">
+<div class="absolute -left-3 -top-1.5 flex flex-col items-center gap-1">
+<div class="size-4 rounded-full bg-primary ring-2 ring-white dark:ring-slate-800"></div>
+<p class="text-slate-600 dark:text-slate-400 text-sm font-normal leading-normal">$250</p>
+</div>
+</div>
+<div class="h-1 flex-1 rounded-sm bg-primary"></div>
+<div class="relative">
+<div class="absolute -right-3 -top-1.5 flex flex-col items-center gap-1">
+<div class="size-4 rounded-full bg-primary ring-2 ring-white dark:ring-slate-800"></div>
+<p class="text-slate-600 dark:text-slate-400 text-sm font-normal leading-normal">$1200</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Stops Filter -->
+<div>
+<h3 class="font-medium text-slate-800 dark:text-slate-200 mb-3">Stops</h3>
+<div class="space-y-2">
+<label class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+<input checked="" class="h-4 w-4 rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary/50 bg-slate-100 dark:bg-slate-700" type="checkbox"/> Direct
+                    </label>
+<label class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+<input class="h-4 w-4 rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary/50 bg-slate-100 dark:bg-slate-700" type="checkbox"/> 1 Stop
+                    </label>
+<label class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+<input class="h-4 w-4 rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary/50 bg-slate-100 dark:bg-slate-700" type="checkbox"/> 2+ Stops
+                    </label>
+</div>
+</div>
+<!-- Airlines Filter -->
+<div>
+<h3 class="font-medium text-slate-800 dark:text-slate-200 mb-3">Airlines</h3>
+<div class="space-y-2">
+<label class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+<input checked="" class="h-4 w-4 rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary/50 bg-slate-100 dark:bg-slate-700" type="checkbox"/> British Airways
+                    </label>
+<label class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+<input class="h-4 w-4 rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary/50 bg-slate-100 dark:bg-slate-700" type="checkbox"/> American Airlines
+                    </label>
+<label class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+<input class="h-4 w-4 rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary/50 bg-slate-100 dark:bg-slate-700" type="checkbox"/> Virgin Atlantic
+                    </label>
+</div>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Right Column: Results -->
+<div class="w-full lg:w-3/4">
+<div class="space-y-6">
+<!-- Heading & Sort -->
+<div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4">
+<div class="flex min-w-72 flex-col gap-1">
+<p class="text-slate-800 dark:text-slate-200 text-3xl font-black leading-tight tracking-[-0.033em]">Flights from London to New York</p>
+<p class="text-slate-500 dark:text-slate-400 text-base font-normal leading-normal">Showing 78 of 210 results</p>
+</div>
+<div class="flex items-center gap-2">
+<label class="text-sm font-medium text-slate-600 dark:text-slate-400" for="sort">Sort by:</label>
+<select class="rounded-lg border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-sm font-medium focus:border-primary focus:ring-primary/50" id="sort">
+<option>Cheapest</option>
+<option>Fastest</option>
+<option>Best</option>
+<option>Earliest Departure</option>
+</select>
+</div>
+</div>
+<!-- Applied Filters Chips -->
+<div class="flex gap-3 flex-wrap">
+<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary/20 pl-4 pr-3">
+<p class="text-primary text-sm font-medium leading-normal">Price: Cheapest</p>
+<button class="text-primary"><span class="material-symbols-outlined text-base">close</span></button>
+</div>
+<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary/20 pl-4 pr-3">
+<p class="text-primary text-sm font-medium leading-normal">Stops: Direct</p>
+<button class="text-primary"><span class="material-symbols-outlined text-base">close</span></button>
+</div>
+<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary/20 pl-4 pr-3">
+<p class="text-primary text-sm font-medium leading-normal">Airline: British Airways</p>
+<button class="text-primary"><span class="material-symbols-outlined text-base">close</span></button>
+</div>
+</div>
+<!-- Flight Result Cards -->
+<div class="space-y-4">
+<!-- Card 1 -->
+<div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 p-4 flex flex-col sm:flex-row items-center gap-4" *ngFor="let flight of flights">
+<div class="flex-grow w-full">
+<div class="flex items-center gap-4 mb-4">
+<img class="h-8 w-auto" data-alt="{{ flight.airline }} logo" [src]="flight.logoUrl"/>
+<span class="font-medium text-slate-700 dark:text-slate-300">{{ flight.airline }}</span>
+</div>
+<div class="flex items-center justify-between gap-4">
+<div class="text-center">
+<p class="text-xl font-bold text-slate-800 dark:text-slate-200">{{ flight.departure.time }}</p>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">{{ flight.departure.airport }}</p>
+</div>
+<div class="flex-grow flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400 dark:text-slate-500 text-xl">flight_takeoff</span>
+<div class="w-full h-px bg-slate-200 dark:bg-slate-600 relative">
+<div class="absolute inset-0 flex justify-center">
+<div class="text-center -mt-3.5">
+<p class="text-xs text-slate-500 dark:text-slate-400">{{ flight.duration }}</p>
+<p class="text-xs font-semibold" [ngClass]="flight.stopsClass">{{ flight.stops }}</p>
+</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-400 dark:text-slate-500 text-xl">flight_land</span>
+</div>
+<div class="text-center">
+<p class="text-xl font-bold text-slate-800 dark:text-slate-200">{{ flight.arrival.time }}</p>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">{{ flight.arrival.airport }}</p>
+</div>
+</div>
+</div>
+<div class="w-full sm:w-auto border-t sm:border-t-0 sm:border-l border-slate-200 dark:border-slate-700 mt-4 sm:mt-0 pt-4 sm:pt-0 sm:pl-6 flex flex-col items-center justify-center shrink-0">
+<p class="text-2xl font-extrabold text-slate-800 dark:text-slate-200 mb-2">${{ flight.price }}</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 mb-4">per person</p>
+<button class="w-full sm:w-auto flex min-w-[120px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
+<span class="truncate">Select Flight</span>
+</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 p-4 flex flex-col sm:flex-row items-center gap-4">
+<div class="flex-grow w-full">
+<div class="flex items-center gap-4 mb-4">
+<img class="h-8 w-auto" data-alt="American Airlines logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0RvV5pSCuo3Jvk4ONHacOSBLex48_unSG_XcZ4kpXEx3sNePIGZcJIWQ1UOYWih-kpSfpIWpCOE_JMYMZsSwep4v4fnZsVJFbU7e8vjtyzZiY-iIu9KCcX6Rt_nIjVCae0a4AF6ynjrEszgWpgpGlqe7mGBS9mKvwvJU-94ZnOBYNilbIPVvyPLv5B_bFNlskZAY3YkfHKnC3w8wBQB68TI4YmUrnTzFy-VbHncp9XAWGj3tr1gD42kTDjNgHD7VWs6IECELIZpA6"/>
+<span class="font-medium text-slate-700 dark:text-slate-300">American Airlines</span>
+</div>
+<div class="flex items-center justify-between gap-4">
+<div class="text-center">
+<p class="text-xl font-bold text-slate-800 dark:text-slate-200">11:00</p>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">LHR</p>
+</div>
+<div class="flex-grow flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400 dark:text-slate-500 text-xl">flight_takeoff</span>
+<div class="w-full h-px bg-slate-200 dark:bg-slate-600 relative">
+<div class="absolute inset-0 flex justify-center">
+<div class="text-center -mt-3.5">
+<p class="text-xs text-slate-500 dark:text-slate-400">10h 30m</p>
+<p class="text-xs font-semibold text-orange-600 dark:text-orange-400">1 Stop (DUB)</p>
+</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-400 dark:text-slate-500 text-xl">flight_land</span>
+</div>
+<div class="text-center">
+<p class="text-xl font-bold text-slate-800 dark:text-slate-200">18:30</p>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">JFK</p>
+</div>
+</div>
+</div>
+<div class="w-full sm:w-auto border-t sm:border-t-0 sm:border-l border-slate-200 dark:border-slate-700 mt-4 sm:mt-0 pt-4 sm:pt-0 sm:pl-6 flex flex-col items-center justify-center shrink-0">
+<p class="text-2xl font-extrabold text-slate-800 dark:text-slate-200 mb-2">$520</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 mb-4">per person</p>
+<button class="w-full sm:w-auto flex min-w-[120px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
+<span class="truncate">Select Flight</span>
+</button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 p-4 flex flex-col sm:flex-row items-center gap-4">
+<div class="flex-grow w-full">
+<div class="flex items-center gap-4 mb-4">
+<img class="h-8 w-auto" data-alt="Virgin Atlantic logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbc0_3KvXC91YY6pOCGrSkwR3yChkoMKXClp15BouLzbesUjg3wwvvP3PidrHi-AQFS489ZNOKkidQNKZeQnrCPqFANBgNu2Edm9HxfmetYrrEdbKPEIAs9KCK2CXyl-plDY6b3BMXtRYYAXMiVnGRC7QJB_7WyMpH9s4BT_knBOxfhMnu3gBtFEnCXy6vwL2MhpR41twf1Z0XRDWBrsOzvSOUTxh-GCJ1DVI1aDuAplGIL9WLpva2afL9HrkBm5QLXcRg61O5K8rB"/>
+<span class="font-medium text-slate-700 dark:text-slate-300">Virgin Atlantic</span>
+</div>
+<div class="flex items-center justify-between gap-4">
+<div class="text-center">
+<p class="text-xl font-bold text-slate-800 dark:text-slate-200">09:15</p>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">LGW</p>
+</div>
+<div class="flex-grow flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400 dark:text-slate-500 text-xl">flight_takeoff</span>
+<div class="w-full h-px bg-slate-200 dark:bg-slate-600 relative">
+<div class="absolute inset-0 flex justify-center">
+<div class="text-center -mt-3.5">
+<p class="text-xs text-slate-500 dark:text-slate-400">8h 25m</p>
+<p class="text-xs font-semibold text-green-600 dark:text-green-400">Direct</p>
+</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-400 dark:text-slate-500 text-xl">flight_land</span>
+</div>
+<div class="text-center">
+<p class="text-xl font-bold text-slate-800 dark:text-slate-200">12:40</p>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">JFK</p>
+</div>
+</div>
+</div>
+<div class="w-full sm:w-auto border-t sm:border-t-0 sm:border-l border-slate-200 dark:border-slate-700 mt-4 sm:mt-0 pt-4 sm:pt-0 sm:pl-6 flex flex-col items-center justify-center shrink-0">
+<p class="text-2xl font-extrabold text-slate-800 dark:text-slate-200 mb-2">$615</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 mb-4">per person</p>
+<button class="w-full sm:w-auto flex min-w-[120px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
+<span class="truncate">Select Flight</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<app-footer />

@@ -1,0 +1,21 @@
+<header class="sticky top-0 z-50 flex items-center justify-center border-b border-secondary/30 bg-secondary backdrop-blur-md shadow-md">
+  <div class="relative z-10 flex h-16 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center cursor-pointer" (click)="navigateToHome()">
+      <img src="/Roamio-logo.svg" alt="Roamio" class="h-8 hover:opacity-80 transition-opacity" />
+    </div>
+    <nav class="hidden items-center gap-8 md:flex">
+      <a class="text-sm font-semibold text-white hover:text-primary transition-colors drop-shadow-sm cursor-pointer" (click)="navigateToFlights()">Flights</a>
+      <a class="text-sm font-semibold text-white hover:text-primary transition-colors drop-shadow-sm cursor-pointer" (click)="navigateToStays()">Stays</a>
+      <a class="text-sm font-semibold text-white hover:text-primary transition-colors drop-shadow-sm cursor-pointer" (click)="navigateToDeals()">Deals</a>
+      <a class="text-sm font-semibold text-white hover:text-primary transition-colors drop-shadow-sm cursor-pointer" (click)="navigateToMyTrips()">My Trips</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <button class="flex h-10 min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg border-2 border-white px-4 text-sm font-bold text-white hover:bg-white hover:text-secondary transition-all duration-200" (click)="navigateToLogin()">
+        <span class="truncate">Log In</span>
+      </button>
+      <button class="flex h-10 min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-primary px-4 text-sm font-bold text-text-light hover:bg-primary/80 hover:shadow-lg transition-all duration-200" (click)="navigateToSignUp()">
+        <span class="truncate">Sign Up</span>
+      </button>
+    </div>
+  </div>
+</header>

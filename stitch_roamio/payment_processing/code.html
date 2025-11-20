@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Roamio - Secure Payment</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#0052CC",
+              "background-light": "#F9FAFB",
+              "background-dark": "#111c21",
+            },
+            fontFamily: {
+              "display": ["Plus Jakarta Sans", "Noto Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: inherit;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-200 dark:border-gray-700 px-4 md:px-10 py-3 bg-white dark:bg-background-dark">
+<div class="flex items-center gap-4 text-gray-900 dark:text-white">
+<div class="size-6 text-primary">
+<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_535)">
+<path clip-rule="evenodd" d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24ZM12.2426 21H35.7574L24 9.24264L12.2426 21Z" fill-rule="evenodd"></path>
+</g>
+<defs>
+<clippath id="clip0_6_535"><rect fill="white" height="48" width="48"></rect></clippath>
+</defs>
+</svg>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-[-0.015em]">Roamio</h2>
+</div>
+<div class="flex flex-1 justify-end gap-4 items-center">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-3">
+<span class="material-symbols-outlined text-xl">help</span>
+<span class="hidden sm:inline">Support</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile picture, an abstract circular gradient." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBcoQJPtkIwZ4DrJQEKcY-WKmkHK8DtyzochkwxoKFrL6qaefNQZNMZcbrGoxjZ3OCqXMCnatds6HUNxruv9j4WdpNy9b9gF8p7nq7ETy6uqoxA3Bb8NmJBoigpVddmxRDjo0KJZhvR9h0HRFAvSUezSwrh8zixLl70dHETJGjDrr42e33nmzDpE3-Y-AHIJkMX5nsgEVTRnqneJb4wV3PpLAHpbFcqOcpRWrvdXMMubBwGpF06V-Bq9gA6ETfK5LBGHamaowIeuz3v");'></div>
+</div>
+</header>
+<main class="px-4 flex flex-1 justify-center py-5 sm:py-10">
+<div class="layout-content-container flex flex-col w-full max-w-6xl flex-1">
+<div class="flex flex-wrap gap-2 px-4 py-2 text-sm sm:text-base">
+<a class="text-gray-500 dark:text-gray-400 font-medium leading-normal" href="#">Search</a>
+<span class="text-gray-500 dark:text-gray-400 font-medium leading-normal">/</span>
+<a class="text-gray-500 dark:text-gray-400 font-medium leading-normal" href="#">Details</a>
+<span class="text-gray-500 dark:text-gray-400 font-medium leading-normal">/</span>
+<span class="text-gray-900 dark:text-white font-medium leading-normal">Payment</span>
+<span class="text-gray-500 dark:text-gray-400 font-medium leading-normal">/</span>
+<span class="text-gray-500 dark:text-gray-400 font-medium leading-normal">Confirmation</span>
+</div>
+<div class="flex flex-wrap justify-between gap-3 p-4">
+<div class="flex min-w-72 flex-col gap-2">
+<p class="text-gray-900 dark:text-white text-3xl sm:text-4xl font-black leading-tight tracking-[-0.033em]">Secure Payment</p>
+<p class="text-gray-600 dark:text-gray-300 text-base font-normal leading-normal">Please review your booking and enter your payment details to complete your purchase.</p>
+</div>
+</div>
+<div class="flex flex-col lg:flex-row gap-8 w-full p-4">
+<div class="w-full lg:w-3/5 space-y-8">
+<div>
+<h2 class="text-gray-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em] pb-4">Choose your payment method</h2>
+<div class="grid grid-cols-3 gap-2 p-1 rounded-lg bg-gray-100 dark:bg-gray-800">
+<button class="px-4 py-3 text-sm font-semibold rounded-md bg-white dark:bg-gray-700 text-primary shadow-sm">Credit/Debit Card</button>
+<button class="px-4 py-3 text-sm font-semibold rounded-md text-gray-600 dark:text-gray-300 hover:bg-white/50 dark:hover:bg-gray-700/50">PayPal</button>
+<button class="px-4 py-3 text-sm font-semibold rounded-md text-gray-600 dark:text-gray-300 hover:bg-white/50 dark:hover:bg-gray-700/50">Google Pay</button>
+</div>
+</div>
+<div class="space-y-6">
+<h3 class="text-gray-900 dark:text-white text-lg font-bold">Billing Information</h3>
+<div class="grid grid-cols-1 gap-4">
+<div>
+<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" for="card-name">Name on Card</label>
+<input class="w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-primary focus:ring-primary dark:bg-gray-700 dark:text-white" id="card-name" placeholder="John Doe" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" for="card-number">Card Number</label>
+<div class="relative">
+<input class="w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-primary focus:ring-primary pl-10 dark:bg-gray-700 dark:text-white" id="card-number" placeholder="XXXX XXXX XXXX XXXX" type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">credit_card</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" for="expiry-date">Expiry Date</label>
+<input class="w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-primary focus:ring-primary dark:bg-gray-700 dark:text-white" id="expiry-date" placeholder="MM / YY" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" for="cvv">CVV</label>
+<input class="w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-primary focus:ring-primary dark:bg-gray-700 dark:text-white" id="cvv" placeholder="123" type="text"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="w-full lg:w-2/5">
+<div class="p-6 rounded-xl bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 space-y-6">
+<h2 class="text-gray-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">Booking Summary</h2>
+<div class="flex flex-col items-stretch justify-start rounded-lg">
+<div class="w-full bg-center bg-no-repeat aspect-[16/9] bg-cover rounded-lg" data-alt="A luxurious hotel room with a large bed and city view." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC8dGNUJHAz6fs_SCjkJLGY4gqFy4o7kcLK5kvtVh_4r6CAFOGvWOYdNmA_42QG9U1GSj48ymG5tOhCcs5EbyvBgLHsqYmT63-V9I1BGnRMqPJKCzMKmn6hCmcl249_srBgpwAW3XbIq3NThRCbxFTqWvurMu-0faoHX9-eQ2ghJV-hST0OizCuIBshh1lhScLymLtICClqjMxUswwoo7O_IKVCNtsKheCU_xAJv65qnkwH3WFzISwtlfp26rq4TxJSNh9YourQKs2z");'></div>
+<div class="flex w-full grow flex-col items-stretch justify-center gap-1 py-4">
+<p class="text-gray-500 dark:text-gray-400 text-sm font-normal leading-normal">Hotel in New York</p>
+<p class="text-gray-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">The Grand Hotel</p>
+<div class="flex flex-col gap-1 mt-2">
+<p class="text-gray-600 dark:text-gray-300 text-sm font-normal leading-normal">Check-in: 15 Aug 2024</p>
+<p class="text-gray-600 dark:text-gray-300 text-sm font-normal leading-normal">Check-out: 22 Aug 2024</p>
+<p class="text-gray-600 dark:text-gray-300 text-sm font-normal leading-normal">2 Travelers, 1 Queen Room</p>
+</div>
+</div>
+</div>
+<div class="border-t border-gray-200 dark:border-gray-700 pt-4 space-y-2">
+<div class="flex justify-between text-sm text-gray-600 dark:text-gray-300">
+<span>Base Fare (1 room x 7 nights)</span>
+<span>$1,400.00</span>
+</div>
+<div class="flex justify-between text-sm text-gray-600 dark:text-gray-300">
+<span>Taxes and Fees</span>
+<span>$182.50</span>
+</div>
+<div class="flex justify-between text-lg font-bold text-gray-900 dark:text-white pt-2">
+<span>Total Amount</span>
+<span>$1,582.50</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4 w-full max-w-3xl mx-auto lg:mx-0 lg:max-w-none lg:w-3/5">
+<div class="border-t border-gray-200 dark:border-gray-700 pt-6 space-y-4">
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+<p class="text-gray-900 dark:text-white text-2xl font-bold">Total: $1,582.50</p>
+<button class="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 rounded-lg bg-primary text-white text-base font-bold shadow-lg hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark">
+<span class="material-symbols-outlined">lock</span>
+<span>Confirm and Pay Now</span>
+</button>
+</div>
+<p class="text-xs text-gray-500 dark:text-gray-400 text-center sm:text-left">By clicking 'Confirm and Pay Now', you agree to our <a class="underline text-primary" href="#">Terms &amp; Conditions</a> and <a class="underline text-primary" href="#">Privacy Policy</a>.</p>
+<div class="flex items-center justify-center sm:justify-start gap-2 pt-2">
+<span class="material-symbols-outlined text-green-500 text-lg">verified_user</span>
+<span class="text-sm text-gray-600 dark:text-gray-300">SSL Secured Connection</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="w-full py-8 mt-10 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-background-dark">
+<div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+<p class="text-sm text-gray-500 dark:text-gray-400">© 2024 Roamio. All rights reserved.</p>
+<div class="flex items-center gap-6">
+<img alt="Visa Logo" class="h-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCC5N5R_g-bTWUGrDxvfRkeyZTAM9jYwlwsqxLZOHY5agw1mhACqS5X1iZIEZ6Bz3TodtMP_xUocjsPNmmwv7zjIzhEDuQT3S4pvMRyd0ZTkk9oi8xbuo9xvBImYXctPvj8MlJ_BltiqySggiIg4XT05-XHEKm8mJTUqU_li_ZbXwNuXE77wER20Vr64bAST10xMAhcop4cQueZmfVAE7nMh-qmi2L3gQ5FHX4IEKUxuic8Zp-Nr4trbAGUFGH_w_z_AhuTVVpsS1QM"/>
+<img alt="Mastercard Logo" class="h-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWPcnSHJQpVdAS8AUIX6v1AlmJltM6xrVvNrd9F_LcZOkWVoBmqI0UoRhBJ4ONZan2gJn6ueL7Zb8xWeGF2v5iORAQ54IWcy0p6VMw4a6JnJk6PB0R5twhjSMnwxTpW7bqfpScj94ZjQn4Noj1EOlbqwrsv6wNLYk_3A3FLzEQA6nFlJMQ2LSCBo5dEjJRgCkEx2SA6Y3w5xhDxRZrQV5qsLvJqds6w2BDNBi4gIyOxm7kNSSHSmWcSQiYsYXpzqQdktLfWhVX4GGG"/>
+<img alt="PayPal Logo" class="h-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5OZRsQoH8MWQvwqm1qLxlGUUKo4OQVKl-FIV7NjQ4Vyow1tfCRkdfG5oLg7mVfnu1DGD6K1JYeAaEJqY9BMP0rEshracJCj6QnWPqFuvKakDSf6kQB2-zhVKtD2L541ksDmS3TsxCMlLklc6ucxHUgjP55J9VFPk4jjN5a3R2zCMlQxBqeGzvHRFhrotE10AhWDReD34UUJgSP7WKgwGDs20gUMhp5GVw9oNBQu8RymjbFcQu_3ayV6Dn8jeZW6jlP9c1T27Qlsoz"/>
+<img alt="Google Pay Logo" class="h-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoIioIiLbHjNvd6cFf0aVu5AFqgMflpMIrysFwkKHK6i1CJKnGfb4zE6kdMHsaUd3wezckQ41XJ2khYnH4bhhq_CAB6lAi7m1uDgFGObjuALQjmEg3txsKbcONMNV9h669g181vkqQ07WiQBPVFv2WfS8A1-YxjNuGN6EAgd9vqR6EhSpFhklTTiCLtS9j9fElnvyVIacolkW-4K2wAilQtziJWDvOVQRxLfRb9kPPhB0KA1zh8ADYkYV5xt_snoriqgLpOlEwoiYI"/>
+</div>
+</div>
+</footer>
+</div>
+</div>
+</body></html>

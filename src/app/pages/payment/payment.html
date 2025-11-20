@@ -1,0 +1,108 @@
+<div class="layout-container flex h-full grow flex-col">
+<app-header />
+<main class="px-4 flex flex-1 justify-center py-5 sm:py-10">
+<div class="layout-content-container flex flex-col w-full max-w-6xl flex-1">
+<div class="flex flex-wrap gap-2 px-4 py-2 text-sm sm:text-base">
+<a class="text-gray-500 dark:text-gray-400 font-medium leading-normal" href="#">Search</a>
+<span class="text-gray-500 dark:text-gray-400 font-medium leading-normal">/</span>
+<a class="text-gray-500 dark:text-gray-400 font-medium leading-normal" href="#">Details</a>
+<span class="text-gray-500 dark:text-gray-400 font-medium leading-normal">/</span>
+<span class="text-gray-900 dark:text-white font-medium leading-normal">Payment</span>
+<span class="text-gray-500 dark:text-gray-400 font-medium leading-normal">/</span>
+<span class="text-gray-500 dark:text-gray-400 font-medium leading-normal">Confirmation</span>
+</div>
+<div class="flex flex-wrap justify-between gap-3 p-4">
+<div class="flex min-w-72 flex-col gap-2">
+<p class="text-gray-900 dark:text-white text-3xl sm:text-4xl font-black leading-tight tracking-[-0.033em]">Secure Payment</p>
+<p class="text-gray-600 dark:text-gray-300 text-base font-normal leading-normal">Please review your booking and enter your payment details to complete your purchase.</p>
+</div>
+</div>
+<div class="flex flex-col lg:flex-row gap-8 w-full p-4">
+<div class="w-full lg:w-3/5 space-y-8">
+<div>
+<h2 class="text-gray-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em] pb-4">Choose your payment method</h2>
+<div class="grid grid-cols-3 gap-2 p-1 rounded-lg bg-gray-100 dark:bg-gray-800">
+<button (click)="selectPaymentMethod('card')" [ngClass]="selectedPaymentMethod === 'card' ? 'bg-white dark:bg-gray-700 text-primary shadow-sm' : 'text-gray-600 dark:text-gray-300 hover:bg-white/50 dark:hover:bg-gray-700/50'" class="px-4 py-3 text-sm font-semibold rounded-md">Credit/Debit Card</button>
+<button (click)="selectPaymentMethod('paypal')" [ngClass]="selectedPaymentMethod === 'paypal' ? 'bg-white dark:bg-gray-700 text-primary shadow-sm' : 'text-gray-600 dark:text-gray-300 hover:bg-white/50 dark:hover:bg-gray-700/50'" class="px-4 py-3 text-sm font-semibold rounded-md">PayPal</button>
+<button (click)="selectPaymentMethod('googlepay')" [ngClass]="selectedPaymentMethod === 'googlepay' ? 'bg-white dark:bg-gray-700 text-primary shadow-sm' : 'text-gray-600 dark:text-gray-300 hover:bg-white/50 dark:hover:bg-gray-700/50'" class="px-4 py-3 text-sm font-semibold rounded-md">Google Pay</button>
+</div>
+</div>
+<div class="space-y-6">
+<h3 class="text-gray-900 dark:text-white text-lg font-bold">Billing Information</h3>
+<div class="grid grid-cols-1 gap-4">
+<div>
+<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" for="card-name">Name on Card</label>
+<input class="w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-primary focus:ring-primary dark:bg-gray-700 dark:text-white" id="card-name" placeholder="John Doe" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" for="card-number">Card Number</label>
+<div class="relative">
+<input class="w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-primary focus:ring-primary pl-10 dark:bg-gray-700 dark:text-white" id="card-number" placeholder="XXXX XXXX XXXX XXXX" type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">credit_card</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" for="expiry-date">Expiry Date</label>
+<input class="w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-primary focus:ring-primary dark:bg-gray-700 dark:text-white" id="expiry-date" placeholder="MM / YY" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" for="cvv">CVV</label>
+<input class="w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-primary focus:ring-primary dark:bg-gray-700 dark:text-white" id="cvv" placeholder="123" type="text"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="w-full lg:w-2/5">
+<div class="p-6 rounded-xl bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 space-y-6">
+<h2 class="text-gray-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">Booking Summary</h2>
+<div class="flex flex-col items-stretch justify-start rounded-lg">
+<div class="w-full bg-center bg-no-repeat aspect-[16/9] bg-cover rounded-lg" data-alt="A luxurious hotel room with a large bed and city view." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC8dGNUJHAz6fs_SCjkJLGY4gqFy4o7kcLK5kvtVh_4r6CAFOGvWOYdNmA_42QG9U1GSj48ymG5tOhCcs5EbyvBgLHsqYmT63-V9I1BGnRMqPJKCzMKmn6hCmcl249_srBgpwAW3XbIq3NThRCbxFTqWvurMu-0faoHX9-eQ2ghJV-hST0OizCuIBshh1lhScLymLtICClqjMxUswwoo7O_IKVCNtsKheCU_xAJv65qnkwH3WFzISwtlfp26rq4TxJSNh9YourQKs2z");'></div>
+<div class="flex w-full grow flex-col items-stretch justify-center gap-1 py-4">
+<p class="text-gray-500 dark:text-gray-400 text-sm font-normal leading-normal">Hotel in New York</p>
+<p class="text-gray-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">The Grand Hotel</p>
+<div class="flex flex-col gap-1 mt-2">
+<p class="text-gray-600 dark:text-gray-300 text-sm font-normal leading-normal">Check-in: 15 Aug 2024</p>
+<p class="text-gray-600 dark:text-gray-300 text-sm font-normal leading-normal">Check-out: 22 Aug 2024</p>
+<p class="text-gray-600 dark:text-gray-300 text-sm font-normal leading-normal">2 Travelers, 1 Queen Room</p>
+</div>
+</div>
+</div>
+<div class="border-t border-gray-200 dark:border-gray-700 pt-4 space-y-2">
+<div class="flex justify-between text-sm text-gray-600 dark:text-gray-300">
+<span>Base Fare (1 room x 7 nights)</span>
+<span>$1,400.00</span>
+</div>
+<div class="flex justify-between text-sm text-gray-600 dark:text-gray-300">
+<span>Taxes and Fees</span>
+<span>$182.50</span>
+</div>
+<div class="flex justify-between text-lg font-bold text-gray-900 dark:text-white pt-2">
+<span>Total Amount</span>
+<span>$1,582.50</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4 w-full max-w-3xl mx-auto lg:mx-0 lg:max-w-none lg:w-3/5">
+<div class="border-t border-gray-200 dark:border-gray-700 pt-6 space-y-4">
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+<p class="text-gray-900 dark:text-white text-2xl font-bold">Total: $1,582.50</p>
+<button class="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 rounded-lg bg-primary text-white text-base font-bold shadow-lg hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark">
+<span class="material-symbols-outlined">lock</span>
+<span>Confirm and Pay Now</span>
+</button>
+</div>
+<p class="text-xs text-gray-500 dark:text-gray-400 text-center sm:text-left">By clicking 'Confirm and Pay Now', you agree to our <a class="underline text-primary" href="#">Terms &amp; Conditions</a> and <a class="underline text-primary" href="#">Privacy Policy</a>.</p>
+<div class="flex items-center justify-center sm:justify-start gap-2 pt-2">
+<span class="material-symbols-outlined text-green-500 text-lg">verified_user</span>
+<span class="text-sm text-gray-600 dark:text-gray-300">SSL Secured Connection</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<app-footer />
+</div>

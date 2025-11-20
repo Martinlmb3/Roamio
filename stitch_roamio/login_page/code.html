@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Roamio - Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#19a1e6",
+              "background-light": "#f6f7f8",
+              "background-dark": "#111c21",
+            },
+            fontFamily: {
+              "display": ["Plus Jakarta Sans", "Noto Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        font-size: 24px;
+      }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="group/design-root min-h-screen w-full flex flex-col">
+<header class="bg-background-light dark:bg-background-dark border-b border-[#d0dfe7] dark:border-slate-800">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex h-20 items-center justify-between">
+<div class="flex items-center gap-4">
+<a class="text-[#0e171b] dark:text-white text-2xl font-bold" href="#">Roamio</a>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-[#0e171b] dark:text-white hover:text-primary transition-colors" href="#">Flights</a>
+<a class="text-[#0e171b] dark:text-white hover:text-primary transition-colors" href="#">Hotels</a>
+<a class="text-[#0e171b] dark:text-white hover:text-primary transition-colors" href="#">Car Rentals</a>
+<a class="text-[#0e171b] dark:text-white hover:text-primary transition-colors" href="#">Deals</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full text-[#0e171b] dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined">
+help
+</span>
+</button>
+<button class="p-2 rounded-full text-[#0e171b] dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined">
+notifications
+</span>
+</button>
+<div class="h-10 w-10 rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBgzC4ouNSREn_jK6qA4AA-PQepNIXnE9yhJJCQgeqFn8HXGq2riw6Wj5tU_-2NsxYh1G6Biq3CAF_M25JimKD8u-qrPOp_k9-JMJoa9ZuNi99-YuQ4QJaAoXLhgvedKXkZ77u6cvUx8NBs6OlKYtxXRi5Q0eFdQb87revLuzBL5lqBMrE39q8AcspbLm3E5in7nbN-Vgd_KAoS1oMSLKZtutBgmTsOVto22aUA32QwoEMG_5DIYkDyxT9JM3UZuuNQnUAem2SR8aJT')"></div>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow w-full flex">
+<div class="hidden lg:block lg:w-1/2 bg-cover bg-center" data-alt="View from a plane window showing the wing over a cloudy sky during sunset." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAYn0gSVFHowIv2GjL7ECaheF86o6JFDGctDMUvJ6QZ3zWvhgszST41GUsIp2p7sxXLJa62emp5Qf-eB5gJ9S0_QrMNDfyJggHRgJS52Q9vDKQNiyQXxvtofu5R4Vpr8h2EY0bVqWCpHvj3WmY6Iz1c8t_nUCivmb_gT1MTisT4RkApW3qzOpNu6E5gYPM2njsUEd45zRS1j6BLM7IKNapyfi9u2hunl74yAvh--tdvWw_0dDYykvB6sJzO4JJ1Nu9Gj4S4eWvt9IEq');">
+</div>
+<div class="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-8 md:p-12">
+<div class="max-w-md w-full mx-auto flex flex-col gap-6">
+<div class="flex flex-col gap-2 text-left lg:hidden">
+<h1 class="text-[#0e171b] dark:text-white text-3xl font-bold">Roamio</h1>
+</div>
+<div class="flex flex-col gap-2 text-left">
+<h2 class="text-[#0e171b] dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">
+                        Welcome back
+                    </h2>
+<p class="text-[#4e7f97] dark:text-slate-400 text-base font-normal leading-normal">
+                        Log in to your account to book your next adventure.
+                    </p>
+</div>
+<form class="flex flex-col gap-4">
+<label class="flex flex-col min-w-40 flex-1">
+<p class="text-[#0e171b] dark:text-slate-300 text-base font-medium leading-normal pb-2">Email or Username</p>
+<div class="flex w-full flex-1 items-stretch rounded-lg">
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0e171b] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#d0dfe7] dark:border-slate-700 bg-background-light dark:bg-background-dark focus:border-primary h-14 placeholder:text-[#4e7f97] p-[15px] text-base font-normal leading-normal" placeholder="Enter your email or username" type="text" value=""/>
+</div>
+</label>
+<label class="flex flex-col min-w-40 flex-1">
+<p class="text-[#0e171b] dark:text-slate-300 text-base font-medium leading-normal pb-2">Password</p>
+<div class="flex w-full flex-1 items-stretch rounded-lg">
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0e171b] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#d0dfe7] dark:border-slate-700 bg-background-light dark:bg-background-dark focus:border-primary h-14 placeholder:text-[#4e7f97] p-[15px] rounded-r-none border-r-0 pr-2 text-base font-normal leading-normal" placeholder="Enter your password" type="password" value=""/>
+<div class="text-[#4e7f97] dark:text-slate-400 flex border border-[#d0dfe7] dark:border-slate-700 bg-background-light dark:bg-background-dark items-center justify-center pr-[15px] rounded-r-lg border-l-0">
+<span class="material-symbols-outlined cursor-pointer">visibility</span>
+</div>
+</div>
+</label>
+<p class="text-[#4e7f97] dark:text-slate-400 text-sm font-normal leading-normal text-right underline cursor-pointer hover:text-primary dark:hover:text-primary">Forgot Password?</p>
+<button class="flex min-w-[84px] w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-14 px-5 bg-primary text-slate-50 text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
+<span class="truncate">Log In</span>
+</button>
+</form>
+<div class="flex items-center gap-4">
+<hr class="w-full border-t border-[#d0dfe7] dark:border-slate-700"/>
+<p class="text-sm text-[#4e7f97] dark:text-slate-400">OR</p>
+<hr class="w-full border-t border-[#d0dfe7] dark:border-slate-700"/>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 flex-1 bg-[#e7eff3] dark:bg-slate-800 text-[#0e171b] dark:text-white gap-2 pl-5 text-base font-bold leading-normal tracking-[0.015em] hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_3021_302)"><path d="M21.9999 12.2452C21.9999 11.4594 21.9317 10.6925 21.7891 9.94922H12.2178V14.289H17.7525C17.5255 15.6881 16.8234 16.9172 15.7923 17.6517V20.48H19.4958C21.0664 19.052 21.9999 16.8375 21.9999 14.2259V12.2452Z" fill="#4285F4"></path><path d="M12.2178 22.0001C15.1072 22.0001 17.5215 21.0547 19.4958 19.4895L15.7923 16.6612C14.7706 17.3486 13.5658 17.7478 12.2178 17.7478C9.64101 17.7478 7.4571 16.0336 6.5746 13.7145H2.74805V16.591C4.66421 20.2522 8.1691 22.0001 12.2178 22.0001Z" fill="#34A853"></path><path d="M6.5746 13.7145C6.35702 13.0645 6.22383 12.377 6.22383 11.6666C6.22383 10.9562 6.35702 10.2687 6.56518 9.6187L2.74805 6.74121C1.69101 8.83546 1.05273 11.2187 1.05273 13.7145C1.05273 16.2102 1.69101 18.5935 2.74805 20.6877L6.5746 17.8102V13.7145Z" fill="#FBBC05"></path><path d="M12.2178 6.2522C13.6841 6.2522 15.0084 6.74121 16.0872 7.7522L19.5794 4.41185C17.5215 2.59345 15.1072 1.5 12.2178 1.5C8.1691 1.5 4.66421 4.74785 2.74805 8.40904L6.5746 11.2865C7.4571 8.9674 9.64101 7.2522 12.2178 7.2522V6.2522Z" fill="#EA4335"></path></g><defs><clipPath id="clip0_3021_302"><rect fill="white" height="21" transform="translate(1.5 1.5)" width="21.0526"></rect></clipPath></defs></svg>
+<span class="truncate">Continue with Google</span>
+</button>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 flex-1 bg-[#e7eff3] dark:bg-slate-800 text-[#0e171b] dark:text-white gap-2 pl-5 text-base font-bold leading-normal tracking-[0.015em] hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.2251 14.2057C19.238 14.5445 19.141 15.3582 18.9179 16.142C18.6728 16.9953 18.2387 17.928 17.6536 18.7314C17.0686 19.5348 16.3865 20.2788 15.5484 20.7338C14.7102 21.1889 13.889 21.396 13.2288 21.3761C12.1186 21.3761 11.3305 21.0373 10.5873 20.3598C9.84412 19.6822 9.30997 18.8453 8.98487 17.8489C8.65977 16.8525 8.52372 15.866 8.57574 14.8894C8.63677 13.7035 9.07082 12.6369 9.87798 11.699C10.6851 10.761 11.5983 10.292 12.6174 10.292C12.8775 10.292 13.4347 10.3517 13.8778 10.4908C14.3299 10.6209 14.8089 10.828 15.155 11.082L15.9341 10.5346C15.2289 9.94242 14.4178 9.54961 13.5617 9.42852C13.2646 9.38372 12.9185 9.35632 12.5364 9.35632C11.3622 9.35632 10.316 9.82531 9.3978 10.763C8.47959 11.7007 7.91054 12.897 7.69046 14.3518C7.03911 14.2822 6.36179 14.4502 5.75345 14.8258C5.06409 15.2588 4.54881 15.9113 4.25171 16.6631C3.60937 18.3162 4.29873 20.2372 5.64818 21.4621C6.27154 22.0294 6.99194 22.3785 7.78132 22.3984C8.5617 22.3984 9.17904 22.1397 9.69432 21.6223C10.1926 21.105 10.4987 20.4879 10.5873 19.8958C11.4524 21.1406 12.6144 21.9328 14.0743 21.9328C14.1713 21.9328 14.2854 21.9238 14.3905 21.9149C15.5387 21.8053 16.5448 21.3402 17.4009 20.5287C17.777 20.1989 18.3702 19.491 18.8223 18.5737C19.2834 17.6565 19.5335 16.7303 19.5695 15.7952H16.3265C15.9714 16.7816 15.252 17.5186 14.3578 18.0163C13.9147 18.2541 13.4164 18.4122 12.8732 18.4122C12.0521 18.4122 11.3627 18.0631 10.8056 17.3649C10.2484 16.6666 9.9983 15.7892 10.0593 14.7326C10.1203 13.676 10.4964 12.8085 11.1858 12.1221C11.8752 11.4356 12.7236 11.0924 13.731 11.0924C14.219 11.0924 14.8364 11.2315 15.3427 11.5495C15.5397 11.6684 15.7538 11.8048 15.9599 11.9629C16.1489 12.102 16.355 12.2585 16.544 12.4325L17.1524 11.9845C16.5021 11.4421 15.7448 11.0403 14.9427 10.828C14.5966 10.7283 14.1815 10.6687 13.731 10.6687C12.7066 10.6687 11.7512 11.1466 10.8648 12.0955C9.97839 13.0443 9.49036 14.1925 9.40182 15.5399C9.31328 16.8873 9.67739 18.155 10.4984 19.3431C10.9091 19.9273 11.4522 20.3598 12.0695 20.6406C12.6868 20.9213 13.3361 21.0424 13.9685 21.0026C14.7756 21.0026 15.4808 20.7834 16.1222 20.3508C16.8916 19.8488 17.4766 19.0667 17.9107 18.2398C18.3448 17.4129 18.5718 16.6059 18.6328 15.8188C18.7028 15.0093 18.6678 14.5314 18.6498 14.2057H19.2251Z M14.1204 2.62704C14.6187 2.05972 15.227 1.77606 15.9454 1.77606C16.034 1.77606 16.131 1.78502 16.228 1.80295C16.8981 1.94206 17.4913 2.27183 17.9254 2.80435C18.014 2.91391 18.0935 3.03243 18.1636 3.1599C17.6563 3.51596 17.2042 3.99388 16.8571 4.5412C16.423 5.25758 16.206 6.04351 16.206 6.89899C16.206 7.82522 16.4896 8.64187 17.0579 9.34903C17.2849 9.63875 17.556 9.89367 17.8621 10.1137C17.9426 9.92476 18.0142 9.71838 18.0752 9.49463C18.3553 8.64015 18.3553 7.74987 18.0752 6.81479C17.7952 5.87971 17.2488 5.06409 16.4367 4.36585C15.6246 3.66761 14.7114 3.3185 13.6923 3.3185C13.5953 3.3185 13.5067 3.32746 13.4097 3.34539C12.7306 3.4845 12.1374 3.81428 11.7033 4.3468C11.6148 4.45636 11.5353 4.57488 11.4652 4.6934C12.0224 4.32788 12.6375 4.14984 13.3108 4.1588C13.9101 4.1588 14.4442 4.34771 14.9133 4.72432C15.3824 5.10093 15.6885 5.59685 15.8315 6.21207L16.4006 6.00295C15.9315 5.0658 15.1742 4.44846 14.1204 4.14984V2.62704Z"></path></svg>
+<span class="truncate">Continue with Apple</span>
+</button>
+</div>
+<p class="text-center text-sm text-[#4e7f97] dark:text-slate-400">
+                    Don't have an account?
+                    <a class="font-bold text-primary hover:underline" href="#">Sign Up</a>
+</p>
+</div>
+</div>
+</main>
+<footer class="bg-[#e7eff3] dark:bg-slate-900 text-[#4e7f97] dark:text-slate-400">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+<div class="col-span-2 md:col-span-4 lg:col-span-1">
+<h3 class="text-lg font-bold text-[#0e171b] dark:text-white mb-4">Roamio</h3>
+<p class="text-sm">Your one-stop travel partner for flights, hotels, and more. Explore the world with us.</p>
+</div>
+<div>
+<h4 class="font-bold text-[#0e171b] dark:text-white mb-4">Company</h4>
+<ul class="space-y-2 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">About Us</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Press</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-[#0e171b] dark:text-white mb-4">Support</h4>
+<ul class="space-y-2 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Contact Us</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">FAQ</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-[#0e171b] dark:text-white mb-4">Explore</h4>
+<ul class="space-y-2 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Destinations</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Travel Guides</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Blog</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-[#0e171b] dark:text-white mb-4">Legal</h4>
+<ul class="space-y-2 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Cookie Policy</a></li>
+</ul>
+</div>
+</div>
+<div class="mt-8 pt-8 border-t border-[#d0dfe7] dark:border-slate-700 text-center text-sm">
+<p>© 2024 Roamio. All rights reserved.</p>
+</div>
+</div>
+</footer>
+</div>
+
+</body></html>

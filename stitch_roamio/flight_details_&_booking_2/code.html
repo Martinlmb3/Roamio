@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Roamio - Flight Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0052D4",
+                        "secondary": "#FF7B00",
+                        "background-light": "#F8F9FA",
+                        "background-dark": "#111c21",
+                        "text-light": "#333333",
+                        "text-dark": "#E0E0E0",
+                        "border-light": "#E0E0E0",
+                        "border-dark": "#333333",
+                        "card-light": "#FFFFFF",
+                        "card-dark": "#1a2a32",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
+<div class="relative flex min-h-screen w-full flex-col">
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark px-4 sm:px-6 lg:px-8 py-3">
+<div class="flex items-center gap-4">
+<div class="size-6 text-primary">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_535)">
+<path clip-rule="evenodd" d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24ZM12.2426 21H35.7574L24 9.24264L12.2426 21Z" fill="currentColor" fill-rule="evenodd"></path>
+</g>
+<defs>
+<clipPath id="clip0_6_535">
+<rect fill="white" height="48" width="48"></rect>
+</clipPath>
+</defs>
+</svg>
+</div>
+<h2 class="text-xl font-bold tracking-tighter text-text-light dark:text-text-dark">Roamio</h2>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium hover:text-primary" href="#">Flights</a>
+<a class="text-sm font-medium hover:text-primary" href="#">Hotels</a>
+<a class="text-sm font-medium hover:text-primary" href="#">My Trips</a>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold tracking-wide hover:bg-primary/90">
+<span class="truncate">Log In</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User avatar image" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBWlhtb7ebOPeQLbBvH1np8lndrRko9opwfuBzX9MZLM_gC0FsJKeXmyzTr26psiuzQpJx3buwIGvjqZ1DFl6eGKM6JcxFicWJh-2L_drgo0ebIj7PzmwygSCtz0J17oetlWPVFBT0evskxJxEfYo0Uf24-S-TFmCv_r6GxDdKiWOv8Af8J3Fa14E8NSPGMV569NfrGER0NNpDenpr851XP7VKWePff94xo0M3bf4RvcLH7rjZvPK1uVmVGa8rzjyjhucStgVB32w0X");'></div>
+</div>
+</header>
+<main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="mb-8">
+<div class="flex flex-wrap gap-2 items-center mb-4">
+<a class="text-sm font-medium text-text-light/70 dark:text-text-dark/70 hover:text-primary" href="#">Home</a>
+<span class="text-sm font-medium text-text-light/70 dark:text-text-dark/70">/</span>
+<a class="text-sm font-medium text-text-light/70 dark:text-text-dark/70 hover:text-primary" href="#">Flight Search</a>
+<span class="text-sm font-medium text-text-light/70 dark:text-text-dark/70">/</span>
+<span class="text-sm font-medium text-text-light dark:text-text-dark">Flight Details</span>
+</div>
+<div class="flex flex-wrap justify-between gap-3">
+<div class="flex min-w-72 flex-col gap-2">
+<p class="text-4xl font-black tracking-tighter">Dublin to Rome</p>
+<p class="text-base font-normal text-text-light/70 dark:text-text-dark/70">Select your fare and customize your trip</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col lg:flex-row gap-8">
+<div class="w-full lg:w-[68%] flex flex-col gap-8">
+<div class="rounded-lg border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark p-6">
+<h2 class="text-[22px] font-bold tracking-tight mb-4">Flight Itinerary</h2>
+<div class="flex flex-col gap-6">
+<div class="flex flex-col gap-4">
+<p class="text-sm font-semibold text-text-light/70 dark:text-text-dark/70">DEPARTURE - 15 OCT 2024</p>
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-contain size-8" data-alt="Ryanair logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDUcNYg2DOXwG1x88ik7VTQX8J4OFAnQp74DpGS7vMjpyZmpzyE11mgXhBuU4RWLG3yVNYxVDApJokVtE2j4oehKQV-VqzqEY0J_zL3WSp-Dvi9d4xA_JZqNCWDGG9j94P2F3eOURoj9hioM-UeS9NgjObfV3AORlFyTT6wIR-r1DDCRp4PH2Io2DFpRMKmTDmFi6PV_rdA91ju4lZI5zf2lWsqnLlmn4WLKi8agwUe9g-BHnueakmdb-G4iuZaUOuq_WdMecF39pq9");'></div>
+<div class="flex-1">
+<p class="text-base font-bold">Dublin (DUB) to Rome (FCO)</p>
+<p class="text-sm text-text-light/70 dark:text-text-dark/70">10:30 AM - 02:45 PM, 3h 15m, Direct</p>
+</div>
+<p class="text-sm font-medium">Ryanair FR123</p>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<p class="text-sm font-semibold text-text-light/70 dark:text-text-dark/70">RETURN - 22 OCT 2024</p>
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-contain size-8" data-alt="Ryanair logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBGPeQABQWKWGZSECvWWIKNguhk8-k5Hprlh4f40_PrUbkEjY3zGrLHh5FkgzWPQ6N4hXrHcWN3CiRAdCq80P_LiWJHHcDEKlh7h6uxv-wS84yrKF1Q3ccT1jI78_iyHkIwukaT3OMFYjklZxhO1cv557Aj0q7U479wei7-YsjxNfV1uu8Uj_aSm8cG-EqVH2-P7va3vSvCt9hHHrthh3LUUF-xcYmyZlIm5aKCckNgdBcTs-GOphz46NH2h7fm6IaiZTQEqIjoRkpH");'></div>
+<div class="flex-1">
+<p class="text-base font-bold">Rome (FCO) to Dublin (DUB)</p>
+<p class="text-sm text-text-light/70 dark:text-text-dark/70">04:15 PM - 06:30 PM, 3h 15m, Direct</p>
+</div>
+<p class="text-sm font-medium">Ryanair FR124</p>
+</div>
+</div>
+</div>
+</div>
+<div class="rounded-lg border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark p-6">
+<h2 class="text-[22px] font-bold tracking-tight mb-4">Choose Your Fare</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<label class="relative cursor-pointer rounded-lg border-2 border-primary bg-primary/5 p-4 flex flex-col items-center text-center">
+<input checked="" class="absolute top-4 right-4" name="fare" type="radio"/>
+<h3 class="font-bold text-lg mb-2">Basic</h3>
+<p class="text-3xl font-black mb-4">€129</p>
+<ul class="text-sm text-left space-y-2 text-text-light/80 dark:text-text-dark/80">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-green-500">check_circle</span> 1 Small Bag</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-red-500">cancel</span> Seat Selection</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-red-500">cancel</span> Checked Bag</li>
+</ul>
+</label>
+<label class="relative cursor-pointer rounded-lg border border-border-light dark:border-border-dark p-4 flex flex-col items-center text-center hover:border-primary">
+<input class="absolute top-4 right-4" name="fare" type="radio"/>
+<h3 class="font-bold text-lg mb-2">Plus</h3>
+<p class="text-3xl font-black mb-4">€189</p>
+<ul class="text-sm text-left space-y-2 text-text-light/80 dark:text-text-dark/80">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-green-500">check_circle</span> 1 Small Bag</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-green-500">check_circle</span> Standard Seat</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-green-500">check_circle</span> 20kg Checked Bag</li>
+</ul>
+</label>
+<label class="relative cursor-pointer rounded-lg border border-border-light dark:border-border-dark p-4 flex flex-col items-center text-center hover:border-primary">
+<input class="absolute top-4 right-4" name="fare" type="radio"/>
+<h3 class="font-bold text-lg mb-2">Flex</h3>
+<p class="text-3xl font-black mb-4">€249</p>
+<ul class="text-sm text-left space-y-2 text-text-light/80 dark:text-text-dark/80">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-green-500">check_circle</span> 1 Small Bag</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-green-500">check_circle</span> Any Seat</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-green-500">check_circle</span> Flight Changes</li>
+</ul>
+</label>
+</div>
+</div>
+<div class="rounded-lg border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark p-6">
+<h2 class="text-[22px] font-bold tracking-tight mb-4">Passenger Details</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<input class="rounded-lg border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark" placeholder="First Name" type="text"/>
+<input class="rounded-lg border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark" placeholder="Last Name" type="text"/>
+<input class="md:col-span-2 rounded-lg border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark" placeholder="Email Address" type="email"/>
+</div>
+</div>
+<div class="rounded-lg border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark p-6">
+<h2 class="text-[22px] font-bold tracking-tight mb-4">Customize Your Trip</h2>
+<div class="space-y-6">
+<div>
+<h3 class="font-bold mb-2">Baggage Allowance</h3>
+<div class="flex items-center justify-between p-4 rounded-lg bg-background-light dark:bg-background-dark">
+<div>
+<p class="font-semibold">Checked Bag (20kg)</p>
+<p class="text-sm text-text-light/70 dark:text-text-dark/70">€45 per bag, per flight</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center justify-center size-8 rounded-full bg-border-light/50 dark:bg-border-dark/50 hover:bg-border-light dark:hover:bg-border-dark">-</button>
+<span class="font-bold text-lg w-4 text-center">0</span>
+<button class="flex items-center justify-center size-8 rounded-full bg-border-light/50 dark:bg-border-dark/50 hover:bg-border-light dark:hover:bg-border-dark">+</button>
+</div>
+</div>
+</div>
+<div>
+<h3 class="font-bold mb-2">Seat Selection</h3>
+<button class="w-full flex items-center justify-between p-4 rounded-lg bg-background-light dark:bg-background-dark hover:bg-border-light/50 dark:hover:bg-border-dark/50">
+<div class="text-left">
+<p class="font-semibold">Choose your seats</p>
+<p class="text-sm text-text-light/70 dark:text-text-dark/70">Select preferred seats for your flight</p>
+</div>
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="w-full lg:w-[32%]">
+<div class="sticky top-24">
+<div class="rounded-lg border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark p-6 flex flex-col gap-6">
+<h2 class="text-[22px] font-bold tracking-tight">Your Trip Summary</h2>
+<div>
+<h3 class="font-semibold mb-2">Passengers</h3>
+<div class="flex items-center justify-between">
+<p>Adults</p>
+<div class="flex items-center gap-3">
+<button class="flex items-center justify-center size-8 rounded-full bg-border-light/50 dark:bg-border-dark/50 hover:bg-border-light dark:hover:bg-border-dark">-</button>
+<span class="font-bold text-lg w-4 text-center">1</span>
+<button class="flex items-center justify-center size-8 rounded-full bg-border-light/50 dark:bg-border-dark/50 hover:bg-border-light dark:hover:bg-border-dark">+</button>
+</div>
+</div>
+</div>
+<div class="border-t border-border-light dark:border-border-dark pt-6">
+<h3 class="font-semibold mb-4">Fare Breakdown</h3>
+<div class="space-y-2 text-sm text-text-light/80 dark:text-text-dark/80">
+<div class="flex justify-between"><span>Base Fare (1 Adult)</span><span>€129.00</span></div>
+<div class="flex justify-between"><span>Taxes &amp; Fees</span><span>€24.50</span></div>
+<div class="flex justify-between"><span>Extras (Baggage)</span><span class="text-secondary font-semibold">€0.00</span></div>
+</div>
+</div>
+<div class="border-t border-border-light dark:border-border-dark pt-6 flex justify-between items-center">
+<span class="text-lg font-bold">Total Price</span>
+<span class="text-3xl font-black text-primary">€153.50</span>
+</div>
+<button class="w-full flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-4 bg-secondary text-white text-base font-bold tracking-wide hover:bg-secondary/90 gap-2">
+<span class="truncate">Proceed to Payment</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

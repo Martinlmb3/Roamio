@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Roamio Dashboard</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#0A2463",
+              "secondary": "#FF9F1C",
+              "background-light": "#F4F7FA",
+              "background-dark": "#05102A",
+              "text-light": "#333333",
+              "text-dark": "#E0E0E0",
+              "card-light": "#FFFFFF",
+              "card-dark": "#081639",
+              "border-light": "#EAEFF4",
+              "border-dark": "#1A2D57",
+            },
+            fontFamily: {
+              "display": ["Plus Jakarta Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">
+<div class="relative flex min-h-screen w-full">
+<!-- SideNavBar -->
+<aside class="flex flex-col w-64 bg-card-light dark:bg-card-dark border-r border-border-light dark:border-border-dark p-4 shrink-0">
+<div class="flex items-center gap-2 mb-8 px-2">
+<span class="material-symbols-outlined text-primary text-3xl">airplanemode_active</span>
+<h1 class="text-2xl font-bold text-primary">Roamio</h1>
+</div>
+<div class="flex flex-col justify-between flex-grow">
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-sm font-medium">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">flight_takeoff</span>
+<p class="text-sm font-medium">My Trips</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<p class="text-sm font-medium">Profile</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-sm font-medium">Settings</p>
+</a>
+</nav>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">help</span>
+<p class="text-sm font-medium">Help &amp; Support</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<p class="text-sm font-medium">Logout</p>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 p-6 lg:p-10">
+<div class="max-w-7xl mx-auto">
+<!-- PageHeading -->
+<div class="flex flex-wrap justify-between items-center gap-4 mb-8">
+<h1 class="text-text-light dark:text-text-dark text-4xl font-black tracking-[-0.033em]">Welcome back, Alex!</h1>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left Column -->
+<div class="lg:col-span-2 flex flex-col gap-8">
+<!-- Upcoming Trip Card -->
+<section>
+<h2 class="text-text-light dark:text-text-dark text-[22px] font-bold tracking-[-0.015em] pb-3">Your Next Adventure</h2>
+<div class="p-4 @container bg-card-light dark:bg-card-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark">
+<div class="flex flex-col items-stretch justify-start @xl:flex-row @xl:items-start">
+<div class="w-full @xl:w-1/3 bg-center bg-no-repeat aspect-video @xl:aspect-square bg-cover rounded-lg" data-alt="Vibrant view of Barcelona's coastline with city buildings and the sea" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA5YBm_zC4bvt8uSiK1cHbcAc_CIoxuU0xZSDMHAzn71fmCO8eshkUWWgcHr5uCl3XLpszgysa-HY7kqu76PEoKTDH8usXVB47zn2K9bSyYa_1VWx1I5t5raUgTjSMLS7pJI2-lkiVgNtLUsj8JKv6LEYzzh6CBmUDdh2RtywTYX0xCYOCC2XT2exQKtrLghfphR81az5LjzJy0kQB9VJlH14O1e4nwmWfVvFK3RuuCC_tlH6gQU_l2fMYCJoTb-TYInYTGjZszKcvh");'></div>
+<div class="flex w-full @xl:w-2/3 grow flex-col justify-center gap-4 py-4 @xl:px-6 px-2">
+<div class="flex flex-col gap-1">
+<p class="text-text-light/70 dark:text-text-dark/70 text-sm font-normal">Oct 14 - Oct 21, 2024</p>
+<p class="text-text-light dark:text-text-dark text-2xl font-bold tracking-[-0.015em]">Barcelona, Spain</p>
+</div>
+<div class="flex flex-col gap-2 text-sm text-text-light/80 dark:text-text-dark/80">
+<p>Flight &amp; Hotel Package</p>
+<p>Confirmation #BCN123456</p>
+</div>
+<div class="flex items-center gap-3 pt-2">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-5 bg-primary text-white text-sm font-medium shadow-sm hover:bg-primary/90 transition-colors">
+<span class="truncate">Manage Booking</span>
+</button>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-5 bg-primary/10 text-primary text-sm font-medium hover:bg-primary/20 transition-colors">
+<span class="truncate">View E-ticket</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Booking History -->
+<section>
+<div class="flex justify-between items-center pb-3">
+<h2 class="text-text-light dark:text-text-dark text-[22px] font-bold tracking-[-0.015em]">My Trips</h2>
+<div class="relative w-full max-w-xs">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-light/50 dark:text-text-dark/50">search</span>
+<input class="w-full pl-10 pr-4 py-2 text-sm rounded-lg bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:ring-2 focus:ring-primary focus:border-primary transition-colors" placeholder="Search trips..." type="text"/>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<!-- History Item 1 -->
+<div class="flex items-center justify-between p-4 bg-card-light dark:bg-card-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark">
+<div class="flex items-center gap-4">
+<div class="p-3 bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined">flight</span>
+</div>
+<div>
+<p class="font-bold">Paris, France</p>
+<p class="text-sm text-text-light/70 dark:text-text-dark/70">Jun 05 - Jun 12, 2024</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-sm font-medium text-green-600 dark:text-green-400 bg-green-500/10 px-2 py-1 rounded-full">Completed</span>
+<button class="text-text-light/60 dark:text-text-dark/60 hover:text-primary dark:hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<!-- History Item 2 -->
+<div class="flex items-center justify-between p-4 bg-card-light dark:bg-card-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark">
+<div class="flex items-center gap-4">
+<div class="p-3 bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined">bed</span>
+</div>
+<div>
+<p class="font-bold">Tokyo, Japan</p>
+<p class="text-sm text-text-light/70 dark:text-text-dark/70">Mar 10 - Mar 18, 2024</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-sm font-medium text-green-600 dark:text-green-400 bg-green-500/10 px-2 py-1 rounded-full">Completed</span>
+<button class="text-text-light/60 dark:text-text-dark/60 hover:text-primary dark:hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column -->
+<div class="lg:col-span-1 flex flex-col gap-8">
+<!-- Profile Summary -->
+<div class="bg-card-light dark:bg-card-dark p-6 rounded-xl shadow-sm border border-border-light dark:border-border-dark text-center flex flex-col items-center">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-20 mb-4" data-alt="Profile picture of Alex Doe" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBkCboW6RhR8C5HUeALsRN0p9JAMDN2U-PPM7SCKjAFkg3e4nyxm4tsD-O62FevPDCP2TImmwI9CLgNhrsOWuDBnXSN6CShhvYA4Ah3iq2NhZ3mgVDeBn5G2isHBjzdXUhpdHI_OwGUNnUXvtFYEGn0TXZeDTTIFvaYl-b5b5mxf-UC0DmVVcKnFmTm49akC4IwycmHeaZjucXof4WEp_aatraHN3z06UrdZTiedGKIZZpiptURn236BlTyT9u4tnht9UHHQZi4cegM");'></div>
+<h3 class="text-xl font-bold">Alex Doe</h3>
+<p class="text-sm text-text-light/60 dark:text-text-dark/60 mb-4">alex.doe@email.com</p>
+<button class="w-full flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-5 bg-secondary text-primary font-bold text-sm shadow-sm hover:bg-secondary/90 transition-colors">
+<span class="truncate">Edit Profile</span>
+</button>
+</div>
+<!-- Account Settings -->
+<div class="bg-card-light dark:bg-card-dark p-6 rounded-xl shadow-sm border border-border-light dark:border-border-dark">
+<h3 class="text-lg font-bold mb-4">Account Settings</h3>
+<ul class="space-y-3 text-sm">
+<li><a class="flex items-center gap-3 text-text-light/80 dark:text-text-dark/80 hover:text-primary dark:hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined text-xl">payment</span> Payment Methods</a></li>
+<li><a class="flex items-center gap-3 text-text-light/80 dark:text-text-dark/80 hover:text-primary dark:hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined text-xl">notifications</span> Notification Preferences</a></li>
+<li><a class="flex items-center gap-3 text-text-light/80 dark:text-text-dark/80 hover:text-primary dark:hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined text-xl">lock</span> Change Password</a></li>
+<li><a class="flex items-center gap-3 text-text-light/80 dark:text-text-dark/80 hover:text-primary dark:hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined text-xl">security</span> Security</a></li>
+</ul>
+</div>
+<!-- Rewards Program -->
+<div class="bg-card-light dark:bg-card-dark p-6 rounded-xl shadow-sm border border-border-light dark:border-border-dark">
+<h3 class="text-lg font-bold mb-2">Roamio Rewards</h3>
+<p class="text-3xl font-black text-secondary">4,250</p>
+<p class="text-sm text-text-light/60 dark:text-text-dark/60 mb-4">Points Balance</p>
+<a class="text-sm font-medium text-primary hover:underline" href="#">Learn more about rewards →</a>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

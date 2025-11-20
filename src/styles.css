@@ -1,1 +1,63 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-display bg-background-light text-text-light;
+  }
+
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+}
+
+@layer components {
+  /* Button Styles */
+  .btn-primary {
+    @apply bg-primary text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:bg-primary/90 hover:shadow-lg;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:bg-secondary/90 hover:shadow-lg;
+  }
+
+  .btn-accent {
+    @apply bg-accent text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:bg-accent/90 hover:shadow-lg;
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary text-primary font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:bg-primary hover:text-white;
+  }
+
+  /* Card Styles */
+  .card {
+    @apply bg-card-light border border-border-light rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-200;
+  }
+
+  .card-hover {
+    @apply card hover:scale-[1.02] transition-transform duration-200;
+  }
+
+  /* Input Styles */
+  .input-field {
+    @apply w-full px-4 py-3 border border-border-light rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200;
+  }
+
+  /* Gradient Backgrounds */
+  .gradient-primary {
+    @apply bg-gradient-to-r from-primary via-accent/20 to-secondary;
+  }
+
+  .gradient-accent {
+    @apply bg-gradient-to-r from-accent via-secondary to-primary/30;
+  }
+
+  /* Text Gradients */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent;
+  }
+}

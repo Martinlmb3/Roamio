@@ -1,0 +1,107 @@
+<div class="relative flex min-h-screen w-full flex-col bg-background-light">
+  <app-header />
+
+  <main class="flex-grow py-12">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <!-- Header Section -->
+      <div class="mb-8 flex items-center justify-between">
+        <h1 class="text-4xl font-black text-text-light">My Trips</h1>
+        <button class="flex items-center gap-2 rounded-lg bg-accent px-6 py-3 text-sm font-bold text-white transition-all duration-200 hover:bg-accent/90 hover:shadow-lg">
+          <span class="material-symbols-outlined text-xl">add</span>
+          Book New Trip
+        </button>
+      </div>
+
+      <!-- Tabs -->
+      <div class="mb-8 flex gap-8 border-b border-border-light">
+        <button
+          (click)="setActiveTab('upcoming')"
+          [class.border-accent]="activeTab === 'upcoming'"
+          [class.text-accent]="activeTab === 'upcoming'"
+          [class.border-transparent]="activeTab !== 'upcoming'"
+          [class.text-text-muted-light]="activeTab !== 'upcoming'"
+          class="border-b-2 pb-3 text-lg font-semibold transition-colors">
+          Upcoming Trips
+        </button>
+        <button
+          (click)="setActiveTab('past')"
+          [class.border-accent]="activeTab === 'past'"
+          [class.text-accent]="activeTab === 'past'"
+          [class.border-transparent]="activeTab !== 'past'"
+          [class.text-text-muted-light]="activeTab !== 'past'"
+          class="border-b-2 pb-3 text-lg font-semibold transition-colors">
+          Past Trips
+        </button>
+      </div>
+
+      <!-- Trips List -->
+      <div class="space-y-6">
+        @for (trip of displayedTrips; track trip.id) {
+          <div class="overflow-hidden rounded-xl border border-accent/20 bg-white shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="flex flex-col md:flex-row">
+              <!-- Image -->
+              <div class="relative h-48 w-full md:h-auto md:w-80">
+                <img
+                  [src]="trip.imageUrl"
+                  [alt]="trip.title"
+                  class="h-full w-full object-cover">
+                <div class="absolute top-3 left-3 rounded-full bg-primary px-3 py-1 text-xs font-bold text-mahogany shadow-lg">
+                  {{ trip.status }}
+                </div>
+              </div>
+
+              <!-- Content -->
+              <div class="flex flex-1 flex-col justify-between p-6">
+                <div>
+                  <h2 class="text-2xl font-bold text-text-light">{{ trip.title }}</h2>
+                  <p class="mt-2 text-text-muted-light">
+                    {{ formatDate(trip.startDate) }} - {{ formatDate(trip.endDate) }} {{ trip.endDate.split('-')[0] }} ({{ trip.nights }} nights)
+                  </p>
+
+                  <!-- Flight Info -->
+                  @if (trip.flightNumber) {
+                    <div class="mt-4 flex items-center gap-2 text-sm text-text-light">
+                      <span class="material-symbols-outlined text-base">flight</span>
+                      <span>{{ trip.flightNumber }}</span>
+                    </div>
+                  }
+
+                  <!-- Hotel Info -->
+                  @if (trip.hotelName) {
+                    <div class="mt-2 flex items-center gap-2 text-sm text-text-light">
+                      <span class="material-symbols-outlined text-base">hotel</span>
+                      <span>{{ trip.hotelName }}</span>
+                    </div>
+                  }
+                </div>
+
+                <!-- Actions -->
+                <div class="mt-4">
+                  <button class="rounded-lg border-2 border-accent px-6 py-2.5 text-sm font-bold text-accent transition-all duration-200 hover:bg-accent hover:text-white">
+                    View Details
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+        <!-- Empty State for Past Trips -->
+        @if (activeTab === 'past' && displayedTrips.length === 0) {
+          <div class="rounded-xl border-2 border-dashed border-border-light bg-white p-16 text-center">
+            <span class="material-symbols-outlined text-6xl text-text-muted-light">luggage</span>
+            <h3 class="mt-4 text-xl font-bold text-text-light">No more trips planned... yet!</h3>
+            <p class="mt-2 text-text-muted-light">
+              Your next adventure is just a few clicks away. Let's find your perfect getaway.
+            </p>
+            <button class="mt-6 rounded-lg bg-secondary px-8 py-3 text-sm font-bold text-white transition-all duration-200 hover:bg-secondary/90 hover:shadow-lg">
+              Book Your Next Adventure
+            </button>
+          </div>
+        }
+      </div>
+    </div>
+  </main>
+
+  <app-footer />
+</div>

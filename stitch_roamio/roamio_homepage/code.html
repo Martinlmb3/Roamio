@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Roamio - Your Next Adventure Starts Here</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#007BFF", // Updated primary color to #007BFF
+            "accent": "#FF5733", // New accent color
+            "background-light": "#f6f7f8",
+            "background-dark": "#111c21",
+            "text-light": "#212529",
+            "text-dark": "#F8F9FA",
+            "text-muted-light": "#6C757D",
+            "text-muted-dark": "#adb5bd"
+          },
+          fontFamily: {
+            "display": ["Plus Jakarta Sans", "sans-serif"]
+          },
+          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
+<div class="relative flex min-h-screen w-full flex-col">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 flex items-center justify-center border-b border-slate-200/80 bg-background-light/80 dark:border-slate-800/80 dark:bg-background-dark/80 backdrop-blur-sm">
+<div class="flex h-16 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+<div class="flex items-center gap-4">
+<div class="size-6 text-primary">
+<svg fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.61 2.38a1 1 0 0 0-1.22 0L.88 10.13a1 1 0 0 0 .61 1.75h2.13v8.25a1 1 0 0 0 1 1h12.75a1 1 0 0 0 1-1v-8.25h2.13a1 1 0 0 0 .61-1.75L12.61 2.38ZM15.5 18.13h-3v-3a.5.5 0 0 0-.5-.5h-2a.5.5 0 0 0-.5.5v3h-3v-6.68l4.5-3.86 4.5 3.86v6.68Z"></path>
+</svg>
+</div>
+<h2 class="text-xl font-bold tracking-tight">Roamio</h2>
+</div>
+<nav class="hidden items-center gap-8 md:flex">
+<a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="#">Flights</a>
+<a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="#">Stays</a>
+<a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="#">Deals</a>
+<a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="#">My Trips</a>
+</nav>
+<div class="flex items-center gap-2">
+<button class="flex h-10 min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-slate-200/60 px-4 text-sm font-bold text-text-light hover:bg-slate-300/60 dark:bg-slate-800/60 dark:text-text-dark dark:hover:bg-slate-700/60">
+<span class="truncate">Log In</span>
+</button>
+<button class="flex h-10 min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-primary px-4 text-sm font-bold text-white hover:bg-primary/90">
+<span class="truncate">Sign Up</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="relative flex min-h-[560px] w-full flex-col items-center justify-center bg-cover bg-center bg-no-repeat px-4 py-16 sm:px-6 lg:px-8" data-alt="Breathtaking view of a tropical beach with turquoise water and palm trees" style='background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAkUVbcqGj5CJM9OwJuesfq12DBjkTmVu2dxcVK5ikHBSaliqDDl3YE8Tav8YAzuCShtZ_mmVaPNL8nQiDerOXXxhsUaZHrc1yFXExtZEwtJuhF4bhQRKmFDGmeRWAiNBu-iiDF_SstoCRDQL7Z2c1rK6V2qtekckaIP_tYMgo5W9h5KjTFFwKa-v3ccJon38NBhw4933aK-dS0D8A459SztQdOSuy6wQ3373qtYDCPT8rSNwHEnPIY-WE-4ca7UxWkAQVy1PHmtFYH");'>
+<div class="flex w-full max-w-4xl flex-col items-center gap-4 text-center text-white">
+<h1 class="text-4xl font-black leading-tight tracking-tight md:text-6xl">Your Next Adventure Starts Here</h1>
+<p class="max-w-2xl text-lg font-normal text-slate-200">Find the best deals on flights and hotels, all in one place.</p>
+</div>
+<!-- Search Widget -->
+<div class="mt-8 w-full max-w-4xl rounded-xl bg-background-light/90 p-2 shadow-2xl backdrop-blur-md dark:bg-background-dark/90">
+<div class="text-text-light dark:text-text-dark" x-data="{ tab: 'flights' }">
+<div class="flex border-b border-slate-200 dark:border-slate-700">
+<button :class="{ 'border-primary text-primary': tab === 'flights', 'border-transparent': tab !== 'flights' }" @click="tab = 'flights'" class="flex items-center gap-2 border-b-2 px-6 py-3 text-sm font-bold transition-colors">
+<span class="material-symbols-outlined text-xl">flight</span> Flights
+              </button>
+<button :class="{ 'border-primary text-primary': tab === 'stays', 'border-transparent': tab !== 'stays' }" @click="tab = 'stays'" class="flex items-center gap-2 border-b-2 px-6 py-3 text-sm font-bold transition-colors">
+<span class="material-symbols-outlined text-xl">hotel</span> Stays
+              </button>
+</div>
+<!-- Flights Tab -->
+<div class="grid grid-cols-1 gap-2 p-4 md:grid-cols-2 lg:grid-cols-10 lg:gap-0" x-show="tab === 'flights'">
+<div class="relative lg:col-span-2">
+<label class="absolute -top-2 left-2 inline-block bg-background-light px-1 text-xs font-medium text-text-muted-light dark:bg-background-dark dark:text-text-muted-dark" for="from">From</label>
+<input class="h-14 w-full rounded-lg border-slate-300 bg-transparent pl-4 pr-10 text-sm focus:border-primary focus:ring-primary dark:border-slate-600 lg:rounded-r-none" id="from" placeholder="Origin" type="text"/>
+</div>
+<div class="relative lg:col-span-2">
+<label class="absolute -top-2 left-2 inline-block bg-background-light px-1 text-xs font-medium text-text-muted-light dark:bg-background-dark dark:text-text-muted-dark" for="to">To</label>
+<input class="h-14 w-full rounded-lg border-slate-300 bg-transparent px-4 text-sm focus:border-primary focus:ring-primary dark:border-slate-600 lg:rounded-none" id="to" placeholder="Destination" type="text"/>
+</div>
+<div class="relative lg:col-span-2">
+<label class="absolute -top-2 left-2 inline-block bg-background-light px-1 text-xs font-medium text-text-muted-light dark:bg-background-dark dark:text-text-muted-dark" for="depart">Depart</label>
+<input class="h-14 w-full rounded-lg border-slate-300 bg-transparent px-4 text-sm text-text-muted-light focus:border-primary focus:ring-primary dark:border-slate-600 dark:text-text-muted-dark lg:rounded-none" id="depart" type="date"/>
+</div>
+<div class="relative lg:col-span-2">
+<label class="absolute -top-2 left-2 inline-block bg-background-light px-1 text-xs font-medium text-text-muted-light dark:bg-background-dark dark:text-text-muted-dark" for="return">Return</label>
+<input class="h-14 w-full rounded-lg border-slate-300 bg-transparent px-4 text-sm text-text-muted-light focus:border-primary focus:ring-primary dark:border-slate-600 dark:text-text-muted-dark lg:rounded-none" id="return" type="date"/>
+</div>
+<button class="flex h-14 items-center justify-center rounded-lg bg-primary text-white transition-colors hover:bg-primary/90 lg:col-span-2 lg:rounded-l-none">
+<span class="font-bold">Search Flights</span>
+</button>
+</div>
+<!-- Stays Tab -->
+<div class="grid grid-cols-1 gap-2 p-4 md:grid-cols-2 lg:grid-cols-10 lg:gap-0" style="display: none;" x-show="tab === 'stays'">
+<div class="relative lg:col-span-3">
+<label class="absolute -top-2 left-2 inline-block bg-background-light px-1 text-xs font-medium text-text-muted-light dark:bg-background-dark dark:text-text-muted-dark" for="destination-stay">Destination</label>
+<input class="h-14 w-full rounded-lg border-slate-300 bg-transparent px-4 text-sm focus:border-primary focus:ring-primary dark:border-slate-600 lg:rounded-r-none" id="destination-stay" placeholder="e.g. New York, Paris" type="text"/>
+</div>
+<div class="relative lg:col-span-2">
+<label class="absolute -top-2 left-2 inline-block bg-background-light px-1 text-xs font-medium text-text-muted-light dark:bg-background-dark dark:text-text-muted-dark" for="check-in">Check-in</label>
+<input class="h-14 w-full rounded-lg border-slate-300 bg-transparent px-4 text-sm text-text-muted-light focus:border-primary focus:ring-primary dark:border-slate-600 dark:text-text-muted-dark lg:rounded-none" id="check-in" type="date"/>
+</div>
+<div class="relative lg:col-span-2">
+<label class="absolute -top-2 left-2 inline-block bg-background-light px-1 text-xs font-medium text-text-muted-light dark:bg-background-dark dark:text-text-muted-dark" for="check-out">Check-out</label>
+<input class="h-14 w-full rounded-lg border-slate-300 bg-transparent px-4 text-sm text-text-muted-light focus:border-primary focus:ring-primary dark:border-slate-600 dark:text-text-muted-dark lg:rounded-none" id="check-out" type="date"/>
+</div>
+<button class="flex h-14 items-center justify-center rounded-lg bg-primary text-white transition-colors hover:bg-primary/90 lg:col-span-3 lg:rounded-l-none">
+<span class="font-bold">Search Stays</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust/Value Proposition Bar -->
+<section class="flex justify-center bg-background-light py-4 dark:bg-slate-900">
+<div class="grid w-full max-w-7xl grid-cols-1 gap-8 px-4 text-center sm:grid-cols-2 md:grid-cols-3 sm:px-6 lg:px-8">
+<div class="flex items-center justify-center gap-3">
+<span class="material-symbols-outlined text-3xl text-primary">verified</span>
+<span class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark">Best Price Guarantee</span>
+</div>
+<div class="flex items-center justify-center gap-3">
+<span class="material-symbols-outlined text-3xl text-primary">support_agent</span>
+<span class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark">24/7 Customer Support</span>
+</div>
+<div class="flex items-center justify-center gap-3">
+<span class="material-symbols-outlined text-3xl text-primary">event_available</span>
+<span class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark">Flexible Bookings</span>
+</div>
+</div>
+</section>
+<div class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+<!-- Popular Destinations -->
+<section class="mb-16">
+<h2 class="text-3xl font-bold tracking-tight">Explore Popular Destinations</h2>
+<p class="mt-2 text-text-muted-light dark:text-text-muted-dark">Inspiration for your next trip.</p>
+<div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+<div class="group relative flex aspect-[3/4] flex-col justify-end overflow-hidden rounded-xl" data-alt="Eiffel Tower in Paris at sunset">
+<img alt="Eiffel Tower in Paris" class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCk9K_Tbzx97hQ7jxCucCvYerTccGxu7-ZUWAqbIwjwUUM3vUBP2XjhFYPcREv7NExNUPhjb1_o_bfOtGyk2y0ds5hyITXCbKI-Ovjgmm_uYDQ5CoODHnhX1051AKNJXroGjVgV4cV_wE6aZANEAh2O-7XgZov4JTllObFFINA-tYxI7usXsiaak2rgzbwcetyP4v1IMO5XfxuWU48RwgH-Y5mbfe62Ah9KT59JetaNDezBpccXCoaj43noW6Cv6xZEnZyTDqOTvmjn"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="relative p-4 text-white">
+<p class="text-xl font-bold">Paris, France</p>
+</div>
+</div>
+<div class="group relative flex aspect-[3/4] flex-col justify-end overflow-hidden rounded-xl" data-alt="Tokyo city skyline with Mount Fuji in the background">
+<img alt="Tokyo city skyline" class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2_yWC_9EKp6ZQ-nGuv0lseeqoJjVusq-W9vOTnYHruE4JreP8skHZkSjdpzpFYcnjK3FBJSZ6fpwG88O8mfZQzEQ21E7FFVSSSVHiXf1JgivO1EPfBuOtvieRKT2uVDEwiGy1lOcBbCYOBhUtdDLgE3z56peKoSmCTrnZDkDjC4W26W8fBfJw0PUaHPSR22SCRdXWUqunHmieHck2ENLsTcaVxFELPOdYQqGPwMQckYvEVH30HTZNqrScqT1iTsn99oL4ws4fUmiX"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="relative p-4 text-white">
+<p class="text-xl font-bold">Tokyo, Japan</p>
+</div>
+</div>
+<div class="group relative flex aspect-[3/4] flex-col justify-end overflow-hidden rounded-xl" data-alt="Ancient Colosseum in Rome, Italy">
+<img alt="Colosseum in Rome" class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzANLFeCj2x-SyRE1WYzb8L3qY4z-FtHE9X_Tha81rI8NRQS8PFK_v32gwCYGVTrW8vOTGIS2KUqQzsXKqG8Kfhwn26UKd5YDBdUHZrPMG7uy4CNxSX5mrI0PWVVyQ8F_yXFSEX60p2PHfTp4BbDpWI5_LwIAWwux7ZdWhLfKqE5IzHunqC9qOyb6OdmC_ENz2CPowqw0xj_TJ4XYhF2fXJWPAtrY2Y6mGgnCCoOsh0aVykxW97mDXrDo6C4yOqhuprgZmuIx5O38u"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="relative p-4 text-white">
+<p class="text-xl font-bold">Rome, Italy</p>
+</div>
+</div>
+<div class="group relative flex aspect-[3/4] flex-col justify-end overflow-hidden rounded-xl" data-alt="Busy streets of New York City with yellow cabs">
+<img alt="New York City streets" class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_fSeZCOQAg6_kRAE3Te4MZReFNWXUvBYt0DHsSwB0I_HiE7iGO84ZdEcgCjP9i5586ixQnkiO3pEInQ9sw8svH9NJ0Afjb5LICnfNRJiYbelMIGLoxtOgo_aMFNyKmiZ1JjlbfEOIToE1iTkBGZ3nkLKVHHAoPS9Jz43QMzwF1dbUQizbkHSCSWze2VYVAeKRRd9wqQdZ5p5HquIwLm5S5ukOfDFWl4C4vaTw2jIArKdq7SuE2GDr1qyi9Avml6aLknpGhFXUWwkh"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="relative p-4 text-white">
+<p class="text-xl font-bold">New York, USA</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Exclusive Deals -->
+<section>
+<h2 class="text-3xl font-bold tracking-tight">Exclusive Roamio Deals</h2>
+<p class="mt-2 text-text-muted-light dark:text-text-muted-dark">Limited-time offers you don't want to miss.</p>
+<div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+<div class="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-lg dark:border-slate-800 dark:bg-slate-900">
+<div class="relative">
+<img class="h-56 w-full object-cover" data-alt="Luxury resort with a pool and palm trees in Bali" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBi7XRTYhWM_WfWo5PIgjIqYiyt1Uu6o87sJIyiPO-bJ5d1LGXwDObnd1PmdAenWeZ18OZZgvShA9gXT3hkQPi5ydFuxXpNAygUNBIj5KUkbiJoMycnow5xeo0v-J6b8RVQe6qASlxylAvAuyC9pgZbIiRXVRskWOcVID3p6zudxroU8KGPz5Bz-BO81D47ljfYb23kGXIEG_WGYxgGSNaJhXB4zAKbXe3OjDbbeLK_H_WOtL-VR5I4-mA7CAR3bVNvIZ1_1L2scZo-"/>
+<div class="absolute top-3 right-3 rounded-full bg-accent px-3 py-1 text-xs font-bold text-white">Up to 30% Off</div>
+</div>
+<div class="p-5">
+<h3 class="text-lg font-bold">Bali Luxury Stays</h3>
+<p class="mt-1 text-sm text-text-muted-light dark:text-text-muted-dark">Experience paradise with exclusive discounts on top-rated villas and resorts.</p>
+</div>
+</div>
+<div class="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-lg dark:border-slate-800 dark:bg-slate-900">
+<div class="relative">
+<img class="h-56 w-full object-cover" data-alt="Airplane wing over clouds with a sunset" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCm4xcsN_4jaaH2EGyY9W1N62ujqghUAJgTw_gcYjvNHDzb7rtHhT3-EHcaAYQQHqD8Y6DWzrcOAZuOmOqC39fSDrnkEBWBrruMwyiUF_p8XUxIpMkey2N3WQkbaaeFNtgV9GiBkZnyjqw4jzkZYoAKq9PfDHC0uHupNt3AmapG36ZFDdPpe6tYcGxCgaq0B02w7x0zb4k6e1X5UPAdjJl-f4INqdV2P4lGgypbYA7pIapYr6xuAY44x7796_CUrC8tsjYkdBesLEO6"/>
+<div class="absolute top-3 right-3 rounded-full bg-accent px-3 py-1 text-xs font-bold text-white">From $499</div>
+</div>
+<div class="p-5">
+<h3 class="text-lg font-bold">Flights to Europe</h3>
+<p class="mt-1 text-sm text-text-muted-light dark:text-text-muted-dark">Discover Europe's charm with round-trip flights from major US cities.</p>
+</div>
+</div>
+<div class="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-lg dark:border-slate-800 dark:bg-slate-900">
+<div class="relative">
+<img class="h-56 w-full object-cover" data-alt="Modern hotel room with a large bed and city view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDc5faPqddOTehiuIrhm7ydf8xtVsNfGZ71fhNms8IwzVhH8kizBueGmDsw3Ba3gtErqijLgws9szrtm49COqS29qUmQRcjRGD51-JEyWh6UeK2e18v1tnP3ro6TlpclR8jThpB_0Zz6PsOBtTLZ2n6pYL132mcYxp0fdeXmQ-OizCHSTRpelHh2SFs8QXTNkM_MpsYFHPTE7ifXk5nilYXM5blCJjWMsaVfaUvAou60JkjT_JxmHQyKrs0hVzkKfQE413IWhz3doRB"/>
+<div class="absolute top-3 right-3 rounded-full bg-accent px-3 py-1 text-xs font-bold text-white">Last Minute</div>
+</div>
+<div class="p-5">
+<h3 class="text-lg font-bold">Weekend Getaways</h3>
+<p class="mt-1 text-sm text-text-muted-light dark:text-text-muted-dark">Spontaneous trip? Find amazing deals on hotels for this weekend.</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Newsletter Signup -->
+<section class="bg-primary/10 py-16 dark:bg-primary/20">
+<div class="mx-auto flex max-w-2xl flex-col items-center px-4 text-center sm:px-6 lg:px-8">
+<h2 class="text-3xl font-bold tracking-tight">Don't Miss Out!</h2>
+<p class="mt-2 text-text-muted-light dark:text-text-muted-dark">Sign up for our newsletter to get the best travel deals sent straight to your inbox.</p>
+<form class="mt-6 flex w-full max-w-md gap-2">
+<input class="w-full rounded-lg border-slate-300 px-4 text-sm text-text-light focus:border-primary focus:ring-primary dark:border-slate-600 dark:bg-slate-800 dark:text-text-dark" placeholder="Enter your email" type="email"/>
+<button class="flex h-11 items-center justify-center rounded-lg bg-primary px-6 text-sm font-bold text-white transition-colors hover:bg-primary/90" type="submit">Subscribe</button>
+</form>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-100 dark:bg-slate-900">
+<div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+<div class="grid grid-cols-2 gap-8 md:grid-cols-4">
+<div class="col-span-2 md:col-span-1">
+<div class="flex items-center gap-2">
+<div class="size-6 text-primary">
+<svg fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.61 2.38a1 1 0 0 0-1.22 0L.88 10.13a1 1 0 0 0 .61 1.75h2.13v8.25a1 1 0 0 0 1 1h12.75a1 1 0 0 0 1-1v-8.25h2.13a1 1 0 0 0 .61-1.75L12.61 2.38ZM15.5 18.13h-3v-3a.5.5 0 0 0-.5-.5h-2a.5.5 0 0 0-.5.5v3h-3v-6.68l4.5-3.86 4.5 3.86v6.68Z"></path>
+</svg>
+</div>
+<h2 class="text-xl font-bold">Roamio</h2>
+</div>
+<p class="mt-2 text-sm text-text-muted-light dark:text-text-muted-dark">Your adventure starts here.</p>
+</div>
+<div>
+<h3 class="font-bold">Company</h3>
+<ul class="mt-4 space-y-2 text-sm text-text-muted-light dark:text-text-muted-dark">
+<li><a class="hover:text-primary" href="#">About Us</a></li>
+<li><a class="hover:text-primary" href="#">Careers</a></li>
+<li><a class="hover:text-primary" href="#">Press</a></li>
+</ul>
+</div>
+<div>
+<h3 class="font-bold">Support</h3>
+<ul class="mt-4 space-y-2 text-sm text-text-muted-light dark:text-text-muted-dark">
+<li><a class="hover:text-primary" href="#">Contact</a></li>
+<li><a class="hover:text-primary" href="#">FAQ</a></li>
+<li><a class="hover:text-primary" href="#">Help Center</a></li>
+</ul>
+</div>
+<div>
+<h3 class="font-bold">Legal</h3>
+<ul class="mt-4 space-y-2 text-sm text-text-muted-light dark:text-text-muted-dark">
+<li><a class="hover:text-primary" href="#">Terms of Service</a></li>
+<li><a class="hover:text-primary" href="#">Privacy Policy</a></li>
+</ul>
+</div>
+</div>
+<div class="mt-8 border-t border-slate-200 pt-8 dark:border-slate-800">
+<p class="text-center text-sm text-text-muted-light dark:text-text-muted-dark">© 2024 Roamio. All rights reserved.</p>
+</div>
+</div>
+</footer>
+</div>
+<script defer="" src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</body></html>

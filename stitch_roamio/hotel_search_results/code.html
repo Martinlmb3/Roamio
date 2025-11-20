@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Roamio - Hotel Search Results</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#19a1e6",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111c21",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+<div class="relative flex min-h-screen w-full flex-col">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 w-full border-b border-gray-200/80 dark:border-gray-700/80 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+<div class="container mx-auto px-4">
+<div class="flex h-16 items-center justify-between">
+<div class="flex items-center gap-4 text-slate-900 dark:text-slate-50">
+<div class="size-6 text-primary">
+<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_535)">
+<path clip-rule="evenodd" d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24ZM12.2426 21H35.7574L24 9.24264L12.2426 21Z" fill-rule="evenodd"></path>
+</g>
+<defs>
+<clippath id="clip0_6_535">
+<rect fill="white" height="48" width="48"></rect>
+</clippath>
+</defs>
+</svg>
+</div>
+<h2 class="text-xl font-bold">Roamio</h2>
+</div>
+<nav class="hidden items-center gap-8 md:flex">
+<a class="text-sm font-medium text-slate-700 hover:text-primary dark:text-slate-300 dark:hover:text-primary" href="#">Flights</a>
+<a class="text-sm font-medium text-primary dark:text-primary" href="#">Stays</a>
+<a class="text-sm font-medium text-slate-700 hover:text-primary dark:text-slate-300 dark:hover:text-primary" href="#">Car rentals</a>
+<a class="text-sm font-medium text-slate-700 hover:text-primary dark:text-slate-300 dark:hover:text-primary" href="#">Attractions</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="flex h-10 min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-primary px-4 text-sm font-bold text-white transition-opacity hover:opacity-90">
+<span class="truncate">Sign In</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile picture with abstract shapes" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCO8wCFiHYeUjqMqQoqT4t-P2R5IR61cl6cMY6PoLzeukVT_cfuNQ-NHEkfx-_qf3Sm1ONb3jizOsuBxvQa6K_o_Fu0aJG8gYc_EiLsMrhUuqC2DYgbKAAyqw5RN5IOJHhrwehsIHIp-TkD2nPmYNGUNrWUw8IhOjhwMPcFSvqm5b0JSX95-NSkI3O-Gt0gGyTBBDr1BoU2GiQVX79aTiuAUvrLrhLBrkYiLuILah1qoxL8uGYKkgVpmwQ2JB__yKhC9YLym7Tg-oqe");'></div>
+</div>
+</div>
+</div>
+</header>
+<main class="container mx-auto flex-1 px-4 py-8">
+<!-- Search Summary Bar (Sticky) -->
+<div class="sticky top-16 z-40 mb-6 rounded-xl bg-white/80 p-4 shadow-md backdrop-blur-sm dark:bg-background-dark/80 dark:shadow-none dark:border dark:border-gray-700">
+<div class="flex flex-wrap items-center justify-between gap-4">
+<div class="flex flex-col">
+<p class="text-2xl font-black leading-tight tracking-[-0.033em] text-slate-900 dark:text-slate-50">Paris: 2 nights, 2 adults</p>
+<p class="text-sm font-normal leading-normal text-slate-500 dark:text-slate-400">Showing 150 of 680 properties</p>
+</div>
+<button class="flex h-10 cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg bg-primary/20 px-4 text-sm font-bold text-primary transition-colors hover:bg-primary/30 dark:bg-primary/30 dark:hover:bg-primary/40">
+<span class="material-symbols-outlined">edit</span>
+<span class="truncate">Modify Search</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 gap-8 lg:grid-cols-12">
+<!-- Left Column: Filters -->
+<aside class="lg:col-span-4 xl:col-span-3">
+<div class="sticky top-[152px] space-y-6">
+<!-- Map Toggle -->
+<div class="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
+<div class="mb-4 h-40 rounded-lg bg-gray-200 dark:bg-gray-700" data-location="Paris" style="https://lh3.googleusercontent.com/aida-public/AB6AXuDE4-dcBbkeKOXRE-EXrY5aPs2KtwhGeBxyHI1TmWesl3UXETc-FIbt4tbf2n2IZ4rbf6t1FDfnI8_8wZWJExI31c1FSZqRow1QCbcA8OyA8tmdiNzTOWdlL-ZRh0ix4WAJvYBJ5JVLhn9A8MMA1Hs05QlxQQ1fCs-lWFxABRcXPzWKPRuTH0ybgWVQU74YLzkbL7UTp7jA_pQAeifIlcWFym65DiH0HU_tYzPkh2zXf18O3Mtr5Ckl-EjLRRe--6IIgizKsbSBnCXV">
+<!-- Placeholder for a static map image -->
+<img class="h-full w-full rounded-lg object-cover" data-alt="Map of central Paris with placeholder pins" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDysRqq66AdoXsG-hmnZVDk5_3UODCIduNt7nFq_0pmi9an1Ehz5TRb42ixSmXclRLCs79zYUaszGoVaL1f5mw3E3wsTp0vaxRR01MbDeXIe9uDuTygs0Q0fLwommLozcAi4O6OcF_WokRnlmKXTjJO8ntoj8WxNYAojpcoRdD4Im5pzwfsN7g62HV2q31Gt7FzUf3EMs2-7cPuk6ECl8JCUBWk0m8jZ39T-E47_ARTpslMqjyWLGPCwQztrkl04h-AO_jtva0llW3D"/>
+</div>
+<div class="flex h-10 flex-1 items-center justify-center rounded-lg bg-gray-100 p-1 dark:bg-gray-900">
+<label class="flex h-full grow cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg px-2 text-sm font-medium text-gray-500 has-[:checked]:bg-white has-[:checked]:text-slate-900 has-[:checked]:shadow-sm dark:text-gray-400 dark:has-[:checked]:bg-gray-700 dark:has-[:checked]:text-slate-50">
+<span class="material-symbols-outlined">list</span>
+<span class="truncate">List View</span>
+<input checked="" class="invisible w-0" name="view-toggle" type="radio" value="List View"/>
+</label>
+<label class="flex h-full grow cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg px-2 text-sm font-medium text-gray-500 has-[:checked]:bg-white has-[:checked]:text-slate-900 has-[:checked]:shadow-sm dark:text-gray-400 dark:has-[:checked]:bg-gray-700 dark:has-[:checked]:text-slate-50">
+<span class="material-symbols-outlined">map</span>
+<span class="truncate">Map View</span>
+<input class="invisible w-0" name="view-toggle" type="radio" value="Map View"/>
+</label>
+</div>
+</div>
+<!-- Filters Card -->
+<div class="space-y-6 rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
+<h3 class="text-lg font-bold leading-tight tracking-[-0.015em] text-slate-900 dark:text-slate-50">Filter by:</h3>
+<!-- Price Slider -->
+<div>
+<h4 class="mb-3 text-sm font-bold text-slate-800 dark:text-slate-200">Price per night</h4>
+<div class="relative h-2 rounded-full bg-gray-200 dark:bg-gray-600">
+<div class="absolute h-2 rounded-full bg-primary" style="left: 20%; right: 40%;"></div>
+<div class="absolute -top-1 size-4 cursor-pointer rounded-full border-2 border-primary bg-white dark:bg-gray-300" style="left: 20%;"></div>
+<div class="absolute -top-1 size-4 cursor-pointer rounded-full border-2 border-primary bg-white dark:bg-gray-300" style="left: 60%;"></div>
+</div>
+<div class="mt-2 flex justify-between text-xs text-gray-500 dark:text-gray-400">
+<span>$50</span>
+<span>$500+</span>
+</div>
+</div>
+<!-- Star Rating -->
+<div>
+<h4 class="mb-3 text-sm font-bold text-slate-800 dark:text-slate-200">Star rating</h4>
+<div class="flex items-center justify-between rounded-lg border border-gray-300 p-1 dark:border-gray-600">
+<button class="flex h-8 flex-1 items-center justify-center rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">1+</button>
+<button class="flex h-8 flex-1 items-center justify-center rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">2+</button>
+<button class="flex h-8 flex-1 items-center justify-center rounded-md bg-primary/20 text-sm font-bold text-primary dark:bg-primary/30">3+</button>
+<button class="flex h-8 flex-1 items-center justify-center rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">4+</button>
+<button class="flex h-8 flex-1 items-center justify-center rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">5</button>
+</div>
+</div>
+<!-- Guest Rating -->
+<div>
+<h4 class="mb-3 text-sm font-bold text-slate-800 dark:text-slate-200">Guest review score</h4>
+<div class="space-y-2">
+<label class="flex items-center gap-3"><input class="h-4 w-4 rounded-full border-gray-300 text-primary focus:ring-primary dark:border-gray-600 dark:bg-gray-900 dark:focus:ring-offset-gray-900" name="guest-rating" type="radio"/> <span class="text-sm">9+ Exceptional</span></label>
+<label class="flex items-center gap-3"><input checked="" class="h-4 w-4 rounded-full border-gray-300 text-primary focus:ring-primary dark:border-gray-600 dark:bg-gray-900 dark:focus:ring-offset-gray-900" name="guest-rating" type="radio"/> <span class="text-sm">8+ Very Good</span></label>
+<label class="flex items-center gap-3"><input class="h-4 w-4 rounded-full border-gray-300 text-primary focus:ring-primary dark:border-gray-600 dark:bg-gray-900 dark:focus:ring-offset-gray-900" name="guest-rating" type="radio"/> <span class="text-sm">7+ Good</span></label>
+</div>
+</div>
+<!-- Amenities -->
+<div>
+<h4 class="mb-3 text-sm font-bold text-slate-800 dark:text-slate-200">Popular amenities</h4>
+<div class="space-y-2">
+<label class="flex items-center gap-3"><input checked="" class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:border-gray-600 dark:bg-gray-900 dark:focus:ring-offset-gray-900" type="checkbox"/> <span class="text-sm">Free Wi-Fi</span></label>
+<label class="flex items-center gap-3"><input checked="" class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:border-gray-600 dark:bg-gray-900 dark:focus:ring-offset-gray-900" type="checkbox"/> <span class="text-sm">Swimming pool</span></label>
+<label class="flex items-center gap-3"><input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:border-gray-600 dark:bg-gray-900 dark:focus:ring-offset-gray-900" type="checkbox"/> <span class="text-sm">Parking</span></label>
+<label class="flex items-center gap-3"><input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:border-gray-600 dark:bg-gray-900 dark:focus:ring-offset-gray-900" type="checkbox"/> <span class="text-sm">Pet-friendly</span></label>
+<a class="text-sm font-semibold text-primary" href="#">Show all</a>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Right Column: Results -->
+<section class="lg:col-span-8 xl:col-span-9">
+<!-- Sorting Chips -->
+<div class="mb-4 flex flex-wrap items-center gap-2">
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary/20 pl-4 pr-2 text-primary dark:bg-primary/30">
+<p class="text-sm font-bold">Our Top Picks</p>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-gray-100 pl-4 pr-2 text-slate-800 transition-colors hover:bg-gray-200 dark:bg-gray-800 dark:text-slate-200 dark:hover:bg-gray-700">
+<p class="text-sm font-medium">Price (low to high)</p>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-gray-100 pl-4 pr-2 text-slate-800 transition-colors hover:bg-gray-200 dark:bg-gray-800 dark:text-slate-200 dark:hover:bg-gray-700">
+<p class="text-sm font-medium">Star Rating</p>
+<span class="material-symbols-outlined text-slate-500">arrow_drop_down</span>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-gray-100 pl-4 pr-2 text-slate-800 transition-colors hover:bg-gray-200 dark:bg-gray-800 dark:text-slate-200 dark:hover:bg-gray-700">
+<p class="text-sm font-medium">Guest Rating</p>
+<span class="material-symbols-outlined text-slate-500">arrow_drop_down</span>
+</button>
+</div>
+<!-- Hotel Cards List -->
+<div class="space-y-4">
+<!-- Hotel Card 1 -->
+<div class="flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white transition-shadow duration-300 hover:shadow-lg dark:border-gray-700 dark:bg-gray-800 md:flex-row">
+<div class="relative w-full md:w-1/3">
+<img class="h-56 w-full object-cover md:h-full" data-alt="Modern hotel exterior with a swimming pool at dusk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7uexSSnvFsVWusUsSSHouqf0XVBefJrX506DWzbrJYZ02jYqsHfqOECLGEXmdBzG5p3GAkw6nGwMBXpqLrzK825Icx41Lzxqy3AVL95Ss7P2y7QFO2InMrO8djjc1lHWTXnJ5KmKtH-PzvO_0g2uN0vrXsDFrPo-Of7MltJeqdNW3TWcQ8_5ypSpTHdO2ImnepH-MKFhYCVxlfu8PANZi7wfPlSJMngeZwm6Ja8t2tDCLJ32z2gxc0qgLX7VbkY-F8SA3VI5t8q4c"/>
+<button class="absolute right-3 top-3 flex size-8 items-center justify-center rounded-full bg-black/40 text-white transition-colors hover:bg-black/60">
+<span class="material-symbols-outlined" style="font-size: 20px;">favorite_border</span>
+</button>
+</div>
+<div class="flex-1 p-4">
+<div class="flex h-full flex-col justify-between">
+<div>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-yellow-500" style="font-size: 16px;">star</span>
+<span class="material-symbols-outlined text-yellow-500" style="font-size: 16px;">star</span>
+<span class="material-symbols-outlined text-yellow-500" style="font-size: 16px;">star</span>
+<span class="material-symbols-outlined text-yellow-500" style="font-size: 16px;">star</span>
+<span class="material-symbols-outlined text-gray-300" style="font-size: 16px;">star</span>
+</div>
+<h3 class="mt-1 text-xl font-bold text-slate-900 dark:text-slate-50">Grand Hyatt Paris</h3>
+<p class="text-sm text-primary">Eiffel Tower District</p>
+<div class="my-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-600 dark:text-gray-300">
+<div class="flex items-center gap-1"><span class="material-symbols-outlined" style="font-size: 16px;">wifi</span><span>Free Wi-Fi</span></div>
+<div class="flex items-center gap-1"><span class="material-symbols-outlined" style="font-size: 16px;">pool</span><span>Pool</span></div>
+<div class="flex items-center gap-1"><span class="material-symbols-outlined" style="font-size: 16px;">restaurant</span><span>Restaurant</span></div>
+</div>
+</div>
+<div class="mt-4 flex flex-col items-end justify-between gap-4 sm:flex-row sm:items-center">
+<div class="flex items-center gap-2">
+<div class="flex h-8 w-8 items-center justify-center rounded bg-primary text-sm font-bold text-white">9.2</div>
+<div>
+<p class="font-bold">Exceptional</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">1,288 reviews</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-xl font-bold text-slate-900 dark:text-slate-50">$350 <span class="text-sm font-normal text-gray-500 dark:text-gray-400">/ night</span></p>
+<p class="text-xs text-gray-500 dark:text-gray-400">Total: $700 for 2 nights</p>
+<button class="mt-2 flex h-10 w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-primary px-5 text-sm font-bold text-white transition-opacity hover:opacity-90 sm:w-auto">View Deal</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Hotel Card 2 -->
+<div class="flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white transition-shadow duration-300 hover:shadow-lg dark:border-gray-700 dark:bg-gray-800 md:flex-row">
+<div class="relative w-full md:w-1/3">
+<img class="h-56 w-full object-cover md:h-full" data-alt="Luxury hotel room with a large bed and city view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkOBU4sTo398dN6Zv5rBU9LnGie_-qZvdUYKQxSEZBY890-BSAXoD1BmfFZ5EhOYiOLytllLEbtiuElNujuiOEwk6qkJhms45I1xHyV9V97m1GEVk5tzrDHv9n2wQ0ZmrNMAcPqhaMBR3l3sVXP3OjY3ojdrjysU2fnl6tEU0fdCYiqizFPU_atoEIPmFj8zsfXQvA-y5XiZyfsL9gN4-1wakCTnmcANlw39Hdu9E7yXHYxjyIanRt3c_KC40wAmBGxgkhuCHUXDuE"/>
+<button class="absolute right-3 top-3 flex size-8 items-center justify-center rounded-full bg-black/40 text-white transition-colors hover:bg-black/60">
+<span class="material-symbols-outlined" style="font-size: 20px;">favorite_border</span>
+</button>
+</div>
+<div class="flex-1 p-4">
+<div class="flex h-full flex-col justify-between">
+<div>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-yellow-500" style="font-size: 16px;">star</span>
+<span class="material-symbols-outlined text-yellow-500" style="font-size: 16px;">star</span>
+<span class="material-symbols-outlined text-yellow-500" style="font-size: 16px;">star</span>
+<span class="material-symbols-outlined text-yellow-500" style="font-size: 16px;">star</span>
+<span class="material-symbols-outlined text-yellow-500" style="font-size: 16px;">star</span>
+</div>
+<h3 class="mt-1 text-xl font-bold text-slate-900 dark:text-slate-50">Le Bristol Paris</h3>
+<p class="text-sm text-primary">Champs-Élysées</p>
+<div class="my-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-600 dark:text-gray-300">
+<div class="flex items-center gap-1"><span class="material-symbols-outlined" style="font-size: 16px;">wifi</span><span>Free Wi-Fi</span></div>
+<div class="flex items-center gap-1"><span class="material-symbols-outlined" style="font-size: 16px;">spa</span><span>Spa</span></div>
+<div class="flex items-center gap-1"><span class="material-symbols-outlined" style="font-size: 16px;">pets</span><span>Pet-friendly</span></div>
+</div>
+</div>
+<div class="mt-4 flex flex-col items-end justify-between gap-4 sm:flex-row sm:items-center">
+<div class="flex items-center gap-2">
+<div class="flex h-8 w-8 items-center justify-center rounded bg-primary text-sm font-bold text-white">9.8</div>
+<div>
+<p class="font-bold">Exceptional</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">950 reviews</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-xl font-bold text-slate-900 dark:text-slate-50">$890 <span class="text-sm font-normal text-gray-500 dark:text-gray-400">/ night</span></p>
+<p class="text-xs text-gray-500 dark:text-gray-400">Total: $1780 for 2 nights</p>
+<button class="mt-2 flex h-10 w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-primary px-5 text-sm font-bold text-white transition-opacity hover:opacity-90 sm:w-auto">View Deal</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Hotel Card 3 -->
+<div class="flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white transition-shadow duration-300 hover:shadow-lg dark:border-gray-700 dark:bg-gray-800 md:flex-row">
+<div class="relative w-full md:w-1/3">
+<img class="h-56 w-full object-cover md:h-full" data-alt="Serene hotel bedroom with white linens and a balcony" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDM4jCQl8pHKhtx908dHm43HAMdcFid0Pis_N65N7a8XcUR-CSvEXyuI1Xce0gRfmQnQoQLP-GZjb7XM_wD2ep19NoTRKuuwx7kpnvbsVru4tOWMaqcGZSbNJjK_g2qd_yRr4PgB9hZgeo67Davk2l8e3cwaaG5FcVh-5IaTpTdZ8pvQJPeHdIm16X3xmuJX02rcqmc8aS2T5iUOfE-zV6B2kNuJ7HJ2whruMCuE99YqGO5nj7szBLDVPm3FvYk0cG1cQ7Vgp3i5kTQ"/>
+<button class="absolute right-3 top-3 flex size-8 items-center justify-center rounded-full bg-black/40 text-white transition-colors hover:bg-black/60">
+<span class="material-symbols-outlined" style="font-size: 20px;">favorite</span>
+</button>
+</div>
+<div class="flex-1 p-4">
+<div class="flex h-full flex-col justify-between">
+<div>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-yellow-500" style="font-size: 16px;">star</span>
+<span class="material-symbols-outlined text-yellow-500" style="font-size: 16px;">star</span>
+<span class="material-symbols-outlined text-yellow-500" style="font-size: 16px;">star</span>
+<span class="material-symbols-outlined text-gray-300" style="font-size: 16px;">star</span>
+<span class="material-symbols-outlined text-gray-300" style="font-size: 16px;">star</span>
+</div>
+<h3 class="mt-1 text-xl font-bold text-slate-900 dark:text-slate-50">Ibis Paris Montmartre 18ème</h3>
+<p class="text-sm text-primary">Montmartre</p>
+<div class="my-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-600 dark:text-gray-300">
+<div class="flex items-center gap-1"><span class="material-symbols-outlined" style="font-size: 16px;">wifi</span><span>Free Wi-Fi</span></div>
+<div class="flex items-center gap-1"><span class="material-symbols-outlined" style="font-size: 16px;">local_bar</span><span>Bar</span></div>
+</div>
+</div>
+<div class="mt-4 flex flex-col items-end justify-between gap-4 sm:flex-row sm:items-center">
+<div class="flex items-center gap-2">
+<div class="flex h-8 w-8 items-center justify-center rounded bg-orange-500 text-sm font-bold text-white">8.1</div>
+<div>
+<p class="font-bold">Very Good</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">4,530 reviews</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-xl font-bold text-slate-900 dark:text-slate-50">$180 <span class="text-sm font-normal text-gray-500 dark:text-gray-400">/ night</span></p>
+<p class="text-xs text-gray-500 dark:text-gray-400">Total: $360 for 2 nights</p>
+<button class="mt-2 flex h-10 w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-primary px-5 text-sm font-bold text-white transition-opacity hover:opacity-90 sm:w-auto">View Deal</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</body></html>

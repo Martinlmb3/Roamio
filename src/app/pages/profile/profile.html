@@ -1,0 +1,211 @@
+<app-header />
+
+<div class="min-h-screen bg-background-light dark:bg-background-dark">
+  <div class="flex max-w-7xl mx-auto">
+    <!-- Sidebar -->
+    <aside class="w-64 min-h-screen bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 p-6">
+      <!-- User Profile Card -->
+      <div class="mb-8">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white text-xl font-bold">
+            {{ getInitials() }}
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 dark:text-white">{{ user.fullName }}</h3>
+            <p class="text-xs text-primary">{{ user.membershipLevel }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Menu -->
+      <nav class="space-y-1 mb-8">
+        <button
+          (click)="setActiveTab('personal-information')"
+          [ngClass]="activeTab === 'personal-information' ? 'bg-primary/10 text-accent border-l-4 border-accent' : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'"
+          class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors">
+          <span class="material-symbols-outlined text-xl">person</span>
+          <span>Personal Information</span>
+        </button>
+
+        <button
+          (click)="setActiveTab('security')"
+          [ngClass]="activeTab === 'security' ? 'bg-primary/10 text-accent border-l-4 border-accent' : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'"
+          class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors">
+          <span class="material-symbols-outlined text-xl">security</span>
+          <span>Security & Contact</span>
+        </button>
+
+        <button
+          (click)="setActiveTab('payment')"
+          [ngClass]="activeTab === 'payment' ? 'bg-primary/10 text-accent border-l-4 border-accent' : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'"
+          class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors">
+          <span class="material-symbols-outlined text-xl">credit_card</span>
+          <span>Payment Methods</span>
+        </button>
+
+        <button
+          (click)="setActiveTab('preferences')"
+          [ngClass]="activeTab === 'preferences' ? 'bg-primary/10 text-accent border-l-4 border-accent' : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'"
+          class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors">
+          <span class="material-symbols-outlined text-xl">tune</span>
+          <span>Preferences</span>
+        </button>
+
+        <button
+          (click)="setActiveTab('booking-history')"
+          [ngClass]="activeTab === 'booking-history' ? 'bg-primary/10 text-accent border-l-4 border-accent' : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'"
+          class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors">
+          <span class="material-symbols-outlined text-xl">history</span>
+          <span>Booking History</span>
+        </button>
+      </nav>
+
+      <!-- Sign Out Button -->
+      <button (click)="signOut()" class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-accent text-white rounded-lg font-bold text-sm hover:bg-accent/90 transition-colors">
+        Sign Out
+      </button>
+
+      <!-- Bottom Links -->
+      <div class="mt-8 pt-8 border-t border-slate-200 dark:border-slate-800 space-y-3">
+        <button class="w-full flex items-center gap-3 px-4 py-2 text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm transition-colors">
+          <span class="material-symbols-outlined text-xl">settings</span>
+          <span>Settings</span>
+        </button>
+        <button class="w-full flex items-center gap-3 px-4 py-2 text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm transition-colors">
+          <span class="material-symbols-outlined text-xl">help</span>
+          <span>Help</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-8 lg:p-12">
+      <!-- Personal Information Section -->
+      <div *ngIf="activeTab === 'personal-information'">
+        <div class="mb-8">
+          <h1 class="text-3xl font-black text-slate-900 dark:text-white mb-2">Personal Information</h1>
+          <p class="text-slate-600 dark:text-slate-400">Manage your personal details and saved travelers for faster booking.</p>
+        </div>
+
+        <!-- Profile Card -->
+        <div class="bg-white dark:bg-slate-900 rounded-xl p-6 mb-6 shadow-sm border border-slate-200 dark:border-slate-800">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-4">
+              <div class="w-20 h-20 rounded-full bg-primary flex items-center justify-center text-white text-3xl font-bold">
+                {{ getInitials() }}
+              </div>
+              <div>
+                <h2 class="text-xl font-bold text-slate-900 dark:text-white">{{ user.fullName }}</h2>
+                <p class="text-slate-600 dark:text-slate-400">{{ user.email }}</p>
+                <p class="text-sm text-slate-500 dark:text-slate-500">Joined in {{ user.joinedYear }}</p>
+              </div>
+            </div>
+            <button class="px-6 py-3 bg-primary text-white rounded-lg font-bold text-sm hover:bg-primary/90 transition-colors">
+              Upload Photo
+            </button>
+          </div>
+        </div>
+
+        <!-- Personal Details -->
+        <div class="bg-white dark:bg-slate-900 rounded-xl p-6 mb-6 shadow-sm border border-slate-200 dark:border-slate-800">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Personal Details</h3>
+            <button class="flex items-center gap-2 text-accent hover:text-accent/80 font-medium text-sm transition-colors">
+              <span class="material-symbols-outlined text-lg">edit</span>
+              <span>Edit</span>
+            </button>
+          </div>
+
+          <div class="grid grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-2">Full Name</label>
+              <p class="text-slate-900 dark:text-white font-medium">{{ user.fullName }}</p>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-2">Date of Birth</label>
+              <p class="text-slate-900 dark:text-white font-medium">{{ user.dateOfBirth }}</p>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-2">Gender</label>
+              <p class="text-slate-900 dark:text-white font-medium">{{ user.gender }}</p>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-2">Nationality</label>
+              <p class="text-slate-900 dark:text-white font-medium">{{ user.nationality }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Communication Preferences -->
+        <div class="bg-white dark:bg-slate-900 rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-6">Communication Preferences</h3>
+
+          <div class="space-y-4">
+            <div class="flex items-center justify-between py-3">
+              <div>
+                <h4 class="font-medium text-slate-900 dark:text-white mb-1">Promotional Emails</h4>
+                <p class="text-sm text-slate-600 dark:text-slate-400">Receive newsletters and special offers from Roamio.</p>
+              </div>
+              <button
+                (click)="togglePreference('promotional')"
+                [ngClass]="preferences.promotionalEmails ? 'bg-accent' : 'bg-slate-300 dark:bg-slate-700'"
+                class="relative w-12 h-6 rounded-full transition-colors">
+                <span
+                  [ngClass]="preferences.promotionalEmails ? 'translate-x-6' : 'translate-x-1'"
+                  class="absolute top-1 left-0 w-4 h-4 bg-white rounded-full transition-transform"></span>
+              </button>
+            </div>
+
+            <div class="flex items-center justify-between py-3 border-t border-slate-200 dark:border-slate-800">
+              <div>
+                <h4 class="font-medium text-slate-900 dark:text-white mb-1">Booking Alerts</h4>
+                <p class="text-sm text-slate-600 dark:text-slate-400">Get important updates about your bookings via email and SMS.</p>
+              </div>
+              <button
+                (click)="togglePreference('booking')"
+                [ngClass]="preferences.bookingAlerts ? 'bg-accent' : 'bg-slate-300 dark:bg-slate-700'"
+                class="relative w-12 h-6 rounded-full transition-colors">
+                <span
+                  [ngClass]="preferences.bookingAlerts ? 'translate-x-6' : 'translate-x-1'"
+                  class="absolute top-1 left-0 w-4 h-4 bg-white rounded-full transition-transform"></span>
+              </button>
+            </div>
+
+            <div class="flex items-center justify-between py-3 border-t border-slate-200 dark:border-slate-800">
+              <div>
+                <h4 class="font-medium text-slate-900 dark:text-white mb-1">Partner Offers</h4>
+                <p class="text-sm text-slate-600 dark:text-slate-400">Receive exclusive offers from our trusted partners.</p>
+              </div>
+              <button
+                (click)="togglePreference('partner')"
+                [ngClass]="preferences.partnerOffers ? 'bg-accent' : 'bg-slate-300 dark:bg-slate-700'"
+                class="relative w-12 h-6 rounded-full transition-colors">
+                <span
+                  [ngClass]="preferences.partnerOffers ? 'translate-x-6' : 'translate-x-1'"
+                  class="absolute top-1 left-0 w-4 h-4 bg-white rounded-full transition-transform"></span>
+              </button>
+            </div>
+          </div>
+
+          <div class="mt-6 flex justify-end">
+            <button (click)="saveChanges()" class="px-8 py-3 bg-accent text-white rounded-lg font-bold hover:bg-accent/90 transition-colors">
+              Save Changes
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Other Sections Placeholder -->
+      <div *ngIf="activeTab !== 'personal-information'" class="text-center py-12">
+        <span class="material-symbols-outlined text-6xl text-slate-300 dark:text-slate-700 mb-4">construction</span>
+        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Coming Soon</h2>
+        <p class="text-slate-600 dark:text-slate-400">This section is under development.</p>
+      </div>
+    </main>
+  </div>
+</div>
+
+<app-footer />

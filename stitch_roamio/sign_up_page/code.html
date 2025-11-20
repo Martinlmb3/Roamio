@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sign Up - Roamio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#19a1e6",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111c21",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2a32",
+                        "text-light": "#0e171b",
+                        "text-dark": "#f0f2f4",
+                        "text-muted-light": "#4e7f97",
+                        "text-muted-dark": "#a0b3c0",
+                        "border-light": "#e7eff3",
+                        "border-dark": "#334155",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "full": "9999px",
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">
+<div class="relative flex min-h-screen w-full flex-col">
+<!-- Header -->
+<header class="absolute top-0 left-0 right-0 z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<div class="flex h-20 items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_535)">
+<path clip-rule="evenodd" d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24ZM12.2426 21H35.7574L24 9.24264L12.2426 21Z" fill="currentColor" fill-rule="evenodd"></path>
+</g>
+<defs>
+<clippath id="clip0_6_535">
+<rect fill="white" height="48" width="48"></rect>
+</clippath>
+</defs>
+</svg>
+</div>
+<h2 class="text-xl font-bold tracking-tight text-text-light dark:text-text-dark">Roamio</h2>
+</div>
+<nav class="hidden items-center gap-8 md:flex">
+<a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="#">Flights</a>
+<a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="#">Hotels</a>
+</nav>
+<div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-6 bg-primary text-slate-50 text-sm font-bold tracking-[0.015em] transition-transform hover:scale-105">
+<span class="truncate">Sign In</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex flex-1 items-center justify-center pt-20 pb-10">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex min-h-[75vh] w-full overflow-hidden rounded-xl bg-surface-light dark:bg-surface-dark shadow-xl">
+<!-- Left Panel: Image -->
+<div class="hidden w-1/2 flex-col justify-center bg-cover bg-center lg:flex" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBgzC4ouNSREn_jK6qA4AA-PQepNIXnE9yhJJCQgeqFn8HXGq2riw6Wj5tU_-2NsxYh1G6Biq3CAF_M25JimKD8u-qrPOp_k9-JMJoa9ZuNi99-YuQ4QJaAoXLhgvedKXkZ77u6cvUx8NBs6OlKYtxXRi5Q0eFdQb87revLuzBL5lqBMrE39q8AcspbLm3E5in7nbN-Vgd_KAoS1oMSLKZtutBgmTsOVto22aUA32QwoEMG_5DIYkDyxT9JM3UZuuNQnUAem2SR8aJT');">
+<div class="h-full w-full bg-black/10"></div>
+</div>
+<!-- Right Panel: Sign-up Form -->
+<div class="w-full lg:w-1/2 flex flex-col justify-center px-6 py-12 sm:px-12 md:px-16 lg:px-20">
+<div class="mx-auto w-full max-w-md">
+<div class="text-center">
+<h1 class="text-3xl font-black tracking-tighter sm:text-4xl text-text-light dark:text-text-dark">Create your Roamio account</h1>
+<h2 class="mt-2 text-sm text-text-muted-light dark:text-text-muted-dark">Access exclusive deals on flights and hotels.</h2>
+</div>
+<div class="mt-8">
+<div class="space-y-4">
+<button class="flex h-12 w-full min-w-[84px] items-center justify-center gap-3 overflow-hidden rounded-lg bg-border-light px-5 text-base font-bold tracking-[0.015em] text-text-light hover:bg-border-light/80 dark:bg-border-dark dark:text-text-dark dark:hover:bg-border-dark/80">
+<svg class="size-5" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C12.955 4 4 12.955 4 24s8.955 20 20 20s20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z" fill="#FFC107"></path>
+<path d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C16.318 4 9.656 8.337 6.306 14.691z" fill="#FF3D00"></path>
+<path d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z" fill="#4CAF50"></path>
+<path d="M43.611 20.083H42V20H24v8h11.303c-.792 2.237-2.231 4.166-4.087 5.574l6.19 5.238C44.438 36.338 48 30.656 48 24c0-1.341-.138-2.65-.389-3.917z" fill="#1976D2"></path>
+</svg>
+<span class="truncate">Continue with Google</span>
+</button>
+<button class="flex h-12 w-full min-w-[84px] items-center justify-center gap-3 overflow-hidden rounded-lg bg-border-light px-5 text-base font-bold tracking-[0.015em] text-text-light hover:bg-border-light/80 dark:bg-border-dark dark:text-text-dark dark:hover:bg-border-dark/80">
+<svg class="size-5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M17.213 12.01c.03-.623.03-1.226 0-1.839a5.367 5.367 0 0 0-1.65-3.666c-.663-.642-1.465-1.04-2.31-1.071-.853-.02-1.682.31-2.336.882-.6.51-.97 1.23-.97 2.031 0 .882.59 1.952 1.344 2.617.753.663 1.764.992 2.895.91-.21.792-.51 1.485-.92 2.052-.773 1.05-1.895 1.942-3.328 1.932-1.254-.01-2.438-.703-3.268-1.595-.53-.571-1.254-1.922-.04-3.138.16-.17.34-.31.54-.45.19-.13.39-.23.6-.33.15-.07.29-.12.44-.18.15-.06.29-.12.44-.18l.18-.06c.14-.06.28-.11.41-.17.14-.06.27-.12.4-.18.02 0 .04 0 .06-.01.2-.1.38-.21.52-.33a.26.26 0 0 0 .1-.21c0-.12-.08-.22-.19-.24-.04 0-.07 0-.11.01-.17.03-.35.08-.52.14a5.95 5.95 0 0 0-1.95.83c-.7.42-1.32.95-1.78 1.55-.47.6-1.12 1.6-1.12 2.91 0 1.27.46 2.45 1.24 3.3.8.84 1.87 1.41 3.07 1.54.49.05.97.02 1.45-.09 1.12-.26 2.11-.89 2.85-1.83.76-.96 1.15-2.2 1.05-3.44zm-2.26-6.932c.7-.773 1.2-1.82 1.05-2.91-.01-.14-.04-.28-.07-.41a.89.89 0 0 0-.27-.47c-.2-.2-.46-.31-.73-.31-.51.01-1.04.2-1.45.54-.42.34-.78.78-.99 1.29-.71 1.8.44 3.82 1.46 3.27z" fill="currentColor"></path>
+</svg>
+<span class="truncate">Continue with Apple</span>
+</button>
+</div>
+<div class="relative mt-6">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-border-light dark:border-border-dark"></div>
+</div>
+<div class="relative flex justify-center text-sm">
+<span class="bg-surface-light dark:bg-surface-dark px-2 text-text-muted-light dark:text-text-muted-dark">OR</span>
+</div>
+</div>
+</div>
+<form action="#" class="mt-6 space-y-5" method="POST">
+<div>
+<label class="block text-sm font-medium" for="full-name">Full Name</label>
+<div class="mt-1">
+<input autocomplete="name" class="form-input block w-full rounded-lg border-border-light bg-background-light px-4 py-3 placeholder:text-text-muted-light/70 focus:border-primary focus:ring-primary dark:border-border-dark dark:bg-background-dark dark:placeholder:text-text-muted-dark/70" id="full-name" name="full-name" required="" type="text"/>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium" for="email">Email Address</label>
+<div class="mt-1">
+<input autocomplete="email" class="form-input block w-full rounded-lg border-border-light bg-background-light px-4 py-3 placeholder:text-text-muted-light/70 focus:border-primary focus:ring-primary dark:border-border-dark dark:bg-background-dark dark:placeholder:text-text-muted-dark/70" id="email" name="email" required="" type="email"/>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium" for="password">Password</label>
+<div class="relative mt-1">
+<input autocomplete="new-password" class="form-input block w-full rounded-lg border-border-light bg-background-light px-4 py-3 placeholder:text-text-muted-light/70 focus:border-primary focus:ring-primary dark:border-border-dark dark:bg-background-dark dark:placeholder:text-text-muted-dark/70" id="password" name="password" required="" type="password"/>
+<button aria-label="Toggle password visibility" class="absolute inset-y-0 right-0 flex items-center pr-3 text-text-muted-light dark:text-text-muted-dark" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium" for="confirm-password">Confirm Password</label>
+<div class="relative mt-1">
+<input autocomplete="new-password" class="form-input block w-full rounded-lg border-border-light bg-background-light px-4 py-3 placeholder:text-text-muted-light/70 focus:border-primary focus:ring-primary dark:border-border-dark dark:bg-background-dark dark:placeholder:text-text-muted-dark/70" id="confirm-password" name="confirm-password" required="" type="password"/>
+</div>
+</div>
+<div class="flex items-start">
+<div class="flex h-6 items-center">
+<input class="form-checkbox h-4 w-4 rounded border-border-light text-primary focus:ring-primary dark:border-border-dark dark:bg-background-dark" id="terms" name="terms" type="checkbox"/>
+</div>
+<div class="ml-3 text-sm">
+<p class="text-text-muted-light dark:text-text-muted-dark">By creating an account, you agree to our <a class="font-medium text-primary hover:underline" href="#">Terms of Service</a> and <a class="font-medium text-primary hover:underline" href="#">Privacy Policy</a>.</p>
+</div>
+</div>
+<div>
+<button class="flex w-full h-12 min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-primary text-slate-50 text-base font-bold tracking-[0.015em] transition-transform hover:scale-105" type="submit">
+<span class="truncate">Create Account</span>
+</button>
+</div>
+</form>
+<p class="mt-8 text-center text-sm text-text-muted-light dark:text-text-muted-dark">
+                                Already have an account?
+                                <a class="font-medium text-primary hover:underline" href="#">Sign In</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-light dark:bg-surface-dark/50">
+<div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+<div class="grid grid-cols-2 gap-8 md:grid-cols-4">
+<div class="col-span-2 md:col-span-1">
+<div class="flex items-center gap-4">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_535_footer)">
+<path clip-rule="evenodd" d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24ZM12.2426 21H35.7574L24 9.24264L12.2426 21Z" fill="currentColor" fill-rule="evenodd"></path>
+</g>
+<defs>
+<clippath id="clip0_6_535_footer"><rect fill="white" height="48" width="48"></rect></clippath>
+</defs>
+</svg>
+</div>
+<h2 class="text-xl font-bold tracking-tight text-text-light dark:text-text-dark">Roamio</h2>
+</div>
+<p class="mt-4 text-sm text-text-muted-light dark:text-text-muted-dark">Your adventure starts here. Find the best deals on flights and hotels.</p>
+</div>
+<div>
+<h3 class="font-bold">Company</h3>
+<ul class="mt-4 space-y-2 text-sm">
+<li><a class="text-text-muted-light hover:text-primary dark:text-text-muted-dark dark:hover:text-primary" href="#">About Us</a></li>
+<li><a class="text-text-muted-light hover:text-primary dark:text-text-muted-dark dark:hover:text-primary" href="#">Careers</a></li>
+<li><a class="text-text-muted-light hover:text-primary dark:text-text-muted-dark dark:hover:text-primary" href="#">Press</a></li>
+</ul>
+</div>
+<div>
+<h3 class="font-bold">Support</h3>
+<ul class="mt-4 space-y-2 text-sm">
+<li><a class="text-text-muted-light hover:text-primary dark:text-text-muted-dark dark:hover:text-primary" href="#">Contact Us</a></li>
+<li><a class="text-text-muted-light hover:text-primary dark:text-text-muted-dark dark:hover:text-primary" href="#">FAQ</a></li>
+<li><a class="text-text-muted-light hover:text-primary dark:text-text-muted-dark dark:hover:text-primary" href="#">Help Center</a></li>
+</ul>
+</div>
+<div>
+<h3 class="font-bold">Legal</h3>
+<ul class="mt-4 space-y-2 text-sm">
+<li><a class="text-text-muted-light hover:text-primary dark:text-text-muted-dark dark:hover:text-primary" href="#">Terms of Service</a></li>
+<li><a class="text-text-muted-light hover:text-primary dark:text-text-muted-dark dark:hover:text-primary" href="#">Privacy Policy</a></li>
+<li><a class="text-text-muted-light hover:text-primary dark:text-text-muted-dark dark:hover:text-primary" href="#">Cookie Policy</a></li>
+</ul>
+</div>
+</div>
+<div class="mt-8 border-t border-border-light pt-8 dark:border-border-dark flex flex-col items-center justify-between gap-4 sm:flex-row">
+<p class="text-sm text-text-muted-light dark:text-text-muted-dark">© 2024 Roamio. All rights reserved.</p>
+<div class="flex space-x-6">
+<a class="text-text-muted-light hover:text-primary dark:text-text-muted-dark dark:hover:text-primary" href="#"><span class="sr-only">Facebook</span><svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fill-rule="evenodd"></path></svg></a>
+<a class="text-text-muted-light hover:text-primary dark:text-text-muted-dark dark:hover:text-primary" href="#"><span class="sr-only">Instagram</span><svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 4.22c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.315 2zm-1.118 4.708a1.144 1.144 0 100 2.288 1.144 1.144 0 000-2.288zM12 8.25a3.75 3.75 0 100 7.5 3.75 3.75 0 000-7.5z" fill-rule="evenodd"></path><path d="M10.875 12a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z"></path></svg></a>
+<a class="text-text-muted-light hover:text-primary dark:text-text-muted-dark dark:hover:text-primary" href="#"><span class="sr-only">Twitter</span><svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg></a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

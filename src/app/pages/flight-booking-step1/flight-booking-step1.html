@@ -1,0 +1,166 @@
+<app-header />
+<!-- Main Content -->
+<main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<!-- Breadcrumbs & Page Heading -->
+<div class="mb-8">
+<div class="flex flex-wrap gap-2 items-center mb-4">
+<a class="text-sm font-medium text-text-light/70 dark:text-text-dark/70 hover:text-primary" href="#">Home</a>
+<span class="text-sm font-medium text-text-light/70 dark:text-text-dark/70">/</span>
+<a class="text-sm font-medium text-text-light/70 dark:text-text-dark/70 hover:text-primary" href="#">Flight Search</a>
+<span class="text-sm font-medium text-text-light/70 dark:text-text-dark/70">/</span>
+<span class="text-sm font-medium text-text-light dark:text-text-dark">Flight Details</span>
+</div>
+<div class="flex flex-wrap justify-between gap-3">
+<div class="flex min-w-72 flex-col gap-2">
+<p class="text-4xl font-black tracking-tighter">Dublin to Rome</p>
+<p class="text-base font-normal text-text-light/70 dark:text-text-dark/70">Select your fare and customize your trip</p>
+</div>
+</div>
+</div>
+<!-- Two-column layout -->
+<div class="flex flex-col lg:flex-row gap-8">
+<!-- Left Column (Main Details) -->
+<div class="w-full lg:w-[68%] flex flex-col gap-8">
+<!-- Flight Itinerary Card -->
+<div class="rounded-lg border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark p-6">
+<h2 class="text-[22px] font-bold tracking-tight mb-4">Flight Itinerary</h2>
+<div class="flex flex-col gap-6">
+<!-- Departure -->
+<div class="flex flex-col gap-4">
+<p class="text-sm font-semibold text-text-light/70 dark:text-text-dark/70">DEPARTURE - 15 OCT 2024</p>
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-contain size-8" data-alt="Ryanair logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDUcNYg2DOXwG1x88ik7VTQX8J4OFAnQp74DpGS7vMjpyZmpzyE11mgXhBuU4RWLG3yVNYxVDApJokVtE2j4oehKQV-VqzqEY0J_zL3WSp-Dvi9d4xA_JZqNCWDGG9j94P2F3eOURoj9hioM-UeS9NgjObfV3AORlFyTT6wIR-r1DDCRp4PH2Io2DFpRMKmTDmFi6PV_rdA91ju4lZI5zf2lWsqnLlmn4WLKi8agwUe9g-BHnueakmdb-G4iuZaUOuq_WdMecF39pq9");'></div>
+<div class="flex-1">
+<p class="text-base font-bold">Dublin (DUB) to Rome (FCO)</p>
+<p class="text-sm text-text-light/70 dark:text-text-dark/70">10:30 AM - 02:45 PM, 3h 15m, Direct</p>
+</div>
+<p class="text-sm font-medium">Ryanair FR123</p>
+</div>
+</div>
+<!-- Return -->
+<div class="flex flex-col gap-4">
+<p class="text-sm font-semibold text-text-light/70 dark:text-text-dark/70">RETURN - 22 OCT 2024</p>
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-contain size-8" data-alt="Ryanair logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBGPeQABQWKWGZSECvWWIKNguhk8-k5Hprlh4f40_PrUbkEjY3zGrLHh5FkgzWPQ6N4hXrHcWN3CiRAdCq80P_LiWJHHcDEKlh7h6uxv-wS84yrKF1Q3ccT1jI78_iyHkIwukaT3OMFYjklZxhO1cv557Aj0q7U479wei7-YsjxNfV1uu8Uj_aSm8cG-EqVH2-P7va3vSvCt9hHHrthh3LUUF-xcYmyZlIm5aKCckNgdBcTs-GOphz46NH2h7fm6IaiZTQEqIjoRkpH");'></div>
+<div class="flex-1">
+<p class="text-base font-bold">Rome (FCO) to Dublin (DUB)</p>
+<p class="text-sm text-text-light/70 dark:text-text-dark/70">04:15 PM - 06:30 PM, 3h 15m, Direct</p>
+</div>
+<p class="text-sm font-medium">Ryanair FR124</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Fare Options -->
+<div class="rounded-lg border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark p-6">
+<h2 class="text-[22px] font-bold tracking-tight mb-4">Choose Your Fare</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Basic Fare -->
+<label class="relative cursor-pointer rounded-lg border-2 border-primary bg-primary/5 p-4 flex flex-col items-center text-center">
+<input checked="" class="absolute top-4 right-4" name="fare" type="radio"/>
+<h3 class="font-bold text-lg mb-2">Basic</h3>
+<p class="text-3xl font-black mb-4">€129</p>
+<ul class="text-sm text-left space-y-2 text-text-light/80 dark:text-text-dark/80">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-green-500">check_circle</span> 1 Small Bag</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-red-500">cancel</span> Seat Selection</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-red-500">cancel</span> Checked Bag</li>
+</ul>
+</label>
+<!-- Plus Fare -->
+<label class="relative cursor-pointer rounded-lg border border-border-light dark:border-border-dark p-4 flex flex-col items-center text-center hover:border-primary">
+<input class="absolute top-4 right-4" name="fare" type="radio"/>
+<h3 class="font-bold text-lg mb-2">Plus</h3>
+<p class="text-3xl font-black mb-4">€189</p>
+<ul class="text-sm text-left space-y-2 text-text-light/80 dark:text-text-dark/80">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-green-500">check_circle</span> 1 Small Bag</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-green-500">check_circle</span> Standard Seat</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-green-500">check_circle</span> 20kg Checked Bag</li>
+</ul>
+</label>
+<!-- Flex Fare -->
+<label class="relative cursor-pointer rounded-lg border border-border-light dark:border-border-dark p-4 flex flex-col items-center text-center hover:border-primary">
+<input class="absolute top-4 right-4" name="fare" type="radio"/>
+<h3 class="font-bold text-lg mb-2">Flex</h3>
+<p class="text-3xl font-black mb-4">€249</p>
+<ul class="text-sm text-left space-y-2 text-text-light/80 dark:text-text-dark/80">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-green-500">check_circle</span> 1 Small Bag</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-green-500">check_circle</span> Any Seat</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-green-500">check_circle</span> Flight Changes</li>
+</ul>
+</label>
+</div>
+</div>
+<!-- Baggage & Seat Selection -->
+<div class="rounded-lg border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark p-6">
+<h2 class="text-[22px] font-bold tracking-tight mb-4">Customize Your Trip</h2>
+<div class="space-y-6">
+<!-- Baggage -->
+<div>
+<h3 class="font-bold mb-2">Baggage Allowance</h3>
+<div class="flex items-center justify-between p-4 rounded-lg bg-background-light dark:bg-background-dark">
+<div>
+<p class="font-semibold">Checked Bag (20kg)</p>
+<p class="text-sm text-text-light/70 dark:text-text-dark/70">€45 per bag, per flight</p>
+</div>
+<div class="flex items-center gap-3">
+<button (click)="decrementBaggage()" class="flex items-center justify-center size-8 rounded-full bg-border-light/50 dark:bg-border-dark/50 hover:bg-border-light dark:hover:bg-border-dark">-</button>
+<span class="font-bold text-lg w-4 text-center">{{ baggageCount }}</span>
+<button class="flex items-center justify-center size-8 rounded-full bg-border-light/50 dark:bg-border-dark/50 hover:bg-border-light dark:hover:bg-border-dark">+</button>
+</div>
+</div>
+</div>
+<!-- Seat Selection -->
+<div>
+<h3 class="font-bold mb-2">Seat Selection</h3>
+<button class="w-full flex items-center justify-between p-4 rounded-lg bg-background-light dark:bg-background-dark hover:bg-border-light/50 dark:hover:bg-border-dark/50">
+<div class="text-left">
+<p class="font-semibold">Choose your seats</p>
+<p class="text-sm text-text-light/70 dark:text-text-dark/70">Select preferred seats for your flight</p>
+</div>
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column (Sticky Summary) -->
+<div class="w-full lg:w-[32%]">
+<div class="sticky top-24">
+<div class="rounded-lg border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark p-6 flex flex-col gap-6">
+<h2 class="text-[22px] font-bold tracking-tight">Your Trip Summary</h2>
+<!-- Passengers -->
+<div>
+<h3 class="font-semibold mb-2">Passengers</h3>
+<div class="flex items-center justify-between">
+<p>Adults</p>
+<div class="flex items-center gap-3">
+<button class="flex items-center justify-center size-8 rounded-full bg-border-light/50 dark:bg-border-dark/50 hover:bg-border-light dark:hover:bg-border-dark">-</button>
+<span class="font-bold text-lg w-4 text-center">1</span>
+<button class="flex items-center justify-center size-8 rounded-full bg-border-light/50 dark:bg-border-dark/50 hover:bg-border-light dark:hover:bg-border-dark">+</button>
+</div>
+</div>
+</div>
+<!-- Fare Breakdown -->
+<div class="border-t border-border-light dark:border-border-dark pt-6">
+<h3 class="font-semibold mb-4">Fare Breakdown</h3>
+<div class="space-y-2 text-sm text-text-light/80 dark:text-text-dark/80">
+<div class="flex justify-between"><span>Base Fare (1 Adult)</span><span>€129.00</span></div>
+<div class="flex justify-between"><span>Taxes &amp; Fees</span><span>€24.50</span></div>
+<div class="flex justify-between"><span>Extras (Baggage)</span><span class="text-secondary font-semibold">€0.00</span></div>
+</div>
+</div>
+<!-- Total Price -->
+<div class="border-t border-border-light dark:border-border-dark pt-6 flex justify-between items-center">
+<span class="text-lg font-bold">Total Price</span>
+<span class="text-3xl font-black text-primary">€153.50</span>
+</div>
+<!-- CTA Button -->
+<button class="w-full flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-4 bg-primary text-white text-base font-bold tracking-wide hover:bg-primary/90">
+<span class="truncate">Continue to Passenger Details</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<app-footer />
