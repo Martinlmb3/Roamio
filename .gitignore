@@ -8,7 +8,6 @@ frontend/tmp/
 frontend/out-tsc/
 frontend/bazel-out/
 frontend/node_modules/
-frontend/.angular/
 frontend/.sass-cache/
 frontend/connect.lock
 frontend/coverage/
@@ -48,3 +47,6 @@ Thumbs.db
 .github/instructions/
 .playwright-mcp/
 .gitignore
+
+# Docs
+docs/
