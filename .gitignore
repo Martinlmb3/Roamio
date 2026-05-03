@@ -1,15 +1,30 @@
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
-# Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
-
-# Node
-/node_modules
+# Frontend (Angular)
+frontend/.angular/
+.angular/
+frontend/dist/
+frontend/tmp/
+frontend/out-tsc/
+frontend/bazel-out/
+frontend/node_modules/
+frontend/.angular/
+frontend/.sass-cache/
+frontend/connect.lock
+frontend/coverage/
+frontend/typings/
 npm-debug.log
 yarn-error.log
+testem.log
+
+# Backend (Java/Gradle)
+backend/.gradle/
+backend/build/
+backend/out/
+
+# DrawIO temp files
+.$Roami_relations_table.drawio.bkp
+.$Roami_relations_table.drawio.dtmp
 
 # IDEs and editors
 .idea/
@@ -21,26 +36,15 @@ yarn-error.log
 *.sublime-workspace
 
 # Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
-
-# Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
+.vscode/
+.history/
 
 # System files
 .DS_Store
 Thumbs.db
 
-
-#Ignore vscode AI rules
-.github\instructions\codacy.instructions.md
+# AI and tool folders
+.claude/
+.github/instructions/
+.playwright-mcp/
+.gitignore
