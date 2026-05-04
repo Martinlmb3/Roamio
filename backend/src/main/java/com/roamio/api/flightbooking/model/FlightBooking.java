@@ -27,6 +27,12 @@ public class FlightBooking {
     @Column(name = "fare_option_id", nullable = false)
     private Long fareOptionId;
 
+    @Column(name = "cost_score")
+    private Integer costScore;
+
+    @Column(name = "eco_score")
+    private Integer ecoScore;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "booking_id", insertable = false, updatable = false)
     private Booking booking;

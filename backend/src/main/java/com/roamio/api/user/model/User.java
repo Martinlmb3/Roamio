@@ -52,13 +52,25 @@ public class User implements UserDetails {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    private boolean enabled;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private UserRole role;
 
-    @Column(name = "verification_code")
-    private String verificationCode;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "auth_provider", nullable = false)
+    private AuthProvider authProvider;
 
-    @Column(name = "verification_expiration")
-    private LocalDateTime verificationExpiration;
+    @Column(name = "is_email_verified")
+    private boolean isEmailVerified;
+
+    @Column(name = "verification_token")
+    private String verificationToken;
+
+    @Column(name = "is_active")
+    private boolean isActive;
+
+    @Column(name = "profile_picture_url")
+    private String profilePictureUrl;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -85,5 +97,13 @@ public class User implements UserDetails {
     public boolean isCredentialsNonExpired() { return true; }
 
     @Override
-    public boolean isEnabled() { return enabled; }
+    public boolean isEnabled() { return isActive; }
+
+    public enum UserRole {
+        USER, ADMIN
+    }
+
+    public enum AuthProvider {
+        LOCAL, GOOGLE
+    }
 }

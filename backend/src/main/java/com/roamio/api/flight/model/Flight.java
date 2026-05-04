@@ -45,4 +45,23 @@ public class Flight {
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
+
+    @Column(name = "amadeus_offer_id")
+    private String amadeusOfferId;
+
+    @Column(name = "flight_number")
+    private String flightNumber;
+
+    @Column(name = "available_seats")
+    private Integer availableSeats;
+
+    private String currency;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "cabin_class")
+    private CabinClass cabinClass;
+
+    public enum CabinClass {
+        ECONOMY, PREMIUM_ECONOMY, BUSINESS, FIRST
+    }
 }
