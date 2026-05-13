@@ -1,4 +1,3 @@
-# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 .gitignore
 # Frontend (Angular)
 frontend/.angular/
@@ -44,7 +43,7 @@ Thumbs.db
 
 # AI and tool folders
 .claude/
-.github/instructions/
+.github/
 .playwright-mcp/
 .gitignore
 

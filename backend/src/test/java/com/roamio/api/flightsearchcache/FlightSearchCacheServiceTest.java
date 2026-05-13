@@ -11,7 +11,7 @@ class FlightSearchCacheServiceTest {
     void shouldReturnCachedResultsOnCacheHit() {}
 
     @Test
-    void shouldCallAmadeusAndCacheOnCacheMiss() {}
+    void shouldCallTravelpayoutsAndCacheOnCacheMiss() {}
 
     @Test
     void shouldGenerateDeterministicSearchHash() {}

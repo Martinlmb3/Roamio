@@ -1,223 +1,299 @@
-<app-header />
-<main class="container mx-auto px-4 py-8">
-<div class="flex flex-col gap-8 lg:flex-row">
-<!-- Left Sidebar: Filters -->
-<aside class="w-full lg:w-1/4 lg:max-w-xs shrink-0">
-<div class="sticky top-24 space-y-6">
-<div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-6">
-<div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-700">
-<h2 class="text-slate-800 dark:text-slate-200 text-lg font-bold leading-tight tracking-[-0.015em]">Filter by:</h2>
-<button class="text-primary text-sm font-medium">Reset</button>
+<app-header></app-header>
+
+<!-- SEARCH SUMMARY BAR -->
+<div class="summary-bar">
+  <div class="summary-inner">
+    <div class="seg-group">
+      <button class="seg">
+        <svg viewBox="0 0 24 24"><path d="M17 1l4 4-4 4M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+        Round-trip
+        <svg viewBox="0 0 24 24" style="width:12px;height:12px;stroke:#6B6B6B;fill:none;stroke-width:2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <button class="seg">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/></svg>
+        1 adult
+        <svg viewBox="0 0 24 24" style="width:12px;height:12px;stroke:#6B6B6B;fill:none;stroke-width:2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <button class="seg">
+        Economy
+        <svg viewBox="0 0 24 24" style="width:12px;height:12px;stroke:#6B6B6B;fill:none;stroke-width:2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+    </div>
+
+    <div class="route-pill">
+      <div class="route-leg">
+        <svg class="pin" viewBox="0 0 24 24"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 6 8 12 8 12s8-6 8-12a8 8 0 0 0-8-8z"/></svg>
+        <div class="rl-text"><span class="city">London</span><span class="code">LHR</span></div>
+      </div>
+      <button class="route-swap">
+        <svg viewBox="0 0 24 24"><path d="M7 16l-4-4 4-4M17 8l4 4-4 4M3 12h18"/></svg>
+      </button>
+      <div class="route-leg">
+        <svg class="pin" viewBox="0 0 24 24"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 6 8 12 8 12s8-6 8-12a8 8 0 0 0-8-8z"/></svg>
+        <div class="rl-text"><span class="city">New York</span><span class="code">JFK</span></div>
+      </div>
+    </div>
+
+    <div class="date-group">
+      <div class="date-cell">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        <div class="date-cell-inner"><span class="d-label">Depart</span><span class="d-day">Thu 28 May</span></div>
+      </div>
+      <div class="date-cell">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        <div class="date-cell-inner"><span class="d-label">Return</span><span class="d-day">Wed 3 Jun</span></div>
+      </div>
+    </div>
+
+    <button class="search-btn">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      Update search
+    </button>
+  </div>
 </div>
-<div class="space-y-6 pt-6">
-<!-- Price Range Slider -->
-<div class="relative flex w-full flex-col items-start justify-between gap-3">
-<p class="text-slate-800 dark:text-slate-200 text-base font-medium leading-normal w-full">Price Range</p>
-<div class="flex h-[38px] w-full pt-1.5">
-<div class="flex h-1 w-full rounded-sm bg-slate-200 dark:bg-slate-600 pl-[10%] pr-[20%]">
-<div class="relative">
-<div class="absolute -left-3 -top-1.5 flex flex-col items-center gap-1">
-<div class="size-4 rounded-full bg-primary ring-2 ring-white dark:ring-slate-800"></div>
-<p class="text-slate-600 dark:text-slate-400 text-sm font-normal leading-normal">$250</p>
+
+<!-- FILTER CHIPS ROW -->
+<div class="chip-row">
+  <div class="chip-inner">
+    <button class="chip chip-all">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M3 6h18M6 12h12M10 18h4"/></svg>
+      All filters
+    </button>
+    <button class="chip">Stops <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+    <button class="chip">Airlines <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+    <button class="chip">Bags <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+    <button class="chip">Price <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+    <button class="chip">Departure time <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+    <button class="chip active">Emissions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+    <button class="chip">Duration <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+  </div>
 </div>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="filter-card">
+      <div class="filter-head">
+        <h3>Filter by</h3>
+        <button class="reset-btn">Reset</button>
+      </div>
+
+      <div class="filter-section">
+        <h4>Emissions</h4>
+        <div class="em-segments">
+          <label class="em-seg" [class.active]="activeEmission === 0" (click)="setEmission(0)">
+            <span class="em-dot"></span>
+            <div><div class="em-text">Lowest only</div><div class="em-sub">−20% or better vs. average</div></div>
+          </label>
+          <label class="em-seg" [class.active]="activeEmission === 1" (click)="setEmission(1)">
+            <span class="em-dot"></span>
+            <div><div class="em-text">Below average</div><div class="em-sub">Any flight below typical</div></div>
+          </label>
+          <label class="em-seg" [class.active]="activeEmission === 2" (click)="setEmission(2)">
+            <span class="em-dot"></span>
+            <div><div class="em-text">Show all</div><div class="em-sub">No emissions filter</div></div>
+          </label>
+        </div>
+      </div>
+
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main>
+
+    <div class="main-head">
+      <div class="title-block">
+        <h1>Flights from London to New York</h1>
+        <p>Showing <strong>78</strong> of 210 results — eco-priority enabled</p>
+      </div>
+      <div class="sort-block">
+        <label>Sort by</label>
+        <select class="sort-select">
+          <option>Roamio score (highest)</option>
+          <option>Cheapest</option>
+          <option>Lowest emissions</option>
+          <option>Fastest</option>
+          <option>Departure (earliest)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="sort-tabs">
+      <button class="sort-tab" [class.active]="activeSortTab === 'best'" (click)="setSort('best')">
+        <div class="stab-label">
+          <svg class="stab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+          Best
+        </div>
+        <div class="stab-val">Roamio score <span class="from">from 91.5</span></div>
+      </button>
+      <button class="sort-tab" [class.active]="activeSortTab === 'cheapest'" (click)="setSort('cheapest')">
+        <div class="stab-label">
+          <svg class="stab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          Cheapest
+        </div>
+        <div class="stab-val">€465 <span class="from">+ 2h 10 min</span></div>
+      </button>
+      <button class="sort-tab" [class.active]="activeSortTab === 'greenest'" (click)="setSort('greenest')">
+        <div class="stab-label" [style.color]="activeSortTab === 'greenest' ? '#2E7D5B' : ''">
+          <svg class="stab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 5 .5 10-1 13a7 7 0 0 1-7 5z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>
+          Greenest
+        </div>
+        <div class="stab-val">−21% emissions <span class="from">from €589</span></div>
+      </button>
+    </div>
+
+    <div class="active-chips">
+      @for (chip of activeChips; track chip.id) {
+        <span class="active-chip">
+          {{ chip.label }}
+          <button (click)="removeChip(chip.id)">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </button>
+        </span>
+      }
+    </div>
+
+    <!-- TOP PICKS -->
+    <div class="section-label">
+      <h2>Top picks</h2>
+      <span class="badge">Best balance</span>
+      <span class="help">Ranked by Roamio score · price + emissions</span>
+    </div>
+
+    @for (flight of topFlights; track flight.flightNumber) {
+      <div class="flight top">
+        <div class="flight-main">
+          <div class="flight-row1">
+            <div class="airline-logo" [class]="'airline-logo ' + flight.airlineCode">{{ flight.airlineCode.toUpperCase() }}</div>
+            <div class="timing">
+              <div class="time-col"><span class="t">{{ flight.dep.time }}</span><span class="ap">{{ flight.dep.airport }}</span></div>
+              <div class="duration-line">
+                <span class="dl-time">{{ flight.duration }}</span>
+                <div class="dl-bar">
+                  @if (flight.stopsClass === 'stop') { <span class="dl-stop"></span> }
+                </div>
+                <span class="dl-meta" [class]="flight.stopsClass">{{ flight.stops }}</span>
+              </div>
+              <div class="time-col"><span class="t">{{ flight.arr.time }}</span><span class="ap">{{ flight.arr.airport }}</span></div>
+            </div>
+            <span class="info-chip">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              <span class="val">{{ flight.duration }}</span>
+            </span>
+            <span class="roamio-score" [class.mid]="flight.roamioStyle === 'mid'">
+              <span class="rs-num">{{ flight.roamioScore }}</span> Roamio score
+            </span>
+          </div>
+          <div class="airline-name">{{ flight.airlineName }} · {{ flight.flightNumber }} · {{ flight.aircraft }}</div>
+          <div class="flight-row2">
+            <span class="co2-pill" [class]="flight.co2Class">
+              <svg viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 5 .5 10-1 13a7 7 0 0 1-7 5z"/></svg>
+              {{ flight.co2 }}
+            </span>
+            @for (extra of flight.extras; track extra) {
+              <span class="info-chip">
+                <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                {{ extra }}
+              </span>
+            }
+          </div>
+        </div>
+        <div class="price-side">
+          <div class="price-stack">
+            <div class="ptag">Round-trip</div>
+            <div class="p">€{{ flight.price }}</div>
+            <div class="psub">per person · all taxes incl.</div>
+          </div>
+          <button class="select-btn">
+            Select flight
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    }
+
+    <!-- ECO BANNER -->
+    <div class="eco-banner">
+      <div class="eb-ico">
+        <svg lucideSprout [size]="22" color="white" [strokeWidth]="2"></svg>
+      </div>
+      <div class="eb-text">
+        <strong>You're saving 38 kg of CO₂ on average with these picks</strong>
+        <span>Equivalent to charging your phone 4,600 times.</span>
+      </div>
+      <button class="eb-cta">Learn how →</button>
+    </div>
+
+    <!-- OTHER FLIGHTS -->
+    <div class="section-label">
+      <h2>Other flights</h2>
+      <span class="help">77 more options</span>
+    </div>
+
+    @for (flight of otherFlights; track flight.flightNumber) {
+      <div class="flight">
+        <div class="flight-main">
+          <div class="flight-row1">
+            <div class="airline-logo" [class]="'airline-logo ' + flight.airlineCode">{{ flight.airlineCode.toUpperCase() }}</div>
+            <div class="timing">
+              <div class="time-col"><span class="t">{{ flight.dep.time }}</span><span class="ap">{{ flight.dep.airport }}</span></div>
+              <div class="duration-line">
+                <span class="dl-time">{{ flight.duration }}</span>
+                <div class="dl-bar">
+                  @if (flight.stopsClass === 'stop') { <span class="dl-stop"></span> }
+                </div>
+                <span class="dl-meta" [class]="flight.stopsClass">{{ flight.stops }}</span>
+              </div>
+              <div class="time-col"><span class="t">{{ flight.arr.time }}</span><span class="ap">{{ flight.arr.airport }}</span></div>
+            </div>
+            <span class="info-chip">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              <span class="val">{{ flight.duration }}</span>
+            </span>
+            <span class="roamio-score" [class.mid]="flight.roamioStyle === 'mid'">
+              <span class="rs-num">{{ flight.roamioScore }}</span> Roamio score
+            </span>
+          </div>
+          <div class="airline-name">{{ flight.airlineName }} · {{ flight.flightNumber }} · {{ flight.aircraft }}</div>
+          <div class="flight-row2">
+            <span class="co2-pill" [class]="flight.co2Class">
+              @if (flight.co2Class === 'good') {
+                <svg viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 5 .5 10-1 13a7 7 0 0 1-7 5z"/></svg>
+              } @else if (flight.co2Class === 'bad') {
+                <svg viewBox="0 0 24 24"><path d="M12 8v4M12 16h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+              } @else {
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+              }
+              {{ flight.co2 }}
+            </span>
+            @for (extra of flight.extras; track extra) {
+              <span class="info-chip">
+                <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg>
+                {{ extra }}
+              </span>
+            }
+          </div>
+        </div>
+        <div class="price-side">
+          <div class="price-stack">
+            <div class="ptag">Round-trip</div>
+            <div class="p">€{{ flight.price }}</div>
+            <div class="psub">per person · all taxes incl.</div>
+          </div>
+          <button class="select-btn">
+            Select flight
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    }
+
+    <button class="load-more">Show more flights · 72 remaining</button>
+
+  </main>
 </div>
-<div class="h-1 flex-1 rounded-sm bg-primary"></div>
-<div class="relative">
-<div class="absolute -right-3 -top-1.5 flex flex-col items-center gap-1">
-<div class="size-4 rounded-full bg-primary ring-2 ring-white dark:ring-slate-800"></div>
-<p class="text-slate-600 dark:text-slate-400 text-sm font-normal leading-normal">$1200</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Stops Filter -->
-<div>
-<h3 class="font-medium text-slate-800 dark:text-slate-200 mb-3">Stops</h3>
-<div class="space-y-2">
-<label class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
-<input checked="" class="h-4 w-4 rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary/50 bg-slate-100 dark:bg-slate-700" type="checkbox"/> Direct
-                    </label>
-<label class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
-<input class="h-4 w-4 rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary/50 bg-slate-100 dark:bg-slate-700" type="checkbox"/> 1 Stop
-                    </label>
-<label class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
-<input class="h-4 w-4 rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary/50 bg-slate-100 dark:bg-slate-700" type="checkbox"/> 2+ Stops
-                    </label>
-</div>
-</div>
-<!-- Airlines Filter -->
-<div>
-<h3 class="font-medium text-slate-800 dark:text-slate-200 mb-3">Airlines</h3>
-<div class="space-y-2">
-<label class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
-<input checked="" class="h-4 w-4 rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary/50 bg-slate-100 dark:bg-slate-700" type="checkbox"/> British Airways
-                    </label>
-<label class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
-<input class="h-4 w-4 rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary/50 bg-slate-100 dark:bg-slate-700" type="checkbox"/> American Airlines
-                    </label>
-<label class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
-<input class="h-4 w-4 rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary/50 bg-slate-100 dark:bg-slate-700" type="checkbox"/> Virgin Atlantic
-                    </label>
-</div>
-</div>
-</div>
-</div>
-</div>
-</aside>
-<!-- Right Column: Results -->
-<div class="w-full lg:w-3/4">
-<div class="space-y-6">
-<!-- Heading & Sort -->
-<div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4">
-<div class="flex min-w-72 flex-col gap-1">
-<p class="text-slate-800 dark:text-slate-200 text-3xl font-black leading-tight tracking-[-0.033em]">Flights from London to New York</p>
-<p class="text-slate-500 dark:text-slate-400 text-base font-normal leading-normal">Showing 78 of 210 results</p>
-</div>
-<div class="flex items-center gap-2">
-<label class="text-sm font-medium text-slate-600 dark:text-slate-400" for="sort">Sort by:</label>
-<select class="rounded-lg border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-sm font-medium focus:border-primary focus:ring-primary/50" id="sort">
-<option>Cheapest</option>
-<option>Fastest</option>
-<option>Best</option>
-<option>Earliest Departure</option>
-</select>
-</div>
-</div>
-<!-- Applied Filters Chips -->
-<div class="flex gap-3 flex-wrap">
-<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary/20 pl-4 pr-3">
-<p class="text-primary text-sm font-medium leading-normal">Price: Cheapest</p>
-<button class="text-primary"><span class="material-symbols-outlined text-base">close</span></button>
-</div>
-<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary/20 pl-4 pr-3">
-<p class="text-primary text-sm font-medium leading-normal">Stops: Direct</p>
-<button class="text-primary"><span class="material-symbols-outlined text-base">close</span></button>
-</div>
-<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary/20 pl-4 pr-3">
-<p class="text-primary text-sm font-medium leading-normal">Airline: British Airways</p>
-<button class="text-primary"><span class="material-symbols-outlined text-base">close</span></button>
-</div>
-</div>
-<!-- Flight Result Cards -->
-<div class="space-y-4">
-<!-- Card 1 -->
-<div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 p-4 flex flex-col sm:flex-row items-center gap-4" *ngFor="let flight of flights">
-<div class="flex-grow w-full">
-<div class="flex items-center gap-4 mb-4">
-<img class="h-8 w-auto" data-alt="{{ flight.airline }} logo" [src]="flight.logoUrl"/>
-<span class="font-medium text-slate-700 dark:text-slate-300">{{ flight.airline }}</span>
-</div>
-<div class="flex items-center justify-between gap-4">
-<div class="text-center">
-<p class="text-xl font-bold text-slate-800 dark:text-slate-200">{{ flight.departure.time }}</p>
-<p class="text-sm font-medium text-slate-500 dark:text-slate-400">{{ flight.departure.airport }}</p>
-</div>
-<div class="flex-grow flex items-center gap-2">
-<span class="material-symbols-outlined text-slate-400 dark:text-slate-500 text-xl">flight_takeoff</span>
-<div class="w-full h-px bg-slate-200 dark:bg-slate-600 relative">
-<div class="absolute inset-0 flex justify-center">
-<div class="text-center -mt-3.5">
-<p class="text-xs text-slate-500 dark:text-slate-400">{{ flight.duration }}</p>
-<p class="text-xs font-semibold" [ngClass]="flight.stopsClass">{{ flight.stops }}</p>
-</div>
-</div>
-</div>
-<span class="material-symbols-outlined text-slate-400 dark:text-slate-500 text-xl">flight_land</span>
-</div>
-<div class="text-center">
-<p class="text-xl font-bold text-slate-800 dark:text-slate-200">{{ flight.arrival.time }}</p>
-<p class="text-sm font-medium text-slate-500 dark:text-slate-400">{{ flight.arrival.airport }}</p>
-</div>
-</div>
-</div>
-<div class="w-full sm:w-auto border-t sm:border-t-0 sm:border-l border-slate-200 dark:border-slate-700 mt-4 sm:mt-0 pt-4 sm:pt-0 sm:pl-6 flex flex-col items-center justify-center shrink-0">
-<p class="text-2xl font-extrabold text-slate-800 dark:text-slate-200 mb-2">${{ flight.price }}</p>
-<p class="text-xs text-slate-500 dark:text-slate-400 mb-4">per person</p>
-<button class="w-full sm:w-auto flex min-w-[120px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
-<span class="truncate">Select Flight</span>
-</button>
-</div>
-</div>
-<!-- Card 2 -->
-<div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 p-4 flex flex-col sm:flex-row items-center gap-4">
-<div class="flex-grow w-full">
-<div class="flex items-center gap-4 mb-4">
-<img class="h-8 w-auto" data-alt="American Airlines logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0RvV5pSCuo3Jvk4ONHacOSBLex48_unSG_XcZ4kpXEx3sNePIGZcJIWQ1UOYWih-kpSfpIWpCOE_JMYMZsSwep4v4fnZsVJFbU7e8vjtyzZiY-iIu9KCcX6Rt_nIjVCae0a4AF6ynjrEszgWpgpGlqe7mGBS9mKvwvJU-94ZnOBYNilbIPVvyPLv5B_bFNlskZAY3YkfHKnC3w8wBQB68TI4YmUrnTzFy-VbHncp9XAWGj3tr1gD42kTDjNgHD7VWs6IECELIZpA6"/>
-<span class="font-medium text-slate-700 dark:text-slate-300">American Airlines</span>
-</div>
-<div class="flex items-center justify-between gap-4">
-<div class="text-center">
-<p class="text-xl font-bold text-slate-800 dark:text-slate-200">11:00</p>
-<p class="text-sm font-medium text-slate-500 dark:text-slate-400">LHR</p>
-</div>
-<div class="flex-grow flex items-center gap-2">
-<span class="material-symbols-outlined text-slate-400 dark:text-slate-500 text-xl">flight_takeoff</span>
-<div class="w-full h-px bg-slate-200 dark:bg-slate-600 relative">
-<div class="absolute inset-0 flex justify-center">
-<div class="text-center -mt-3.5">
-<p class="text-xs text-slate-500 dark:text-slate-400">10h 30m</p>
-<p class="text-xs font-semibold text-orange-600 dark:text-orange-400">1 Stop (DUB)</p>
-</div>
-</div>
-</div>
-<span class="material-symbols-outlined text-slate-400 dark:text-slate-500 text-xl">flight_land</span>
-</div>
-<div class="text-center">
-<p class="text-xl font-bold text-slate-800 dark:text-slate-200">18:30</p>
-<p class="text-sm font-medium text-slate-500 dark:text-slate-400">JFK</p>
-</div>
-</div>
-</div>
-<div class="w-full sm:w-auto border-t sm:border-t-0 sm:border-l border-slate-200 dark:border-slate-700 mt-4 sm:mt-0 pt-4 sm:pt-0 sm:pl-6 flex flex-col items-center justify-center shrink-0">
-<p class="text-2xl font-extrabold text-slate-800 dark:text-slate-200 mb-2">$520</p>
-<p class="text-xs text-slate-500 dark:text-slate-400 mb-4">per person</p>
-<button class="w-full sm:w-auto flex min-w-[120px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
-<span class="truncate">Select Flight</span>
-</button>
-</div>
-</div>
-<!-- Card 3 -->
-<div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 p-4 flex flex-col sm:flex-row items-center gap-4">
-<div class="flex-grow w-full">
-<div class="flex items-center gap-4 mb-4">
-<img class="h-8 w-auto" data-alt="Virgin Atlantic logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbc0_3KvXC91YY6pOCGrSkwR3yChkoMKXClp15BouLzbesUjg3wwvvP3PidrHi-AQFS489ZNOKkidQNKZeQnrCPqFANBgNu2Edm9HxfmetYrrEdbKPEIAs9KCK2CXyl-plDY6b3BMXtRYYAXMiVnGRC7QJB_7WyMpH9s4BT_knBOxfhMnu3gBtFEnCXy6vwL2MhpR41twf1Z0XRDWBrsOzvSOUTxh-GCJ1DVI1aDuAplGIL9WLpva2afL9HrkBm5QLXcRg61O5K8rB"/>
-<span class="font-medium text-slate-700 dark:text-slate-300">Virgin Atlantic</span>
-</div>
-<div class="flex items-center justify-between gap-4">
-<div class="text-center">
-<p class="text-xl font-bold text-slate-800 dark:text-slate-200">09:15</p>
-<p class="text-sm font-medium text-slate-500 dark:text-slate-400">LGW</p>
-</div>
-<div class="flex-grow flex items-center gap-2">
-<span class="material-symbols-outlined text-slate-400 dark:text-slate-500 text-xl">flight_takeoff</span>
-<div class="w-full h-px bg-slate-200 dark:bg-slate-600 relative">
-<div class="absolute inset-0 flex justify-center">
-<div class="text-center -mt-3.5">
-<p class="text-xs text-slate-500 dark:text-slate-400">8h 25m</p>
-<p class="text-xs font-semibold text-green-600 dark:text-green-400">Direct</p>
-</div>
-</div>
-</div>
-<span class="material-symbols-outlined text-slate-400 dark:text-slate-500 text-xl">flight_land</span>
-</div>
-<div class="text-center">
-<p class="text-xl font-bold text-slate-800 dark:text-slate-200">12:40</p>
-<p class="text-sm font-medium text-slate-500 dark:text-slate-400">JFK</p>
-</div>
-</div>
-</div>
-<div class="w-full sm:w-auto border-t sm:border-t-0 sm:border-l border-slate-200 dark:border-slate-700 mt-4 sm:mt-0 pt-4 sm:pt-0 sm:pl-6 flex flex-col items-center justify-center shrink-0">
-<p class="text-2xl font-extrabold text-slate-800 dark:text-slate-200 mb-2">$615</p>
-<p class="text-xs text-slate-500 dark:text-slate-400 mb-4">per person</p>
-<button class="w-full sm:w-auto flex min-w-[120px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
-<span class="truncate">Select Flight</span>
-</button>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</main>
-<app-footer />
+
+<app-footer></app-footer>

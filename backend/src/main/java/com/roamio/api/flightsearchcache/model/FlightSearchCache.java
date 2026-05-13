@@ -29,8 +29,8 @@ public class FlightSearchCache {
     @Column(name = "departure_date", nullable = false)
     private LocalDate departureDate;
 
-    @Column(nullable = false)
-    private Integer adults;
+    @Column(length = 3)
+    private String currency;
 
     @Column(name = "results_json", columnDefinition = "TEXT")
     private String resultsJson;

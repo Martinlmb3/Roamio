@@ -14,7 +14,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![PayPal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://www.paypal.com/)
 [![Stripe](https://img.shields.io/badge/Stripe-635BFF?style=for-the-badge&logo=stripe&logoColor=white)](https://stripe.com/)
-[![Amadeus](https://img.shields.io/badge/Amadeus-003580?style=for-the-badge&logo=amadeus&logoColor=white)](https://developers.amadeus.com/)
+[![Travelpayouts](https://img.shields.io/badge/Travelpayouts-007BFF?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0yMSAxNnYtMmwtOC01VjNhMSAxIDAgMCAwLTIgMHY2bC04IDV2MmwyIDAgNi0zLjVWMTlsLTIgMS41VjIyaDh2LTEuNUwxNSAxOXYtNi41bDYgMy41eiIvPjwvc3ZnPg==&logoColor=white)](https://support.travelpayouts.com/hc/en-us/categories/200358578)
 
 </div>
 
@@ -55,62 +55,62 @@
 
 ### External Services
 
-- **Amadeus API** — real-time flight search & pricing
+- **Travelpayouts Data API** — aggregated flight prices & route data (affiliate model)
 - **PayPal & Stripe** — payment processing
 - **Google OAuth 2.0** — authentication
 
-## Amadeus API Integration
+## Travelpayouts API Integration
 
-Roamio uses the [Amadeus Self-Service API](https://developers.amadeus.com/) for real-time flight data. All calls are made server-side (Spring Boot) — the API key is never exposed to the frontend.
+Roamio uses the [Travelpayouts Data API](https://support.travelpayouts.com/hc/en-us/categories/200358578) for flight price data. All calls are made server-side (Spring Boot) — the API token is never exposed to the frontend.
 
-> **Sandbox base URL**: `https://test.api.amadeus.com`  
-> **Production base URL**: `https://api.amadeus.com`
+> **Base URL**: `https://api.travelpayouts.com`
 
 ### Authentication
 
-Amadeus uses OAuth 2.0 client credentials. The backend fetches and refreshes the token automatically.
+Travelpayouts uses a static API token — no OAuth flow required. Pass the token on every request either as a query parameter or a request header.
 
-```
-POST /v1/security/oauth2/token
-Content-Type: application/x-www-form-urlencoded
-
-grant_type=client_credentials
-&client_id={AMADEUS_CLIENT_ID}
-&client_secret={AMADEUS_CLIENT_SECRET}
+```http
+GET /v1/prices/cheap?token={TRAVELPAYOUTS_API_TOKEN}
+X-Access-Token: {TRAVELPAYOUTS_API_TOKEN}
 ```
 
-Returns a `Bearer` token to include in all subsequent requests.
+> The `marker` is your affiliate ID and must be appended to booking redirect links to track conversions.
 
 ### Endpoints Used
 
-| Method | Endpoint                             | Description                                        |
-| ------ | ------------------------------------ | -------------------------------------------------- |
-| `GET`  | `/v2/shopping/flight-offers`         | Search available flights with real-time prices     |
-| `POST` | `/v1/shopping/flight-offers/pricing` | Confirm and lock the price before booking          |
-| `GET`  | `/v1/reference-data/locations`       | Airport/city autocomplete (used in the search bar) |
+| Method | Endpoint                | Description                                            |
+| ------ | ----------------------- | ------------------------------------------------------ |
+| `GET`  | `/v1/prices/cheap`      | Cheapest one-way or return tickets for a route         |
+| `GET`  | `/v2/prices/latest`     | Latest prices found across all Travelpayouts users     |
+| `GET`  | `/v1/prices/calendar`   | Prices for each day of a month for a given route       |
+| `GET`  | `/v1/prices/direct`     | Cheapest direct-flight tickets for a route             |
+| `GET`  | `/v1/city-directions`   | Top destination cities from a given origin             |
 
-#### Flight Search — key parameters
+### Flight Search — key parameters
 
-| Parameter                 | Example      | Description                    |
-| ------------------------- | ------------ | ------------------------------ |
-| `originLocationCode`      | `BRU`        | IATA code of departure airport |
-| `destinationLocationCode` | `CDG`        | IATA code of arrival airport   |
-| `departureDate`           | `2026-06-01` | Departure date (YYYY-MM-DD)    |
-| `adults`                  | `1`          | Number of adult passengers     |
-| `currencyCode`            | `EUR`        | Currency for returned prices   |
-| `max`                     | `20`         | Max number of offers returned  |
+| Parameter            | Example      | Description                                     |
+| -------------------- | ------------ | ----------------------------------------------- |
+| `origin`             | `LHR`        | IATA code of the departure airport or city      |
+| `destination`        | `JFK`        | IATA code of the arrival airport or city        |
+| `depart_date`        | `2026-06`    | Departure month or date (YYYY-MM or YYYY-MM-DD) |
+| `return_date`        | `2026-06-15` | Return date for round-trip search (YYYY-MM-DD)  |
+| `currency`           | `USD`        | Currency for returned prices                    |
+| `token`              | `256e751...` | Your Travelpayouts API token (required)         |
+| `limit`              | `10`         | Max number of offers returned                   |
+| `show_to_affiliates` | `true`       | Show prices only available via affiliate links  |
 
-#### Flow
+### Flow
 
-```
+```text
 Angular search form
   → GET /api/flights/search (Spring Boot)
-      → GET /v2/shopping/flight-offers (Amadeus)
+      → GET /v1/prices/cheap (Travelpayouts)
   → User selects a flight
-  → POST /api/flights/price (Spring Boot)
-      → POST /v1/shopping/flight-offers/pricing (Amadeus)
-  → Proceed to booking
+  → Redirect to booking partner with marker affiliate ID
+  → Commissions tracked via Travelpayouts affiliate program
 ```
+
+> **Note:** Travelpayouts returns aggregated/cached prices from user searches, not guaranteed real-time fares. Prices are ideal for inspiration and exploration features; final fare confirmation happens on the partner's booking page.
 
 ## Project Structure
 
@@ -165,7 +165,7 @@ Roamio/
 │   │   │   │   ├── destination/
 │   │   │   │   ├── country/
 │   │   │   │   ├── airport/
-│   │   │   │   ├── amadeustoken/
+│   │   │   │   ├── travelpayoutstoken/
 │   │   │   │   ├── flightsearchcache/
 │   │   │   │   ├── jwtrefreshtoken/
 │   │   │   │   ├── oauthaccount/
@@ -240,12 +240,12 @@ GOOGLE_CLIENT_SECRET=your_google_client_secret
 PAYPAL_CLIENT_ID=your_paypal_client_id
 PAYPAL_SECRET=your_paypal_secret
 STRIPE_SECRET_KEY=your_stripe_secret_key
-AMADEUS_CLIENT_ID=your_amadeus_client_id
-AMADEUS_CLIENT_SECRET=your_amadeus_client_secret
-AMADEUS_BASE_URL=https://test.api.amadeus.com
+TRAVELPAYOUTS_TOKEN=your_travelpayouts_api_token
+TRAVELPAYOUTS_MARKER=your_affiliate_marker_id
+TRAVELPAYOUTS_BASE_URL=https://api.travelpayouts.com
 ```
 
-> Get your Amadeus credentials at [developers.amadeus.com](https://developers.amadeus.com/). The sandbox is free and doesn't require a credit card.
+> Get your Travelpayouts credentials at [travelpayouts.com](https://www.travelpayouts.com/). Sign up is free and no credit card is required.
 
 ## API Endpoints
 
@@ -258,8 +258,8 @@ AMADEUS_BASE_URL=https://test.api.amadeus.com
 
 ### Flights
 
-- `GET /api/flights/search` — Search flights (proxies Amadeus flight-offers)
-- `POST /api/flights/price` — Confirm flight price (proxies Amadeus pricing)
+- `GET /api/flights/search` — Search flights (proxies Travelpayouts `/v1/prices/cheap`)
+- `GET /api/flights/calendar` — Price calendar for a route (proxies Travelpayouts `/v1/prices/calendar`)
 - `GET /api/flights/{id}` — Flight details
 - `POST /api/flights/book` — Book a flight
 
@@ -289,7 +289,7 @@ See `Roamio_relations_table.drawio` for the full ERD. Key entities:
 | `users`               | User profiles, roles and auth credentials          |
 | `user_preferences`    | Notification preferences per user                  |
 | `booking`             | Master booking record                              |
-| `flight`              | Flight listings with Amadeus integration fields    |
+| `flight`              | Flight listings with Travelpayouts price data      |
 | `flight_booking`      | Flight-specific booking details (cost/eco scores)  |
 | `passenger`           | Passengers per flight booking                      |
 | `fare_option`         | Fare tiers per flight                              |
@@ -302,8 +302,8 @@ See `Roamio_relations_table.drawio` for the full ERD. Key entities:
 | `deal`                | Promotional deals                                  |
 | `country`             | Country reference data (ISO code, region, flag)    |
 | `airport`             | Airport reference data (IATA code, city, timezone) |
-| `amadeus_token`       | Cached Amadeus OAuth2 access tokens                |
-| `flight_search_cache` | Cached Amadeus flight search results               |
+| `travelpayouts_token` | Cached Travelpayouts API token metadata            |
+| `flight_search_cache` | Cached Travelpayouts flight search results         |
 | `jwt_refresh_token`   | JWT refresh tokens with revocation support         |
 | `oauth_account`       | Linked OAuth provider accounts (Google)            |
 

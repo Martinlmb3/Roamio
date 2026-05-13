@@ -1,63 +1,108 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Footer } from '../../shared/footer/footer';
 import { Header } from '../../shared/header/header';
+import { Footer } from '../../shared/footer/footer';
+import { LucideSprout } from '@lucide/angular';
 
 interface Flight {
-  airline: string;
-  logoUrl: string;
-  departure: {
-    time: string;
-    airport: string;
-  };
-  arrival: {
-    time: string;
-    airport: string;
-  };
+  airlineCode: string;
+  airlineName: string;
+  flightNumber: string;
+  aircraft: string;
+  dep: { time: string; airport: string };
+  arr: { time: string; airport: string };
   duration: string;
   stops: string;
-  stopsClass: string;
+  stopsClass: 'direct' | 'stop';
+  layover?: string;
   price: number;
+  roamioScore: number;
+  roamioStyle: 'high' | 'mid';
+  co2: string;
+  co2Class: 'good' | 'bad' | 'mid';
+  extras: string[];
+  isTop: boolean;
 }
 
 @Component({
   selector: 'app-flight-search-results',
-  imports: [CommonModule, Footer, Header],
+  imports: [Header, Footer, LucideSprout],
   templateUrl: './flight-search-results.html',
   styleUrl: './flight-search-results.css',
   standalone: true
 })
 export class FlightSearchResults {
+  activeSortTab: 'best' | 'cheapest' | 'greenest' = 'greenest';
+  activeEmission = 0;
+  activeChips = [
+    { id: 0, label: 'Stops: Direct' },
+    { id: 1, label: 'Airline: British Airways' },
+    { id: 2, label: 'Emissions: Lowest only' },
+  ];
+  checkedStops   = new Set(['Direct']);
+  checkedAirlines = new Set(['British Airways']);
+
   flights: Flight[] = [
     {
-      airline: 'British Airways',
-      logoUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCUGbM77i1Md54JelYmXySnqvH-rAuicW-hGHh8jxCrnemA5SeQFudp-9wuLr1i65-V6JSz9hOZ8co5fFWvIJVR3N3jbZ8QGOf2wW_md5btMZX0MpulJwgOHBgh9p8ZDxoDxFX4DqWtWnPhuYILgcnFhNtyrKaWH1QmvpDLcA__cywj9AyShBH5tJPITTAOLqswNqVSTVuzdVpqkDRjPxZXi2g3HgMjmmXAXvJvDnfrHxl0A3lZh3fLM-LywvypIajeM-ytQ_A2GtXJ',
-      departure: { time: '10:30', airport: 'LHR' },
-      arrival: { time: '13:45', airport: 'JFK' },
-      duration: '8h 15m',
-      stops: 'Direct',
-      stopsClass: 'text-green-600 dark:text-green-400',
-      price: 589
+      airlineCode: 'ba', airlineName: 'British Airways', flightNumber: 'BA 178', aircraft: 'Airbus A350-1000',
+      dep: { time: '10:30', airport: 'LHR' }, arr: { time: '13:45', airport: 'JFK' },
+      duration: '8h 15m', stops: 'Direct', stopsClass: 'direct',
+      price: 589, roamioScore: 91.5, roamioStyle: 'high',
+      co2: '142 kg CO₂e · −21% vs avg', co2Class: 'good',
+      extras: ['Carry-on included', 'Free changes'], isTop: true,
     },
     {
-      airline: 'American Airlines',
-      logoUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC0RvV5pSCuo3Jvk4ONHacOSBLex48_unSG_XcZ4kpXEx3sNePIGZcJIWQ1UOYWih-kpSfpIWpCOE_JMYMZsSwep4v4fnZsVJFbU7e8vjtyzZiY-iIu9KCcX6Rt_nIjVCae0a4AF6ynjrEszgWpgpGlqe7mGBS9mKvwvJU-94ZnOBYNilbIPVvyPLv5B_bFNlskZAY3YkfHKnC3w8wBQB68TI4YmUrnTzFy-VbHncp9XAWGj3tr1gD42kTDjNgHD7VWs6IECELIZpA6',
-      departure: { time: '11:00', airport: 'LHR' },
-      arrival: { time: '18:30', airport: 'JFK' },
-      duration: '10h 30m',
-      stops: '1 Stop (DUB)',
-      stopsClass: 'text-orange-600 dark:text-orange-400',
-      price: 520
+      airlineCode: 'va', airlineName: 'Virgin Atlantic', flightNumber: 'VS 003', aircraft: 'Boeing 787-9',
+      dep: { time: '09:15', airport: 'LGW' }, arr: { time: '12:40', airport: 'JFK' },
+      duration: '8h 25m', stops: 'Direct', stopsClass: 'direct',
+      price: 615, roamioScore: 86.2, roamioStyle: 'high',
+      co2: '156 kg CO₂e · −13% vs avg', co2Class: 'good',
+      extras: ['Carry-on included'], isTop: false,
     },
     {
-      airline: 'Virgin Atlantic',
-      logoUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDbc0_3KvXC91YY6pOCGrSkwR3yChkoMKXClp15BouLzbesUjg3wwvvP3PidrHi-AQFS489ZNOKkidQNKZeQnrCPqFANBgNu2Edm9HxfmetYrrEdbKPEIAs9KCK2CXyl-plDY6b3BMXtRYYAXMiVnGRC7QJB_7WyMpH9s4BT_knBOxfhMnu3gBtFEnCXy6vwL2MhpR41twf1Z0XRDWBrsOzvSOUTxh-GCJ1DVI1aDuAplGIL9WLpva2afL9HrkBm5QLXcRg61O5K8rB',
-      departure: { time: '09:15', airport: 'LGW' },
-      arrival: { time: '12:40', airport: 'JFK' },
-      duration: '8h 25m',
-      stops: 'Direct',
-      stopsClass: 'text-green-600 dark:text-green-400',
-      price: 615
-    }
+      airlineCode: 'aa', airlineName: 'American Airlines', flightNumber: 'AA 107', aircraft: 'Layover 1h 50m at DUB',
+      dep: { time: '11:00', airport: 'LHR' }, arr: { time: '18:30', airport: 'JFK' },
+      duration: '10h 30m', stops: '1 stop · DUB', stopsClass: 'stop',
+      price: 520, roamioScore: 62.0, roamioStyle: 'mid',
+      co2: '228 kg CO₂e · +27% vs avg', co2Class: 'bad',
+      extras: ['Bag extra'], isTop: false,
+    },
+    {
+      airlineCode: 'dl', airlineName: 'Delta', flightNumber: 'DL 002', aircraft: 'Airbus A330-900neo',
+      dep: { time: '14:20', airport: 'LHR' }, arr: { time: '18:00', airport: 'JFK' },
+      duration: '8h 40m', stops: 'Direct', stopsClass: 'direct',
+      price: 642, roamioScore: 82.4, roamioStyle: 'high',
+      co2: '174 kg CO₂e · −3% vs avg', co2Class: 'mid',
+      extras: ['Carry-on included', 'Free changes'], isTop: false,
+    },
+    {
+      airlineCode: 'af', airlineName: 'Air France', flightNumber: 'AF 1281 + AF 022', aircraft: 'Layover 2h 10m at CDG',
+      dep: { time: '06:50', airport: 'LHR' }, arr: { time: '13:45', airport: 'JFK' },
+      duration: '11h 55m', stops: '1 stop · CDG', stopsClass: 'stop',
+      price: 478, roamioScore: 71.8, roamioStyle: 'mid',
+      co2: '205 kg CO₂e · +14% vs avg', co2Class: 'bad',
+      extras: ['Carry-on included'], isTop: false,
+    },
+    {
+      airlineCode: 'tt', airlineName: 'TAP Air', flightNumber: 'TP 1357', aircraft: 'Airbus A321LR',
+      dep: { time: '19:40', airport: 'LHR' }, arr: { time: '22:45', airport: 'EWR' },
+      duration: '9h 05m', stops: 'Direct', stopsClass: 'direct',
+      price: 534, roamioScore: 88.9, roamioStyle: 'high',
+      co2: '148 kg CO₂e · −17% vs avg', co2Class: 'good',
+      extras: ['Carry-on included'], isTop: false,
+    },
   ];
+
+  get topFlights() { return this.flights.filter(f => f.isTop); }
+  get otherFlights() { return this.flights.filter(f => !f.isTop); }
+
+  setSort(tab: 'best' | 'cheapest' | 'greenest') { this.activeSortTab = tab; }
+  setEmission(i: number) { this.activeEmission = i; }
+  removeChip(id: number) { this.activeChips = this.activeChips.filter(c => c.id !== id); }
+
+  toggleStop(val: string) {
+    this.checkedStops.has(val) ? this.checkedStops.delete(val) : this.checkedStops.add(val);
+  }
+  toggleAirline(val: string) {
+    this.checkedAirlines.has(val) ? this.checkedAirlines.delete(val) : this.checkedAirlines.add(val);
+  }
 }
