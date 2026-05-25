@@ -41,11 +41,19 @@
 </div>
 </div>
 <form action="#" class="mt-6 space-y-5" method="POST">
-<div>
-<label class="block text-sm font-medium" for="full-name">Full Name</label>
-<div class="mt-1">
-<input autocomplete="name" class="form-input block w-full rounded-lg border-border-light bg-background-light px-4 py-3 placeholder:text-text-muted-light/70 focus:border-primary focus:ring-primary dark:border-border-dark dark:bg-background-dark dark:placeholder:text-text-muted-dark/70" id="full-name" name="full-name" required="" type="text"/>
-</div>
+<div class="grid grid-cols-2 gap-4">
+  <div>
+    <label class="block text-sm font-medium" for="first-name">First Name</label>
+    <div class="mt-1">
+      <input autocomplete="given-name" class="form-input block w-full rounded-lg border-border-light bg-background-light px-4 py-3 placeholder:text-text-muted-light/70 focus:border-primary focus:ring-primary dark:border-border-dark dark:bg-background-dark dark:placeholder:text-text-muted-dark/70" id="first-name" name="first-name" required="" type="text"/>
+    </div>
+  </div>
+  <div>
+    <label class="block text-sm font-medium" for="last-name">Last Name</label>
+    <div class="mt-1">
+      <input autocomplete="family-name" class="form-input block w-full rounded-lg border-border-light bg-background-light px-4 py-3 placeholder:text-text-muted-light/70 focus:border-primary focus:ring-primary dark:border-border-dark dark:bg-background-dark dark:placeholder:text-text-muted-dark/70" id="last-name" name="last-name" required="" type="text"/>
+    </div>
+  </div>
 </div>
 <div>
 <label class="block text-sm font-medium" for="email">Email Address</label>
@@ -58,14 +66,6 @@
 <div class="relative mt-1">
 <input autocomplete="new-password" class="form-input block w-full rounded-lg border-border-light bg-background-light px-4 py-3 placeholder:text-text-muted-light/70 focus:border-primary focus:ring-primary dark:border-border-dark dark:bg-background-dark dark:placeholder:text-text-muted-dark/70" id="password" name="password" required="" [type]="passwordVisible ? 'text' : 'password'"/>
 <button aria-label="Toggle password visibility" class="absolute inset-y-0 right-0 flex items-center pr-3 text-text-muted-light dark:text-text-muted-dark" type="button" (click)="togglePasswordVisibility()"><span class="material-symbols-outlined">{{ passwordVisible ? 'visibility_off' : 'visibility' }}</span>
-</button>
-</div>
-</div>
-<div>
-<label class="block text-sm font-medium" for="confirm-password">Confirm Password</label>
-<div class="relative mt-1">
-<input autocomplete="new-password" class="form-input block w-full rounded-lg border-border-light bg-background-light px-4 py-3 placeholder:text-text-muted-light/70 focus:border-primary focus:ring-primary dark:border-border-dark dark:bg-background-dark dark:placeholder:text-text-muted-dark/70" id="confirm-password" name="confirm-password" required="" [type]="confirmPasswordVisible ? 'text' : 'password'"/>
-<button aria-label="Toggle confirm password visibility" class="absolute inset-y-0 right-0 flex items-center pr-3 text-text-muted-light dark:text-text-muted-dark" type="button" (click)="toggleConfirmPasswordVisibility()"><span class="material-symbols-outlined">{{ confirmPasswordVisible ? 'visibility_off' : 'visibility' }}</span>
 </button>
 </div>
 </div>
