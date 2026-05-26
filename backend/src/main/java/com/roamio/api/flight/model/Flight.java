@@ -49,6 +49,12 @@ public class Flight {
     @Column(name = "expires_at")
     private LocalDateTime expiresAt;
 
+    @Column(name = "co2_kg", precision = 10, scale = 3)
+    private BigDecimal co2Kg;
+
+    @Column(name = "distance_km", precision = 10, scale = 2)
+    private BigDecimal distanceKm;
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 }

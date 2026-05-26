@@ -5,8 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-// Tokens are set as HttpOnly cookies by the controller — not returned in the body.
-// This body carries only the user info the frontend needs to render the UI.
 @Data
 @Builder
 @NoArgsConstructor
@@ -17,5 +15,4 @@ public class LoginResponse {
     private String lastName;
     private String email;
     private String role;
-    private String membershipLevel;
 }
