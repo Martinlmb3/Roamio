@@ -23,4 +23,10 @@ public class AuthService implements UserDetailsService {
         }
         return new CustomUserDetails(user);
     }
+
+    public UserDetails loadUserById(Long id) throws UsernameNotFoundException {
+        return userRepository.findById(id)
+                .map(CustomUserDetails::new)
+                .orElseThrow(() -> new UsernameNotFoundException("No account found for id: " + id));
+    }
 }
