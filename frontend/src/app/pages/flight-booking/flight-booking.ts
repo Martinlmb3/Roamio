@@ -14,13 +14,13 @@ interface FareOption {
 }
 
 @Component({
-  selector: 'app-flight-booking-step1',
+  selector: 'app-flight-booking',
   imports: [CommonModule, Footer, Header],
-  templateUrl: './flight-booking-step1.html',
-  styleUrl: './flight-booking-step1.css',
+  templateUrl: './flight-booking.html',
+  styleUrl: './flight-booking.css',
   standalone: true
 })
-export class FlightBookingStep1 {
+export class FlightBooking {
   baggageCount: number = 0;
   adultsCount: number = 1;
 

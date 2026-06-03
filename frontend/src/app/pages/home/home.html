@@ -23,21 +23,21 @@
 <div class="grid grid-cols-1 gap-2 p-4 md:grid-cols-2 lg:grid-cols-10 lg:gap-0">
 <div class="relative lg:col-span-2">
 <label class="absolute -top-2 left-2 inline-block bg-background-light px-1 text-xs font-medium text-text-muted-light dark:bg-background-dark dark:text-text-muted-dark" for="from">From</label>
-<input class="h-14 w-full rounded-lg border-slate-300 bg-transparent pl-4 pr-10 text-sm focus:border-primary focus:ring-primary dark:border-slate-600 lg:rounded-r-none" id="from" placeholder="Origin" type="text"/>
+<input class="h-14 w-full rounded-lg border-slate-300 bg-transparent pl-4 pr-10 text-sm focus:border-primary focus:ring-primary dark:border-slate-600 lg:rounded-r-none" id="from" [(ngModel)]="origin" name="origin" placeholder="Origin" type="text"/>
 </div>
 <div class="relative lg:col-span-2">
 <label class="absolute -top-2 left-2 inline-block bg-background-light px-1 text-xs font-medium text-text-muted-light dark:bg-background-dark dark:text-text-muted-dark" for="to">To</label>
-<input class="h-14 w-full rounded-lg border-slate-300 bg-transparent px-4 text-sm focus:border-primary focus:ring-primary dark:border-slate-600 lg:rounded-none" id="to" placeholder="Destination" type="text"/>
+<input class="h-14 w-full rounded-lg border-slate-300 bg-transparent px-4 text-sm focus:border-primary focus:ring-primary dark:border-slate-600 lg:rounded-none" id="to" [(ngModel)]="destination" name="destination" placeholder="Destination" type="text"/>
 </div>
 <div class="relative lg:col-span-2">
 <label class="absolute -top-2 left-2 inline-block bg-background-light px-1 text-xs font-medium text-text-muted-light dark:bg-background-dark dark:text-text-muted-dark" for="depart">Depart</label>
-<input class="h-14 w-full rounded-lg border-slate-300 bg-transparent px-4 text-sm text-text-muted-light focus:border-primary focus:ring-primary dark:border-slate-600 dark:text-text-muted-dark lg:rounded-none" id="depart" type="date"/>
+<input class="h-14 w-full rounded-lg border-slate-300 bg-transparent px-4 text-sm text-text-muted-light focus:border-primary focus:ring-primary dark:border-slate-600 dark:text-text-muted-dark lg:rounded-none" id="depart" [(ngModel)]="departDate" name="departDate" type="date"/>
 </div>
 <div class="relative lg:col-span-2">
 <label class="absolute -top-2 left-2 inline-block bg-background-light px-1 text-xs font-medium text-text-muted-light dark:bg-background-dark dark:text-text-muted-dark" for="return">Return</label>
 <input class="h-14 w-full rounded-lg border-slate-300 bg-transparent px-4 text-sm text-text-muted-light focus:border-primary focus:ring-primary dark:border-slate-600 dark:text-text-muted-dark lg:rounded-none" id="return" type="date"/>
 </div>
-<button class="flex h-14 items-center justify-center rounded-lg bg-accent text-white transition-all duration-200 hover:bg-stone-brown hover:shadow-lg lg:col-span-2 lg:rounded-l-none">
+<button class="flex h-14 items-center justify-center rounded-lg bg-accent text-white transition-all duration-200 hover:bg-stone-brown hover:shadow-lg lg:col-span-2 lg:rounded-l-none" (click)="searchFlights()">
 <span class="font-bold">Search Flights</span>
 </button>
 </div>

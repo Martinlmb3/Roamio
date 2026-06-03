@@ -23,12 +23,8 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/flight-search-results/flight-search-results').then(m => m.FlightSearchResults)
   },
   {
-    path: 'flight-booking-step1',
-    loadComponent: () => import('./pages/flight-booking-step1/flight-booking-step1').then(m => m.FlightBookingStep1)
-  },
-  {
-    path: 'flight-booking-step2',
-    loadComponent: () => import('./pages/flight-booking-step2/flight-booking-step2').then(m => m.FlightBookingStep2)
+    path: 'flight-booking',
+    loadComponent: () => import('./pages/flight-booking/flight-booking').then(m => m.FlightBooking)
   },
   {
     path: 'hotel-search-results',
@@ -61,5 +57,9 @@ export const routes: Routes = [
   {
     path: 'scoring',
     loadComponent: () => import('./pages/scoring/scoring').then(m => m.Scoring)
+  },
+  {
+    path: '**',
+    redirectTo: '/home'
   }
 ];

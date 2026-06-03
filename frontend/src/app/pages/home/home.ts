@@ -1,25 +1,14 @@
 import { Component, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Footer } from '../../shared/footer/footer';
 import { Header } from '../../shared/header/header';
-
-interface Destination {
-  name: string;
-  country: string;
-  imageUrl: string;
-}
-
-interface Deal {
-  title: string;
-  description: string;
-  imageUrl: string;
-  badge: string;
-}
+import { Destination, Deal } from '../../model/home.model';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, Footer, Header],
+  imports: [CommonModule, FormsModule, Footer, Header],
   templateUrl: './home.html',
   styleUrl: './home.css',
   standalone: true
@@ -27,6 +16,17 @@ interface Deal {
 export class Home {
   private router = inject(Router);
   activeTab: string = 'flights';
+
+  origin = '';
+  destination = '';
+  departDate = '';
+
+  searchFlights(): void {
+    if (!this.origin || !this.destination || !this.departDate) return;
+    this.router.navigate(['/flight-search-results'], {
+      queryParams: { origin: this.origin, destination: this.destination, departDate: this.departDate }
+    });
+  }
 
   popularDestinations: Destination[] = [
     {
