@@ -65,7 +65,8 @@
               "buildTarget": "Romio:build:production"
             },
             "development": {
-              "buildTarget": "Romio:build:development"
+              "buildTarget": "Romio:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

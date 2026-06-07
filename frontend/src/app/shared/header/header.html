@@ -3,19 +3,29 @@
     <div class="flex items-center cursor-pointer" (click)="navigateToHome()">
       <img src="/Roamio-logo.svg" alt="Roamio" class="h-8 hover:opacity-80 transition-opacity" />
     </div>
-    <nav class="hidden items-center gap-8 md:flex">
+    <nav class="absolute left-1/2 -translate-x-1/2 hidden items-center gap-8 md:flex">
       <a class="text-sm font-semibold text-white hover:text-primary transition-colors drop-shadow-sm cursor-pointer" (click)="navigateToFlights()">Flights</a>
       <a class="text-sm font-semibold text-white hover:text-primary transition-colors drop-shadow-sm cursor-pointer" (click)="navigateToStays()">Stays</a>
       <a class="text-sm font-semibold text-white hover:text-primary transition-colors drop-shadow-sm cursor-pointer" (click)="navigateToDeals()">Deals</a>
       <a class="text-sm font-semibold text-white hover:text-primary transition-colors drop-shadow-sm cursor-pointer" (click)="navigateToMyTrips()">My Trips</a>
+      @if (user$ | async) {
+        <a class="text-sm font-semibold text-white hover:text-primary transition-colors drop-shadow-sm cursor-pointer" (click)="navigateToDashboard()">Dashboard</a>
+        <a class="text-sm font-semibold text-white hover:text-primary transition-colors drop-shadow-sm cursor-pointer" (click)="navigateToProfile()">Profile</a>
+      }
     </nav>
     <div class="flex items-center gap-2">
-      <button class="flex h-10 min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg border-2 border-white px-4 text-sm font-bold text-white hover:bg-white hover:text-secondary transition-all duration-200" (click)="navigateToLogin()">
-        <span class="truncate">Log In</span>
-      </button>
-      <button class="flex h-10 min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-primary px-4 text-sm font-bold text-text-light hover:bg-primary/80 hover:shadow-lg transition-all duration-200" (click)="navigateToSignUp()">
-        <span class="truncate">Sign Up</span>
-      </button>
+      @if (user$ | async) {
+        <button class="flex h-10 min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg border-2 border-white px-4 text-sm font-bold text-white hover:bg-white hover:text-secondary transition-all duration-200" (click)="logout()">
+          <span class="truncate">Log Out</span>
+        </button>
+      } @else {
+        <button class="flex h-10 min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg border-2 border-white px-4 text-sm font-bold text-white hover:bg-white hover:text-secondary transition-all duration-200" (click)="navigateToLogin()">
+          <span class="truncate">Log In</span>
+        </button>
+        <button class="flex h-10 min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-primary px-4 text-sm font-bold text-text-light hover:bg-primary/80 hover:shadow-lg transition-all duration-200" (click)="navigateToSignUp()">
+          <span class="truncate">Sign Up</span>
+        </button>
+      }
     </div>
   </div>
 </header>

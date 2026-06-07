@@ -14,6 +14,26 @@ export interface FlightResult {
   finalScore: number;
 }
 
+export interface FlightViewModel {
+  airlineCode: string;
+  airlineName: string;
+  flightNumber: string;
+  aircraft: string;
+  dep: { time: string; airport: string };
+  arr: { time: string; airport: string };
+  duration: string;
+  stops: string;
+  stopsClass: 'direct' | 'stop';
+  roamioScore: number;
+  roamioStyle: 'good' | 'mid';
+  co2: string;
+  co2Class: 'good' | 'avg' | 'bad';
+  extras: string[];
+  price: number;
+  _ecoScore: number;
+  _finalScore: number;
+}
+
 export interface FlightSearchParams {
   origin: string;
   destination: string;
