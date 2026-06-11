@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Header } from '../../shared/header/header';
@@ -24,13 +24,58 @@ export class FlightSearchResults implements OnInit {
   loading = true;
   errorMsg = '';
 
+  origin = '';
+  destination = '';
+  departDate = '';
+  returnDate = '';
+  tripType: 'round-trip' | 'one-way' = 'round-trip';
+  passengers = 1;
+  cabinClass = 'economy';
+
+  tripTypeOpen = false;
+  passengersOpen = false;
+  cabinClassOpen = false;
+
+  @HostListener('document:click')
+  closeDropdowns(): void {
+    this.tripTypeOpen = false;
+    this.passengersOpen = false;
+    this.cabinClassOpen = false;
+  }
+
+  get tripTypeLabel(): string {
+    return this.tripType === 'round-trip' ? 'Round trip' : 'One way';
+  }
+
+  get cabinLabel(): string {
+    const map: Record<string, string> = {
+      'economy': 'Economy',
+      'premium-economy': 'Premium Economy',
+      'business': 'Business',
+      'first': 'First'
+    };
+    return map[this.cabinClass] ?? 'Economy';
+  }
+
+  setTripType(type: 'round-trip' | 'one-way'): void { this.tripType = type; this.tripTypeOpen = false; }
+  setPassengers(p: number): void { this.passengers = p; this.passengersOpen = false; }
+  setCabinClass(cls: string): void { this.cabinClass = cls; this.cabinClassOpen = false; }
+
   private viewFlights: FlightViewModel[] = [];
 
   ngOnInit() {
     const p = this.route.snapshot.queryParams;
-    const origin      = p['origin']      ?? '';
-    const destination = p['destination'] ?? '';
-    const departDate  = p['departDate']  ?? '';
+    this.origin      = p['origin']      ?? '';
+    this.destination = p['destination'] ?? '';
+    this.departDate  = p['departDate']  ?? '';
+    this.returnDate  = p['returnDate']  ?? '';
+    this.tripType    = (p['tripType'] as 'round-trip' | 'one-way') ?? 'round-trip';
+    this.passengers  = Number(p['passengers']) || 1;
+    this.cabinClass  = p['cabinClass'] ?? 'economy';
+
+    const origin      = this.origin;
+    const destination = this.destination;
+    const departDate  = this.departDate;
 
     if (!origin || !destination || !departDate) {
       this.errorMsg = 'Missing search parameters.';
@@ -38,7 +83,8 @@ export class FlightSearchResults implements OnInit {
       return;
     }
 
-    this.flightService.search({ origin, destination, departDate }).subscribe({
+    const returnDate = this.returnDate || undefined;
+    this.flightService.search({ origin, destination, departDate, returnDate, passengers: this.passengers }).subscribe({
       next: (data) => { this.viewFlights = data.map(f => this.mapFlight(f)); this.loading = false; },
       error: () => { this.errorMsg = 'Failed to load flights.'; this.loading = false; }
     });

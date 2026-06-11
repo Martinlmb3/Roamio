@@ -20,23 +20,116 @@
 </div>
 <!-- Flights Tab -->
 @if (activeTab === 'flights') {
+<!-- Trip options row -->
+<div class="flex items-center gap-2 px-4 pt-3" (click)="$event.stopPropagation()">
+  <!-- Trip type -->
+  <div class="relative">
+    <button class="flex items-center gap-1.5 rounded-full border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-600 hover:border-primary hover:text-primary transition-colors" (click)="tripTypeOpen = !tripTypeOpen">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-3.5 w-3.5"><path d="M17 1l4 4-4 4M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+      {{ tripTypeLabel }}
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="h-3 w-3"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    @if (tripTypeOpen) {
+      <div class="absolute left-0 top-full z-50 mt-1 w-36 rounded-lg border border-slate-200 bg-white py-1 shadow-lg">
+        <button class="flex w-full items-center px-4 py-2 text-xs font-medium hover:bg-slate-50" [class.text-primary]="tripType === 'round-trip'" [class.text-slate-700]="tripType !== 'round-trip'" (click)="setTripType('round-trip')">Round trip</button>
+        <button class="flex w-full items-center px-4 py-2 text-xs font-medium hover:bg-slate-50" [class.text-primary]="tripType === 'one-way'" [class.text-slate-700]="tripType !== 'one-way'" (click)="setTripType('one-way')">One way</button>
+      </div>
+    }
+  </div>
+  <!-- Passengers -->
+  <div class="relative">
+    <button class="flex items-center gap-1.5 rounded-full border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-600 hover:border-primary hover:text-primary transition-colors" (click)="openPassengers($event)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-3.5 w-3.5"><circle cx="12" cy="7" r="4"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/></svg>
+      {{ passengersLabel }}
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="h-3 w-3"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    @if (passengersOpen) {
+      <div class="absolute left-0 top-full z-50 mt-1 w-64 rounded-xl border border-slate-200 bg-white shadow-xl overflow-hidden" (click)="$event.stopPropagation()">
+        <ul class="divide-y divide-slate-100">
+          <li class="flex items-center justify-between px-4 py-3">
+            <span class="text-sm font-semibold text-slate-800">Adultes</span>
+            <div class="flex items-center gap-3">
+              <button class="flex h-7 w-7 items-center justify-center rounded-full border border-slate-300 text-slate-600 hover:border-primary hover:text-primary disabled:opacity-30 transition-colors" (click)="tempAdults > 1 ? tempAdults = tempAdults - 1 : null" [disabled]="tempAdults <= 1">−</button>
+              <span class="w-4 text-center text-sm font-semibold text-slate-800">{{ tempAdults }}</span>
+              <button class="flex h-7 w-7 items-center justify-center rounded-full border border-slate-300 text-slate-600 hover:border-primary hover:text-primary transition-colors" (click)="tempAdults = tempAdults + 1">+</button>
+            </div>
+          </li>
+          <li class="flex items-center justify-between px-4 py-3">
+            <span class="flex flex-col">
+              <span class="text-sm font-semibold text-slate-800">Enfants</span>
+              <span class="text-xs text-slate-400">2–11 ans</span>
+            </span>
+            <div class="flex items-center gap-3">
+              <button class="flex h-7 w-7 items-center justify-center rounded-full border border-slate-300 text-slate-600 hover:border-primary hover:text-primary disabled:opacity-30 transition-colors" (click)="tempChildren > 0 ? tempChildren = tempChildren - 1 : null" [disabled]="tempChildren <= 0">−</button>
+              <span class="w-4 text-center text-sm font-semibold text-slate-800">{{ tempChildren }}</span>
+              <button class="flex h-7 w-7 items-center justify-center rounded-full border border-slate-300 text-slate-600 hover:border-primary hover:text-primary transition-colors" (click)="tempChildren = tempChildren + 1">+</button>
+            </div>
+          </li>
+          <li class="flex items-center justify-between px-4 py-3">
+            <span class="flex flex-col">
+              <span class="text-sm font-semibold text-slate-800">Bébés</span>
+              <span class="text-xs text-slate-400">avec place assise</span>
+            </span>
+            <div class="flex items-center gap-3">
+              <button class="flex h-7 w-7 items-center justify-center rounded-full border border-slate-300 text-slate-600 hover:border-primary hover:text-primary disabled:opacity-30 transition-colors" (click)="tempInfantsSeat > 0 ? tempInfantsSeat = tempInfantsSeat - 1 : null" [disabled]="tempInfantsSeat <= 0">−</button>
+              <span class="w-4 text-center text-sm font-semibold text-slate-800">{{ tempInfantsSeat }}</span>
+              <button class="flex h-7 w-7 items-center justify-center rounded-full border border-slate-300 text-slate-600 hover:border-primary hover:text-primary transition-colors" (click)="tempInfantsSeat = tempInfantsSeat + 1">+</button>
+            </div>
+          </li>
+          <li class="flex items-center justify-between px-4 py-3">
+            <span class="flex flex-col">
+              <span class="text-sm font-semibold text-slate-800">Bébés</span>
+              <span class="text-xs text-slate-400">sur les genoux</span>
+            </span>
+            <div class="flex items-center gap-3">
+              <button class="flex h-7 w-7 items-center justify-center rounded-full border border-slate-300 text-slate-600 hover:border-primary hover:text-primary disabled:opacity-30 transition-colors" (click)="tempInfantsLap > 0 ? tempInfantsLap = tempInfantsLap - 1 : null" [disabled]="tempInfantsLap <= 0">−</button>
+              <span class="w-4 text-center text-sm font-semibold text-slate-800">{{ tempInfantsLap }}</span>
+              <button class="flex h-7 w-7 items-center justify-center rounded-full border border-slate-300 text-slate-600 hover:border-primary hover:text-primary transition-colors" (click)="tempInfantsLap = tempInfantsLap + 1">+</button>
+            </div>
+          </li>
+        </ul>
+        <div class="flex items-center justify-between border-t border-slate-100 px-4 py-3">
+          <button class="text-sm font-semibold text-primary hover:underline" (click)="cancelPassengers()">Annuler</button>
+          <button class="rounded-lg bg-primary px-5 py-1.5 text-sm font-bold text-white hover:bg-primary/90 transition-colors" (click)="confirmPassengers()">OK</button>
+        </div>
+      </div>
+    }
+  </div>
+  <!-- Cabin class -->
+  <div class="relative">
+    <button class="flex items-center gap-1.5 rounded-full border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-600 hover:border-primary hover:text-primary transition-colors" (click)="cabinClassOpen = !cabinClassOpen">
+      {{ cabinLabel }}
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="h-3 w-3"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    @if (cabinClassOpen) {
+      <div class="absolute left-0 top-full z-50 mt-1 w-44 rounded-lg border border-slate-200 bg-white py-1 shadow-lg">
+        <button class="flex w-full items-center px-4 py-2 text-xs font-medium hover:bg-slate-50" [class.text-primary]="cabinClass === 'economy'" [class.text-slate-700]="cabinClass !== 'economy'" (click)="setCabinClass('economy')">Economy</button>
+        <button class="flex w-full items-center px-4 py-2 text-xs font-medium hover:bg-slate-50" [class.text-primary]="cabinClass === 'premium-economy'" [class.text-slate-700]="cabinClass !== 'premium-economy'" (click)="setCabinClass('premium-economy')">Premium Economy</button>
+        <button class="flex w-full items-center px-4 py-2 text-xs font-medium hover:bg-slate-50" [class.text-primary]="cabinClass === 'business'" [class.text-slate-700]="cabinClass !== 'business'" (click)="setCabinClass('business')">Business</button>
+        <button class="flex w-full items-center px-4 py-2 text-xs font-medium hover:bg-slate-50" [class.text-primary]="cabinClass === 'first'" [class.text-slate-700]="cabinClass !== 'first'" (click)="setCabinClass('first')">First</button>
+      </div>
+    }
+  </div>
+</div>
 <div class="grid grid-cols-1 gap-2 p-4 md:grid-cols-2 lg:grid-cols-10 lg:gap-0">
 <div class="relative lg:col-span-2">
 <label class="absolute -top-2 left-2 inline-block bg-background-light px-1 text-xs font-medium text-text-muted-light dark:bg-background-dark dark:text-text-muted-dark" for="from">From</label>
 <input class="h-14 w-full rounded-lg border-slate-300 bg-transparent pl-4 pr-10 text-sm focus:border-primary focus:ring-primary dark:border-slate-600 lg:rounded-r-none" id="from" [(ngModel)]="origin" name="origin" placeholder="Origin" type="text"/>
 </div>
-<div class="relative lg:col-span-2">
+<div class="relative" [ngClass]="tripType === 'round-trip' ? 'lg:col-span-2' : 'lg:col-span-3'">
 <label class="absolute -top-2 left-2 inline-block bg-background-light px-1 text-xs font-medium text-text-muted-light dark:bg-background-dark dark:text-text-muted-dark" for="to">To</label>
 <input class="h-14 w-full rounded-lg border-slate-300 bg-transparent px-4 text-sm focus:border-primary focus:ring-primary dark:border-slate-600 lg:rounded-none" id="to" [(ngModel)]="destination" name="destination" placeholder="Destination" type="text"/>
 </div>
-<div class="relative lg:col-span-2">
+<div class="relative" [ngClass]="tripType === 'round-trip' ? 'lg:col-span-2' : 'lg:col-span-3'">
 <label class="absolute -top-2 left-2 inline-block bg-background-light px-1 text-xs font-medium text-text-muted-light dark:bg-background-dark dark:text-text-muted-dark" for="depart">Depart</label>
 <input class="h-14 w-full rounded-lg border-slate-300 bg-transparent px-4 text-sm text-text-muted-light focus:border-primary focus:ring-primary dark:border-slate-600 dark:text-text-muted-dark lg:rounded-none" id="depart" [(ngModel)]="departDate" name="departDate" type="date"/>
 </div>
+@if (tripType === 'round-trip') {
 <div class="relative lg:col-span-2">
 <label class="absolute -top-2 left-2 inline-block bg-background-light px-1 text-xs font-medium text-text-muted-light dark:bg-background-dark dark:text-text-muted-dark" for="return">Return</label>
-<input class="h-14 w-full rounded-lg border-slate-300 bg-transparent px-4 text-sm text-text-muted-light focus:border-primary focus:ring-primary dark:border-slate-600 dark:text-text-muted-dark lg:rounded-none" id="return" type="date"/>
+<input class="h-14 w-full rounded-lg border-slate-300 bg-transparent px-4 text-sm text-text-muted-light focus:border-primary focus:ring-primary dark:border-slate-600 dark:text-text-muted-dark lg:rounded-none" id="return" [(ngModel)]="returnDate" name="returnDate" type="date"/>
 </div>
+}
 <button class="flex h-14 items-center justify-center rounded-lg bg-accent text-white transition-all duration-200 hover:bg-stone-brown hover:shadow-lg lg:col-span-2 lg:rounded-l-none" (click)="searchFlights()">
 <span class="font-bold">Search Flights</span>
 </button>

@@ -24,13 +24,18 @@ public class TravelpayoutsClient {
     private static final String BASE_URL = "https://api.travelpayouts.com";
 
     public List<FlightDTO> getCheapFlights(String origin, String destination,
-                                            String departDate, String currency) {
-        String url = UriComponentsBuilder.fromUriString(BASE_URL + "/v1/prices/cheap")
+                                            String departDate, String returnDate, String currency) {
+        UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(BASE_URL + "/v1/prices/cheap")
                 .queryParam("origin", origin)
                 .queryParam("destination", destination)
                 .queryParam("depart_date", departDate)
-                .queryParam("currency", currency)
-                .toUriString();
+                .queryParam("currency", currency);
+
+        if (returnDate != null && !returnDate.isBlank()) {
+            builder.queryParam("return_date", returnDate);
+        }
+
+        String url = builder.toUriString();
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("X-Access-Token", apiToken);

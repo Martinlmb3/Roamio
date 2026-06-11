@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -15,17 +15,99 @@ import { Destination, Deal } from '../../model/home.model';
 })
 export class Home {
   private router = inject(Router);
-  activeTab: string = 'flights';
+  activeTab = 'flights';
 
   origin = '';
   destination = '';
   departDate = '';
+  returnDate = '';
+
+  tripType: 'round-trip' | 'one-way' = 'round-trip';
+  cabinClass: 'economy' | 'premium-economy' | 'business' | 'first' = 'economy';
+
+  adults = 1;
+  children = 0;
+  infantsSeat = 0;
+  infantsLap = 0;
+
+  tempAdults = 1;
+  tempChildren = 0;
+  tempInfantsSeat = 0;
+  tempInfantsLap = 0;
+
+  tripTypeOpen = false;
+  passengersOpen = false;
+  cabinClassOpen = false;
+
+  @HostListener('document:click')
+  closeDropdowns(): void {
+    this.tripTypeOpen = false;
+    this.passengersOpen = false;
+    this.cabinClassOpen = false;
+  }
+
+  get totalPassengers(): number {
+    return this.adults + this.children + this.infantsSeat + this.infantsLap;
+  }
+
+  get passengersLabel(): string {
+    return `${this.totalPassengers} ${this.totalPassengers === 1 ? 'adult' : 'adults'}`;
+  }
+
+  get tripTypeLabel(): string {
+    return this.tripType === 'round-trip' ? 'Round trip' : 'One way';
+  }
+
+  get cabinLabel(): string {
+    const map: Record<string, string> = {
+      'economy': 'Economy',
+      'premium-economy': 'Premium Economy',
+      'business': 'Business',
+      'first': 'First'
+    };
+    return map[this.cabinClass];
+  }
+
+  openPassengers(e: Event): void {
+    e.stopPropagation();
+    this.tempAdults = this.adults;
+    this.tempChildren = this.children;
+    this.tempInfantsSeat = this.infantsSeat;
+    this.tempInfantsLap = this.infantsLap;
+    this.passengersOpen = !this.passengersOpen;
+    this.tripTypeOpen = false;
+    this.cabinClassOpen = false;
+  }
+
+  confirmPassengers(): void {
+    this.adults = this.tempAdults;
+    this.children = this.tempChildren;
+    this.infantsSeat = this.tempInfantsSeat;
+    this.infantsLap = this.tempInfantsLap;
+    this.passengersOpen = false;
+  }
+
+  cancelPassengers(): void {
+    this.passengersOpen = false;
+  }
+
+  setTripType(type: 'round-trip' | 'one-way'): void { this.tripType = type; this.tripTypeOpen = false; }
+  setCabinClass(cls: 'economy' | 'premium-economy' | 'business' | 'first'): void { this.cabinClass = cls; this.cabinClassOpen = false; }
 
   searchFlights(): void {
     if (!this.origin || !this.destination || !this.departDate) return;
-    this.router.navigate(['/flight-search-results'], {
-      queryParams: { origin: this.origin, destination: this.destination, departDate: this.departDate }
-    });
+    const queryParams: Record<string, string | number> = {
+      origin: this.origin,
+      destination: this.destination,
+      departDate: this.departDate,
+      tripType: this.tripType,
+      passengers: this.totalPassengers,
+      cabinClass: this.cabinClass
+    };
+    if (this.tripType === 'round-trip' && this.returnDate) {
+      queryParams['returnDate'] = this.returnDate;
+    }
+    this.router.navigate(['/flight-search-results'], { queryParams });
   }
 
   popularDestinations: Destination[] = [

@@ -23,13 +23,14 @@ public class FlightController {
             @RequestParam String origin,
             @RequestParam String destination,
             @RequestParam String departDate,
+            @RequestParam(required = false) String returnDate,
             @RequestParam(defaultValue = "EUR") String currency,
             @RequestParam(defaultValue = "1")   int passengers,
             @RequestParam(defaultValue = "0.5") double w1,
             @RequestParam(defaultValue = "0.5") double w2) {
 
         List<FlightDTO> results = flightSearchService.search(
-                origin, destination, departDate, currency, passengers, w1, w2);
+                origin, destination, departDate, returnDate, currency, passengers, w1, w2);
 
         return ResponseEntity.ok(results);
     }

@@ -38,6 +38,7 @@ export interface FlightSearchParams {
   origin: string;
   destination: string;
   departDate: string;
+  returnDate?: string;
   currency?: string;
   passengers?: number;
   w1?: number;

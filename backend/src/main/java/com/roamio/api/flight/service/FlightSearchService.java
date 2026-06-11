@@ -44,15 +44,15 @@ public class FlightSearchService {
      * runs and the result is stored in the cache before being returned.
      */
     public List<FlightDTO> search(String origin, String destination,
-            String departDate, String currency,
+            String departDate, String returnDate, String currency,
             int passengers, double w1, double w2) {
 
-        String hash = ConvertSearchToHash(origin, destination, departDate, currency, passengers);
+        String hash = ConvertSearchToHash(origin, destination, departDate, returnDate, currency, passengers);
 
         return cacheRepo.findBySearchHash(hash)
                 .map(cached -> parseJson(cached.getResultsJson()))
                 .orElseGet(() -> executeAndCacheSearch(
-                        hash, origin, destination, departDate, currency, passengers, w1, w2));
+                        hash, origin, destination, departDate, returnDate, currency, passengers, w1, w2));
     }
 
     /**
@@ -67,11 +67,11 @@ public class FlightSearchService {
      */
     private List<FlightDTO> executeAndCacheSearch(
             String hash, String origin, String destination,
-            String departDate, String currency,
+            String departDate, String returnDate, String currency,
             int passengers, double w1, double w2) {
 
         // 1. Fetch
-        List<FlightDTO> flights = tpClient.getCheapFlights(origin, destination, departDate, currency);
+        List<FlightDTO> flights = tpClient.getCheapFlights(origin, destination, departDate, returnDate, currency);
         if (flights.isEmpty())
             return flights;
 
@@ -107,8 +107,9 @@ public class FlightSearchService {
      * will never produce the same hash and accidentally share a cached result.
      */
     private String ConvertSearchToHash(String origin, String destination,
-            String departDate, String currency, int passengers) {
-        String search = origin + destination + departDate + currency + passengers;
+            String departDate, String returnDate, String currency, int passengers) {
+        String rd = returnDate != null ? returnDate : "";
+        String search = origin + destination + departDate + rd + currency + passengers;
         try {
             byte[] hash = MessageDigest.getInstance("SHA-256")
                     .digest(search.getBytes(StandardCharsets.UTF_8));
