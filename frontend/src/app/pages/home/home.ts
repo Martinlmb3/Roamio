@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Footer } from '../../shared/footer/footer';
 import { Header } from '../../shared/header/header';
+import { AirportAutocomplete } from '../../shared/airport-autocomplete/airport-autocomplete';
 import { Destination, Deal } from '../../model/home.model';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, FormsModule, Footer, Header],
+  imports: [CommonModule, FormsModule, Footer, Header, AirportAutocomplete],
   templateUrl: './home.html',
   styleUrl: './home.css',
   standalone: true
@@ -57,7 +58,6 @@ export class Home {
   get tripTypeLabel(): string {
     return this.tripType === 'round-trip' ? 'Round trip' : 'One way';
   }
-
   get cabinLabel(): string {
     const map: Record<string, string> = {
       'economy': 'Economy',

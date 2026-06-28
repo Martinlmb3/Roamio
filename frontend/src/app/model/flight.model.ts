@@ -30,6 +30,8 @@ export interface FlightViewModel {
   co2Class: 'good' | 'avg' | 'bad';
   extras: string[];
   price: number;
+  _stops: number;
+  _co2: number | null;
   _ecoScore: number;
   _finalScore: number;
 }

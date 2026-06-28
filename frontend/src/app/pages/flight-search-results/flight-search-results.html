@@ -109,9 +109,71 @@
     <div class="filter-card">
       <div class="filter-head">
         <h3>Filter by</h3>
-        <button class="reset-btn">Reset</button>
+        @if (hasActiveFilters) {
+          <button class="reset-btn" (click)="resetFilters()">Reset all</button>
+        }
       </div>
 
+      <!-- STOPS -->
+      <div class="filter-section">
+        <h4>Stops</h4>
+        <div class="opt" [class.checked]="filterStops.includes(0)" (click)="toggleStopFilter(0)">
+          <span class="check">
+            <svg viewBox="0 0 12 12"><polyline points="1,6 4,10 11,2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          Direct
+          <span class="count">{{ stopsCount(0) }}</span>
+        </div>
+        <div class="opt" [class.checked]="filterStops.includes(1)" (click)="toggleStopFilter(1)">
+          <span class="check">
+            <svg viewBox="0 0 12 12"><polyline points="1,6 4,10 11,2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          1 stop
+          <span class="count">{{ stopsCount(1) }}</span>
+        </div>
+        <div class="opt" [class.checked]="filterStops.includes(2)" (click)="toggleStopFilter(2)">
+          <span class="check">
+            <svg viewBox="0 0 12 12"><polyline points="1,6 4,10 11,2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          2+ stops
+          <span class="count">{{ stopsCount(2) }}</span>
+        </div>
+      </div>
+
+      <!-- PRICE -->
+      <div class="filter-section">
+        <h4>Max price</h4>
+        <div class="range-vals">
+          <span>€{{ priceMin }}</span>
+          <span class="range-current">€{{ maxPrice }}</span>
+        </div>
+        <input
+          type="range"
+          class="price-slider"
+          [min]="priceMin"
+          [max]="priceMax"
+          [value]="maxPrice"
+          (input)="setMaxPrice($any($event.target).value)"
+        />
+      </div>
+
+      <!-- AIRLINES -->
+      @if (availableAirlines.length > 0) {
+        <div class="filter-section">
+          <h4>Airlines</h4>
+          @for (airline of availableAirlines; track airline) {
+            <div class="opt" [class.checked]="filterAirlines.includes(airline)" (click)="toggleAirlineFilter(airline)">
+              <span class="check">
+                <svg viewBox="0 0 12 12"><polyline points="1,6 4,10 11,2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              {{ airline }}
+              <span class="count">{{ airlineCount(airline) }}</span>
+            </div>
+          }
+        </div>
+      }
+
+      <!-- EMISSIONS -->
       <div class="filter-section">
         <h4>Emissions</h4>
         <div class="em-segments">
@@ -138,8 +200,8 @@
 
     <div class="main-head">
       <div class="title-block">
-        <h1></h1>
-        <p>Showing <strong>78</strong> of 210 results — eco-priority enabled</p>
+        <h1>{{ origin }} → {{ destination }}</h1>
+        <p>Showing <strong>{{ filteredCount }}</strong> of {{ totalCount }} results</p>
       </div>
       <div class="sort-block">
         <label>Sort by</label>

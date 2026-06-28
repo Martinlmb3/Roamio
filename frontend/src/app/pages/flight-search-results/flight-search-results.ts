@@ -36,6 +36,12 @@ export class FlightSearchResults implements OnInit {
   passengersOpen = false;
   cabinClassOpen = false;
 
+  filterStops: number[] = [];
+  filterAirlines: string[] = [];
+  maxPrice = 9999;
+  priceMin = 0;
+  priceMax = 9999;
+
   @HostListener('document:click')
   closeDropdowns(): void {
     this.tripTypeOpen = false;
@@ -85,19 +91,97 @@ export class FlightSearchResults implements OnInit {
 
     const returnDate = this.returnDate || undefined;
     this.flightService.search({ origin, destination, departDate, returnDate, passengers: this.passengers }).subscribe({
-      next: (data) => { this.viewFlights = data.map(f => this.mapFlight(f)); this.loading = false; },
+      next: (data) => {
+        this.viewFlights = data.map(f => this.mapFlight(f));
+        if (this.viewFlights.length > 0) {
+          const prices = this.viewFlights.map(f => f.price);
+          this.priceMin = Math.min(...prices);
+          this.priceMax = Math.max(...prices);
+          this.maxPrice = this.priceMax;
+        }
+        this.loading = false;
+      },
       error: () => { this.errorMsg = 'Failed to load flights.'; this.loading = false; }
     });
   }
 
+  // ── Sidebar filter helpers ────────────────────────────────────────
+
+  get availableAirlines(): string[] {
+    return [...new Set(this.viewFlights.map(f => f.airlineName))].sort();
+  }
+
+  stopsCount(n: number): number {
+    return this.viewFlights.filter(f => n >= 2 ? f._stops >= 2 : f._stops === n).length;
+  }
+
+  airlineCount(airline: string): number {
+    return this.viewFlights.filter(f => f.airlineName === airline).length;
+  }
+
+  toggleStopFilter(n: number): void {
+    this.filterStops = this.filterStops.includes(n)
+      ? this.filterStops.filter(s => s !== n)
+      : [...this.filterStops, n];
+  }
+
+  toggleAirlineFilter(airline: string): void {
+    this.filterAirlines = this.filterAirlines.includes(airline)
+      ? this.filterAirlines.filter(a => a !== airline)
+      : [...this.filterAirlines, airline];
+  }
+
+  setMaxPrice(value: string): void {
+    this.maxPrice = Number(value);
+  }
+
+  resetFilters(): void {
+    this.filterStops = [];
+    this.filterAirlines = [];
+    this.maxPrice = this.priceMax;
+    this.activeEmission = 2;
+  }
+
+  get hasActiveFilters(): boolean {
+    return this.filterStops.length > 0
+      || this.filterAirlines.length > 0
+      || this.maxPrice < this.priceMax
+      || this.activeEmission < 2;
+  }
+
+  // ── Filtering & sorting ───────────────────────────────────────────
+
+  private get avgCo2(): number {
+    const vals = this.viewFlights.filter(f => f._co2 != null).map(f => f._co2!);
+    return vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : 0;
+  }
+
+  private get filtered(): FlightViewModel[] {
+    const avg = this.activeEmission < 2 ? this.avgCo2 : 0;
+    return this.viewFlights.filter(f => {
+      if (this.filterStops.length > 0) {
+        const bucket = f._stops >= 2 ? 2 : f._stops;
+        if (!this.filterStops.includes(bucket)) return false;
+      }
+      if (this.filterAirlines.length > 0 && !this.filterAirlines.includes(f.airlineName)) return false;
+      if (f.price > this.maxPrice) return false;
+      if (this.activeEmission === 0 && (f._co2 == null || f._co2 >= avg * 0.8)) return false;
+      if (this.activeEmission === 1 && (f._co2 == null || f._co2 >= avg)) return false;
+      return true;
+    });
+  }
+
   private get sorted(): FlightViewModel[] {
-    if (this.activeSortTab === 'cheapest') return [...this.viewFlights].sort((a, b) => a.price - b.price);
-    if (this.activeSortTab === 'greenest') return [...this.viewFlights].sort((a, b) => b._ecoScore - a._ecoScore);
-    return [...this.viewFlights].sort((a, b) => b._finalScore - a._finalScore);
+    const f = this.filtered;
+    if (this.activeSortTab === 'cheapest') return [...f].sort((a, b) => a.price - b.price);
+    if (this.activeSortTab === 'greenest') return [...f].sort((a, b) => b._ecoScore - a._ecoScore);
+    return [...f].sort((a, b) => b._finalScore - a._finalScore);
   }
 
   get topFlights(): FlightViewModel[] { return this.sorted.slice(0, 3); }
   get otherFlights(): FlightViewModel[] { return this.sorted.slice(3); }
+  get filteredCount(): number { return this.filtered.length; }
+  get totalCount(): number { return this.viewFlights.length; }
 
   setSort(tab: 'best' | 'cheapest' | 'greenest'): void { this.activeSortTab = tab; }
   setEmission(n: number): void { this.activeEmission = n; }
@@ -128,6 +212,8 @@ export class FlightSearchResults implements OnInit {
       co2Class,
       extras: [],
       price: f.price ?? 0,
+      _stops: f.stops ?? 0,
+      _co2: co2kg,
       _ecoScore: f.ecoScore ?? 0,
       _finalScore: f.finalScore ?? 0,
     };
